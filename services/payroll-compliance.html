@@ -45,25 +45,120 @@
 </nav>
 
 <!-- HERO -->
-<section style="background:linear-gradient(140deg,#0F1A24 0%,#1C2B3A 55%,#243447 100%);padding:96px 0 80px;position:relative;overflow:hidden;">
-  <div class="absolute inset-0 pointer-events-none" style="background-image:radial-gradient(rgba(255,255,255,0.06) 1px,transparent 1px);background-size:36px 36px;"></div>
-  <div class="absolute pointer-events-none" style="top:-100px;right:-100px;width:550px;height:550px;background:radial-gradient(circle,rgba(23,184,206,0.12) 0%,transparent 70%);"></div>
+<section style="background:linear-gradient(140deg,#0F1A24 0%,#1C2B3A 55%,#243447 100%);padding:68px 0 60px;position:relative;overflow:hidden;">
+  <div class="absolute inset-0 pointer-events-none" style="background-image:radial-gradient(rgba(255,255,255,0.05) 1px,transparent 1px);background-size:36px 36px;"></div>
+  <div class="absolute pointer-events-none" style="top:-120px;right:-120px;width:600px;height:600px;background:radial-gradient(circle,rgba(23,184,206,0.12) 0%,transparent 70%);"></div>
+  <div class="absolute pointer-events-none" style="bottom:-80px;left:-60px;width:440px;height:440px;background:radial-gradient(circle,rgba(217,27,78,0.09) 0%,transparent 70%);"></div>
   <div class="aurora-layer"></div>
   <div class="max-w-7xl mx-auto px-6 relative z-10">
-    <div class="max-w-3xl">
-      <div class="inline-flex items-center gap-2 border border-white/20 rounded-full px-5 py-2 mb-8" style="background:rgba(255,255,255,0.08);backdrop-filter:blur(10px);">
-        <span class="w-2 h-2 rounded-full bg-tp-teal" style="animation:pulse 2s infinite;"></span>
-        <span class="text-white/75 text-sm font-medium">Compliance & Admin Services</span>
+    <div class="grid lg:grid-cols-2 gap-16 items-center">
+
+      <!-- Left: text -->
+      <div>
+        <div class="inline-flex items-center gap-2 border border-white/20 rounded-full px-5 py-2 mb-8" style="background:rgba(255,255,255,0.08);backdrop-filter:blur(10px);">
+          <span class="w-2 h-2 rounded-full bg-tp-teal" style="animation:pulse 2s infinite;"></span>
+          <span class="text-white/75 text-sm font-medium">Compliance & Admin Services</span>
+        </div>
+        <h1 class="text-white font-display font-bold mb-6" style="font-size:clamp(2rem,4.5vw,3.4rem);letter-spacing:-0.03em;line-height:1.1;">
+          <span class="gradient-text">Payroll & Compliance</span><br>
+          Fully Managed. Worry-Free.
+        </h1>
+        <p class="mb-10 max-w-[480px]" style="color:rgba(255,255,255,0.65);font-size:1.05rem;line-height:1.75;">Accurate payroll, WSIB compliance, statutory deductions, and full Ontario labour law management — handled end-to-end by Talent Pull so you can focus on your business.</p>
+        <div class="flex flex-wrap gap-4">
+          <a href="/#contact" class="btn-primary" style="font-size:1rem;padding:14px 32px;">Get Started</a>
+          <a href="/#contact" class="btn-ghost-white" style="font-size:1rem;padding:12px 28px;">Book a Consultation <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg></a>
+        </div>
       </div>
-      <h1 class="text-white font-display font-bold mb-6" style="font-size:clamp(2rem,4.5vw,3.4rem);letter-spacing:-0.03em;line-height:1.1;">
-        <span class="gradient-text">Payroll & Compliance</span><br>
-        Fully Managed. Worry-Free.
-      </h1>
-      <p class="mb-10 max-w-[520px]" style="color:rgba(255,255,255,0.65);font-size:1.05rem;line-height:1.75;">Accurate payroll, WSIB compliance, statutory deductions, and full Ontario labour law management — handled end-to-end by Talent Pull Inc. so you can focus on your business.</p>
-      <div class="flex flex-wrap gap-4">
-        <a href="/#contact" class="btn-primary" style="font-size:1rem;padding:14px 32px;">Get Started</a>
-        <a href="/#contact" class="btn-ghost-white" style="font-size:1rem;padding:12px 28px;">Book a Consultation <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg></a>
+
+      <!-- Right: payroll dashboard visual -->
+      <div class="hidden lg:flex items-center justify-center">
+        <div style="width:100%;max-width:440px;position:relative;">
+
+          <!-- Accent badge top-right -->
+          <div style="position:absolute;top:-18px;right:-12px;z-index:2;background:rgba(23,184,206,0.12);border:1px solid rgba(23,184,206,0.25);border-radius:14px;padding:12px 16px;backdrop-filter:blur(16px);">
+            <div style="color:#17B8CE;font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;font-size:1rem;">100%</div>
+            <div style="color:rgba(255,255,255,0.45);font-size:0.68rem;margin-top:2px;letter-spacing:0.04em;">On-Time Payroll</div>
+          </div>
+
+          <!-- Main card -->
+          <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);border-radius:22px;padding:28px;backdrop-filter:blur(24px);box-shadow:0 32px 80px rgba(0,0,0,0.4),0 0 0 1px rgba(255,255,255,0.04) inset;">
+
+            <!-- Card header -->
+            <div style="display:flex;align-items:center;gap:12px;margin-bottom:22px;">
+              <div style="width:42px;height:42px;border-radius:12px;background:linear-gradient(135deg,#D91B4E 0%,#17B8CE 100%);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+                <svg width="20" height="20" fill="none" stroke="#fff" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 7H6a2 2 0 00-2 2v9a2 2 0 002 2h12a2 2 0 002-2V9a2 2 0 00-2-2h-3m-1-4H9a1 1 0 00-1 1v4h8V4a1 1 0 00-1-1z"/></svg>
+              </div>
+              <div>
+                <div style="color:#fff;font-family:'Plus Jakarta Sans',sans-serif;font-weight:600;font-size:0.9rem;">Payroll Summary</div>
+                <div style="color:rgba(255,255,255,0.4);font-size:0.72rem;margin-top:1px;">Current Pay Period · Ontario</div>
+              </div>
+              <div style="margin-left:auto;background:rgba(217,27,78,0.15);color:#D91B4E;border-radius:20px;padding:4px 10px;font-size:0.68rem;font-weight:700;font-family:'Plus Jakarta Sans',sans-serif;letter-spacing:0.04em;">ACTIVE</div>
+            </div>
+
+            <!-- Divider -->
+            <div style="height:1px;background:rgba(255,255,255,0.07);margin-bottom:20px;"></div>
+
+            <!-- Stats grid -->
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:20px;">
+              <div style="background:rgba(255,255,255,0.04);border-radius:12px;padding:14px;">
+                <div style="color:rgba(255,255,255,0.4);font-size:0.65rem;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:6px;">Employees</div>
+                <div style="color:#fff;font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;font-size:1.45rem;letter-spacing:-0.02em;">48</div>
+              </div>
+              <div style="background:rgba(255,255,255,0.04);border-radius:12px;padding:14px;">
+                <div style="color:rgba(255,255,255,0.4);font-size:0.65rem;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:6px;">Accuracy</div>
+                <div style="color:#17B8CE;font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;font-size:1.45rem;letter-spacing:-0.02em;">99.9%</div>
+              </div>
+            </div>
+
+            <!-- Compliance checklist -->
+            <div style="display:flex;flex-direction:column;gap:9px;margin-bottom:22px;">
+              <div style="display:flex;align-items:center;gap:10px;">
+                <div style="width:20px;height:20px;border-radius:50%;background:rgba(23,184,206,0.15);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+                  <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M1.5 5.5l2.5 2.5 4.5-5" stroke="#17B8CE" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </div>
+                <span style="color:rgba(255,255,255,0.7);font-size:0.8rem;">CRA Remittances — Filed On Time</span>
+              </div>
+              <div style="display:flex;align-items:center;gap:10px;">
+                <div style="width:20px;height:20px;border-radius:50%;background:rgba(23,184,206,0.15);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+                  <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M1.5 5.5l2.5 2.5 4.5-5" stroke="#17B8CE" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </div>
+                <span style="color:rgba(255,255,255,0.7);font-size:0.8rem;">WSIB Premiums — Fully Covered</span>
+              </div>
+              <div style="display:flex;align-items:center;gap:10px;">
+                <div style="width:20px;height:20px;border-radius:50%;background:rgba(23,184,206,0.15);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+                  <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M1.5 5.5l2.5 2.5 4.5-5" stroke="#17B8CE" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </div>
+                <span style="color:rgba(255,255,255,0.7);font-size:0.8rem;">Ontario ESA — Fully Compliant</span>
+              </div>
+              <div style="display:flex;align-items:center;gap:10px;">
+                <div style="width:20px;height:20px;border-radius:50%;background:rgba(23,184,206,0.15);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+                  <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M1.5 5.5l2.5 2.5 4.5-5" stroke="#17B8CE" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </div>
+                <span style="color:rgba(255,255,255,0.7);font-size:0.8rem;">T4 Year-End — Prepared & Filed</span>
+              </div>
+            </div>
+
+            <!-- Bottom bar -->
+            <div style="height:1px;background:rgba(255,255,255,0.07);margin-bottom:16px;"></div>
+            <div style="display:flex;align-items:center;justify-content:space-between;">
+              <span style="color:rgba(255,255,255,0.35);font-size:0.7rem;">Managed by Talent Pull Inc.</span>
+              <div style="display:flex;gap:4px;">
+                <div style="width:6px;height:6px;border-radius:50%;background:#D91B4E;"></div>
+                <div style="width:6px;height:6px;border-radius:50%;background:#17B8CE;"></div>
+                <div style="width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,0.2);"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Accent badge bottom-left -->
+          <div style="position:absolute;bottom:-18px;left:-12px;z-index:2;background:rgba(217,27,78,0.12);border:1px solid rgba(217,27,78,0.22);border-radius:14px;padding:12px 16px;backdrop-filter:blur(16px);">
+            <div style="color:#D91B4E;font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;font-size:1rem;">Zero Risk</div>
+            <div style="color:rgba(255,255,255,0.45);font-size:0.68rem;margin-top:2px;letter-spacing:0.04em;">Audit-Ready Records</div>
+          </div>
+
+        </div>
       </div>
+
     </div>
   </div>
 </section>
@@ -74,28 +169,28 @@
     <div class="text-center mb-14">
       <span class="section-label aos-top">What We Handle</span>
       <h2 class="section-title mb-4 aos-top" style="transition-delay:0.08s;">Complete <span class="gradient-text">Payroll & Compliance</span> Coverage</h2>
-      <p class="section-sub max-w-2xl mx-auto aos-fade" style="transition-delay:0.16s;">From timesheet to CRA remittance — every step handled accurately and on time.</p>
+      <p class="section-sub max-w-2xl mx-auto aos-fade" style="transition-delay:0.16s;">From timesheet to CRA remittance: every step handled accurately and on time.</p>
     </div>
     <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
       <div class="card aos">
         <div class="w-10 h-10 rounded-xl flex items-center justify-center mb-4" style="background:rgba(217,27,78,0.1);"><svg class="w-5 h-5" style="color:#D91B4E;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"/></svg></div>
         <h3 class="font-display font-bold text-base mb-2" style="color:#1C2B3A;">Payroll Processing</h3>
-        <p class="text-sm text-gray-500 leading-relaxed">Accurate, on-time payroll for all workers — hourly or salaried — with complete timekeeping integration and pay stub generation.</p>
+        <p class="text-sm text-gray-500 leading-relaxed">Accurate, on-time payroll for all workers, hourly or salaried, with complete timekeeping integration and pay stub generation.</p>
       </div>
       <div class="card aos" style="transition-delay:0.07s;">
         <div class="w-10 h-10 rounded-xl flex items-center justify-center mb-4" style="background:rgba(23,184,206,0.1);"><svg class="w-5 h-5" style="color:#17B8CE;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M9 14l6-6m-5.5.5h.01m4.99 5h.01M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5"/></svg></div>
         <h3 class="font-display font-bold text-base mb-2" style="color:#1C2B3A;">CRA Remittances & Deductions</h3>
-        <p class="text-sm text-gray-500 leading-relaxed">CPP, EI, and income tax deductions calculated and remitted correctly to the CRA on schedule — no penalties, no surprises.</p>
+        <p class="text-sm text-gray-500 leading-relaxed">CPP, EI, and income tax deductions calculated and remitted correctly to the CRA on schedule; no penalties, no surprises.</p>
       </div>
       <div class="card aos" style="transition-delay:0.14s;">
         <div class="w-10 h-10 rounded-xl flex items-center justify-center mb-4" style="background:rgba(217,27,78,0.1);"><svg class="w-5 h-5" style="color:#D91B4E;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg></div>
         <h3 class="font-display font-bold text-base mb-2" style="color:#1C2B3A;">WSIB Coverage & Reporting</h3>
-        <p class="text-sm text-gray-500 leading-relaxed">Full WSIB premium management, incident reporting, and workplace safety compliance — protecting both workers and your business.</p>
+        <p class="text-sm text-gray-500 leading-relaxed">Full WSIB premium management, incident reporting, and workplace safety compliance; protecting both workers and your business.</p>
       </div>
       <div class="card aos" style="transition-delay:0.21s;">
         <div class="w-10 h-10 rounded-xl flex items-center justify-center mb-4" style="background:rgba(23,184,206,0.1);"><svg class="w-5 h-5" style="color:#17B8CE;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M3 6l3 1m0 0l-3 9a5.002 5.002 0 006.001 0M6 7l3 9M6 7l6-2m6 2l3-1m-3 1l-3 9a5.002 5.002 0 006.001 0M18 7l3 9m-3-9l-6-2m0-2v2m0 16V5m0 16H9m3 0h3"/></svg></div>
         <h3 class="font-display font-bold text-base mb-2" style="color:#1C2B3A;">Ontario Employment Standards</h3>
-        <p class="text-sm text-gray-500 leading-relaxed">Minimum wage, overtime, vacation pay, public holidays, and ESA entitlements — fully managed and compliant with Ontario law.</p>
+        <p class="text-sm text-gray-500 leading-relaxed">Minimum wage, overtime, vacation pay, public holidays, and ESA entitlements; fully managed and compliant with Ontario law.</p>
       </div>
       <div class="card aos" style="transition-delay:0.28s;">
         <div class="w-10 h-10 rounded-xl flex items-center justify-center mb-4" style="background:rgba(217,27,78,0.1);"><svg class="w-5 h-5" style="color:#D91B4E;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg></div>
@@ -118,7 +213,7 @@
       <div class="aos-left">
         <span class="section-label">Why Outsource</span>
         <h2 class="section-title mb-6">Why Ontario Businesses Outsource <span class="gradient-text">Payroll & Compliance</span></h2>
-        <p class="section-sub mb-8">Ontario's employment legislation is detailed and regularly updated. Mistakes in payroll or compliance — from incorrect WSIB premiums to missed ESA entitlements — carry real financial and legal consequences. Outsourcing to Talent Pull eliminates that risk entirely.</p>
+        <p class="section-sub mb-8">Ontario's employment legislation is detailed and regularly updated. Mistakes in payroll or compliance, from incorrect WSIB premiums to missed ESA entitlements, carry real financial and legal consequences. Outsourcing to Talent Pull eliminates that risk entirely.</p>
         <div class="space-y-4">
           <div class="flex items-start gap-3">
             <div class="w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5" style="background:rgba(217,27,78,0.1);"><svg class="w-3.5 h-3.5" style="color:#D91B4E;" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg></div>
