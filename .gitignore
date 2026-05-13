@@ -1,4 +1,6 @@
 node_modules/
+dist/
+.vite/
 temporary screenshots/
 www.roberthalf.com_ca_en.png
 CLAUDE.md
@@ -6,3 +8,4 @@ screenshot.mjs
 serve.mjs
 .DS_Store
 brand_assets/.DS_Store
+*.log

@@ -1,0 +1,88 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  body {
+    @apply font-sans text-tp-dark bg-white;
+    font-feature-settings: 'ss01', 'cv11';
+  }
+  h1, h2, h3, h4 {
+    @apply font-display tracking-display-tight;
+  }
+  ::selection {
+    background: #D91B4E;
+    color: #fff;
+  }
+}
+
+@layer components {
+  /* ── Brand buttons ── */
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full
+           font-semibold text-white bg-tp-red
+           shadow-tp-soft
+           transition-[transform,background-color,box-shadow] duration-200 ease-out
+           hover:bg-tp-red-700 hover:shadow-tp-glow-red
+           focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-tp-red focus-visible:ring-offset-2
+           active:translate-y-[1px];
+  }
+  .btn-outline {
+    @apply inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full
+           font-semibold text-tp-dark bg-white border border-tp-dark/15
+           transition-[transform,background-color,border-color] duration-200 ease-out
+           hover:border-tp-dark/40 hover:bg-tp-mist
+           focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-tp-dark focus-visible:ring-offset-2
+           active:translate-y-[1px];
+  }
+  .btn-ghost {
+    @apply inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-full
+           font-medium text-tp-dark/80
+           transition-colors duration-200 ease-out
+           hover:text-tp-red hover:bg-tp-red-50
+           focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-tp-red;
+  }
+
+  /* ── Section primitives ── */
+  .container-tp {
+    @apply max-w-7xl mx-auto px-6;
+  }
+  .section-title {
+    @apply font-display text-3xl md:text-4xl lg:text-5xl font-bold tracking-display-tight text-tp-dark;
+  }
+  .section-sub {
+    @apply text-base md:text-lg text-tp-dark/70 leading-relaxed;
+  }
+  .eyebrow {
+    @apply inline-block uppercase tracking-[0.18em] text-xs font-semibold text-tp-red;
+  }
+
+  /* ── Gradient brand text ── */
+  .gradient-text {
+    background: linear-gradient(135deg, #D91B4E 0%, #17B8CE 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  /* ── Nav link ── */
+  .nav-link {
+    @apply text-tp-dark/80 font-medium text-sm
+           transition-colors duration-200
+           hover:text-tp-red
+           focus-visible:outline-none focus-visible:text-tp-red;
+  }
+  .nav-link[data-active="true"] {
+    @apply text-tp-red;
+  }
+}
+
+@layer utilities {
+  .text-balance { text-wrap: balance; }
+  .text-pretty  { text-wrap: pretty; }
+}
