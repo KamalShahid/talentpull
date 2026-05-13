@@ -265,6 +265,52 @@
     .orb-ring-1{width:78px;height:78px;top:-11px;left:-11px;}
     .orb-ring-2{width:94px;height:94px;top:-19px;left:-19px;animation-delay:0.7s;border-color:rgba(255,255,255,0.07);}
     @keyframes orbRingPing{0%{opacity:0.85;transform:scale(1);}100%{opacity:0;transform:scale(1.12);}}
+    /* ── SPOTLIGHT GLOW CARDS ── */
+    .glow-card{
+      --base:340;--spread:-152;--radius:14;--border:3;
+      --backdrop:hsl(0 0% 98% / 0.85);--backup-border:rgba(28,43,58,0.10);
+      --size:250;--saturation:100;--lightness:60;
+      --bg-spot-opacity:0.18;--border-spot-opacity:1;--border-light-opacity:0.9;
+      --border-size:calc(var(--border)*1px);
+      --spotlight-size:calc(var(--size)*1px);
+      --hue:calc(var(--base) + (var(--xp,0) * var(--spread,0)));
+      background-image:radial-gradient(var(--spotlight-size) var(--spotlight-size) at calc(var(--x,0)*1px) calc(var(--y,0)*1px),hsl(var(--hue,340) calc(var(--saturation,100)*1%) 65% / var(--bg-spot-opacity,0.18)),transparent);
+      background-attachment:scroll;
+      background-size:calc(100% + 2*var(--border-size)) calc(100% + 2*var(--border-size));
+      background-position:50% 50%;
+      background-color:var(--backdrop);
+      border:var(--border-size) solid var(--backup-border);
+      border-radius:calc(var(--radius)*1px);
+      padding:28px;position:relative;overflow:visible;
+      transition:transform 0.22s cubic-bezier(0.16,1,0.3,1),box-shadow 0.22s ease;
+    }
+    .glow-card:hover{transform:translateY(-5px);box-shadow:0 16px 48px rgba(28,43,58,0.12),0 0 24px rgba(217,27,78,0.18),0 0 48px rgba(23,184,206,0.10);}
+    .glow-card::before,.glow-card::after{
+      pointer-events:none;content:"";position:absolute;
+      inset:calc(var(--border-size)*-1);
+      border:var(--border-size) solid transparent;
+      border-radius:calc(var(--radius)*1px);
+      background-attachment:scroll;
+      background-size:calc(100% + 2*var(--border-size)) calc(100% + 2*var(--border-size));
+      background-repeat:no-repeat;
+      background-position:50% 50%;
+      mask-image:linear-gradient(transparent,transparent),linear-gradient(white,white);
+      mask-clip:padding-box,border-box;
+      mask-composite:intersect;
+      -webkit-mask:linear-gradient(transparent,transparent),linear-gradient(white,white);
+      -webkit-mask-clip:padding-box,border-box;
+      -webkit-mask-composite:xor;
+    }
+    .glow-card::before{
+      background-image:radial-gradient(calc(var(--spotlight-size)*0.75) calc(var(--spotlight-size)*0.75) at calc(var(--x,0)*1px) calc(var(--y,0)*1px),hsl(var(--hue,340) 100% 55% / var(--border-spot-opacity,1)),transparent 100%);
+      filter:brightness(2.5);
+    }
+    .glow-card::after{
+      background-image:radial-gradient(calc(var(--spotlight-size)*0.5) calc(var(--spotlight-size)*0.5) at calc(var(--x,0)*1px) calc(var(--y,0)*1px),hsl(var(--hue,188) 100% 72% / var(--border-light-opacity,0.9)),transparent 100%);
+    }
+    .glow-card-inner{position:absolute;inset:0;will-change:filter;border-radius:calc(var(--radius)*1px);filter:blur(calc(var(--border-size)*10));background:none;pointer-events:none;opacity:1;border:none;border-width:calc(var(--border-size)*20);}
+    .glow-card h3{color:#1C2B3A;}
+    .glow-card p{color:#6B7280;}
   </style>
 </head>
 <body>
@@ -687,52 +733,58 @@
 
     <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
 
-      <div class="card aos">
-        <div class="w-12 h-12 rounded-xl flex items-center justify-center mb-5" style="background: linear-gradient(135deg,rgba(217,27,78,0.1),rgba(217,27,78,0.04));">
+      <div class="glow-card aos">
+        <div class="glow-card-inner"></div>
+        <div class="w-12 h-12 rounded-xl flex items-center justify-center mb-5" style="background:linear-gradient(135deg,rgba(217,27,78,0.12),rgba(217,27,78,0.05));">
           <svg class="w-6 h-6" style="color:#D91B4E;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
         </div>
-        <h3 class="font-bold font-display text-lg mb-3" style="color:#1C2B3A;">People-First Approach</h3>
-        <p class="text-gray-500 text-sm leading-relaxed">A people-centric strategy aligning talent with your business goals, ensuring not just placements but long-term success, productivity, and team stability.</p>
+        <h3 class="font-bold font-display text-lg mb-3">People-First Approach</h3>
+        <p class="text-sm leading-relaxed">A people-centric strategy aligning talent with your business goals, ensuring not just placements but long-term success, productivity, and team stability.</p>
       </div>
 
-      <div class="card aos" style="transition-delay:0.07s;">
-        <div class="w-12 h-12 rounded-xl flex items-center justify-center mb-5" style="background: linear-gradient(135deg,rgba(23,184,206,0.1),rgba(23,184,206,0.04));">
+      <div class="glow-card aos" style="transition-delay:0.07s;">
+        <div class="glow-card-inner"></div>
+        <div class="w-12 h-12 rounded-xl flex items-center justify-center mb-5" style="background:linear-gradient(135deg,rgba(23,184,206,0.12),rgba(23,184,206,0.05));">
           <svg class="w-6 h-6" style="color:#17B8CE;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
         </div>
-        <h3 class="font-bold font-display text-lg mb-3" style="color:#1C2B3A;">Time &amp; Cost Efficiency</h3>
-        <p class="text-gray-500 text-sm leading-relaxed">Save valuable time and reduce hiring costs with end-to-end recruitment support. We handle the entire hiring process so you can focus on your core operations.</p>
+        <h3 class="font-bold font-display text-lg mb-3">Time &amp; Cost Efficiency</h3>
+        <p class="text-sm leading-relaxed">Save valuable time and reduce hiring costs with end-to-end recruitment support. We handle the entire hiring process so you can focus on your core operations.</p>
       </div>
 
-      <div class="card aos" style="transition-delay:0.14s;">
-        <div class="w-12 h-12 rounded-xl flex items-center justify-center mb-5" style="background: linear-gradient(135deg,rgba(217,27,78,0.1),rgba(217,27,78,0.04));">
+      <div class="glow-card aos" style="transition-delay:0.14s;">
+        <div class="glow-card-inner"></div>
+        <div class="w-12 h-12 rounded-xl flex items-center justify-center mb-5" style="background:linear-gradient(135deg,rgba(217,27,78,0.12),rgba(217,27,78,0.05));">
           <svg class="w-6 h-6" style="color:#D91B4E;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
         </div>
-        <h3 class="font-bold font-display text-lg mb-3" style="color:#1C2B3A;">Strong Talent Network</h3>
-        <p class="text-gray-500 text-sm leading-relaxed">Access a wide pool of pre-screened, job-ready candidates for temporary, contract, and permanent roles. Our active sourcing ensures fast connections.</p>
+        <h3 class="font-bold font-display text-lg mb-3">Strong Talent Network</h3>
+        <p class="text-sm leading-relaxed">Access a wide pool of pre-screened, job-ready candidates for temporary, contract, and permanent roles. Our active sourcing ensures fast connections.</p>
       </div>
 
-      <div class="card aos" style="transition-delay:0.21s;">
-        <div class="w-12 h-12 rounded-xl flex items-center justify-center mb-5" style="background: linear-gradient(135deg,rgba(23,184,206,0.1),rgba(23,184,206,0.04));">
+      <div class="glow-card aos" style="transition-delay:0.21s;">
+        <div class="glow-card-inner"></div>
+        <div class="w-12 h-12 rounded-xl flex items-center justify-center mb-5" style="background:linear-gradient(135deg,rgba(23,184,206,0.12),rgba(23,184,206,0.05));">
           <svg class="w-6 h-6" style="color:#17B8CE;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
         </div>
-        <h3 class="font-bold font-display text-lg mb-3" style="color:#1C2B3A;">Compliance &amp; WSIB Coverage</h3>
-        <p class="text-gray-500 text-sm leading-relaxed">Every placement meets Ontario employment standards and workplace safety requirements. WSIB coverage, certifications, and onboarding. Fully Managed.</p>
+        <h3 class="font-bold font-display text-lg mb-3">Compliance &amp; WSIB Coverage</h3>
+        <p class="text-sm leading-relaxed">Every placement meets Ontario employment standards and workplace safety requirements. WSIB coverage, certifications, and onboarding. Fully Managed.</p>
       </div>
 
-      <div class="card aos" style="transition-delay:0.28s;">
-        <div class="w-12 h-12 rounded-xl flex items-center justify-center mb-5" style="background: linear-gradient(135deg,rgba(217,27,78,0.1),rgba(217,27,78,0.04));">
+      <div class="glow-card aos" style="transition-delay:0.28s;">
+        <div class="glow-card-inner"></div>
+        <div class="w-12 h-12 rounded-xl flex items-center justify-center mb-5" style="background:linear-gradient(135deg,rgba(217,27,78,0.12),rgba(217,27,78,0.05));">
           <svg class="w-6 h-6" style="color:#D91B4E;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
         </div>
-        <h3 class="font-bold font-display text-lg mb-3" style="color:#1C2B3A;">Faster Hiring &amp; Reduced Risk</h3>
-        <p class="text-gray-500 text-sm leading-relaxed">We quickly identify and engage top talent to fill critical roles without delays. Thorough background checks and credential verification minimize hiring risk.</p>
+        <h3 class="font-bold font-display text-lg mb-3">Faster Hiring &amp; Reduced Risk</h3>
+        <p class="text-sm leading-relaxed">We quickly identify and engage top talent to fill critical roles without delays. Thorough background checks and credential verification minimize hiring risk.</p>
       </div>
 
-      <div class="card aos" style="transition-delay:0.35s;">
-        <div class="w-12 h-12 rounded-xl flex items-center justify-center mb-5" style="background: linear-gradient(135deg,rgba(23,184,206,0.1),rgba(23,184,206,0.04));">
+      <div class="glow-card aos" style="transition-delay:0.35s;">
+        <div class="glow-card-inner"></div>
+        <div class="w-12 h-12 rounded-xl flex items-center justify-center mb-5" style="background:linear-gradient(135deg,rgba(23,184,206,0.12),rgba(23,184,206,0.05));">
           <svg class="w-6 h-6" style="color:#17B8CE;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"/></svg>
         </div>
-        <h3 class="font-bold font-display text-lg mb-3" style="color:#1C2B3A;">Industry-Focused Expertise</h3>
-        <p class="text-gray-500 text-sm leading-relaxed">Hands-on experience across manufacturing, warehousing, skilled trades, and professional roles. We understand your workforce challenges and deliver tailored solutions.</p>
+        <h3 class="font-bold font-display text-lg mb-3">Industry-Focused Expertise</h3>
+        <p class="text-sm leading-relaxed">Hands-on experience across manufacturing, warehousing, skilled trades, and professional roles. We understand your workforce challenges and deliver tailored solutions.</p>
       </div>
 
     </div>
@@ -1303,6 +1355,23 @@
   }, { threshold: 0.5 });
   document.querySelectorAll('.count-up').forEach(el => cntObs.observe(el));
 
+
+  // ── SPOTLIGHT CARDS — per-card coords relative to each card's bounding box ──
+  (function(){
+    var cards = document.querySelectorAll('.glow-card');
+    document.addEventListener('pointermove', function(e) {
+      cards.forEach(function(card) {
+        var rect = card.getBoundingClientRect();
+        var x = e.clientX - rect.left;
+        var y = e.clientY - rect.top;
+        var xp = x / rect.width;
+        card.style.setProperty('--x',  x.toFixed(2));
+        card.style.setProperty('--y',  y.toFixed(2));
+        card.style.setProperty('--xp', xp.toFixed(2));
+        card.style.setProperty('--yp', (y / rect.height).toFixed(2));
+      });
+    });
+  })();
 
   // ── HERO CANVAS BACKGROUND ──
   (function(){
