@@ -82,6 +82,87 @@
   }
 }
 
+/* ── Spotlight glow card (used on Advantage section + service cards) ── */
+.glow-card {
+  --base: 340; --spread: -152; --radius: 14; --border: 3;
+  --backdrop: hsl(0 0% 98% / 0.85); --backup-border: rgba(28,43,58,0.10);
+  --size: 250; --saturation: 100; --lightness: 60;
+  --bg-spot-opacity: 0.18; --border-spot-opacity: 1; --border-light-opacity: 0.9;
+  --border-size: calc(var(--border) * 1px);
+  --spotlight-size: calc(var(--size) * 1px);
+  --hue: calc(var(--base) + (var(--xp, 0) * var(--spread, 0)));
+  background-image: radial-gradient(
+    var(--spotlight-size) var(--spotlight-size)
+    at calc(var(--x, 0) * 1px) calc(var(--y, 0) * 1px),
+    hsl(var(--hue, 340) calc(var(--saturation, 100) * 1%) 65% / var(--bg-spot-opacity, 0.18)),
+    transparent
+  );
+  background-attachment: scroll;
+  background-size: calc(100% + 2 * var(--border-size)) calc(100% + 2 * var(--border-size));
+  background-position: 50% 50%;
+  background-color: var(--backdrop);
+  border: var(--border-size) solid var(--backup-border);
+  border-radius: calc(var(--radius) * 1px);
+  padding: 28px;
+  position: relative;
+  overflow: visible;
+  transition: transform 0.22s cubic-bezier(0.16,1,0.3,1), box-shadow 0.22s ease;
+}
+.glow-card:hover {
+  transform: translateY(-5px);
+  box-shadow:
+    0 16px 48px rgba(28,43,58,0.12),
+    0 0 24px rgba(217,27,78,0.18),
+    0 0 48px rgba(23,184,206,0.10);
+}
+.glow-card::before,
+.glow-card::after {
+  pointer-events: none;
+  content: "";
+  position: absolute;
+  inset: calc(var(--border-size) * -1);
+  border: var(--border-size) solid transparent;
+  border-radius: calc(var(--radius) * 1px);
+  background-attachment: scroll;
+  background-size: calc(100% + 2 * var(--border-size)) calc(100% + 2 * var(--border-size));
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+  mask-image: linear-gradient(transparent, transparent), linear-gradient(white, white);
+  mask-clip: padding-box, border-box;
+  mask-composite: intersect;
+  -webkit-mask: linear-gradient(transparent, transparent), linear-gradient(white, white);
+  -webkit-mask-clip: padding-box, border-box;
+  -webkit-mask-composite: xor;
+}
+.glow-card::before {
+  background-image: radial-gradient(
+    calc(var(--spotlight-size) * 0.75) calc(var(--spotlight-size) * 0.75)
+    at calc(var(--x, 0) * 1px) calc(var(--y, 0) * 1px),
+    hsl(var(--hue, 340) 100% 55% / var(--border-spot-opacity, 1)),
+    transparent 100%
+  );
+  filter: brightness(2.5);
+}
+.glow-card::after {
+  background-image: radial-gradient(
+    calc(var(--spotlight-size) * 0.5) calc(var(--spotlight-size) * 0.5)
+    at calc(var(--x, 0) * 1px) calc(var(--y, 0) * 1px),
+    hsl(var(--hue, 188) 100% 72% / var(--border-light-opacity, 0.9)),
+    transparent 100%
+  );
+}
+.glow-card-inner {
+  position: absolute;
+  inset: 0;
+  border-radius: calc(var(--radius) * 1px);
+  filter: blur(calc(var(--border-size) * 10));
+  background: none;
+  border: none;
+  pointer-events: none;
+  opacity: 1;
+  will-change: filter;
+}
+
 @layer utilities {
   .text-balance { text-wrap: balance; }
   .text-pretty  { text-wrap: pretty; }

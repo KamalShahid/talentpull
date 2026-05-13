@@ -1,5 +1,6 @@
 import { Suspense, lazy } from 'react';
 import { Routes, Route } from 'react-router-dom';
+import Layout from './components/layout/Layout.jsx';
 
 const Home                  = lazy(() => import('./pages/Home.jsx'));
 const WorkforceSolutions    = lazy(() => import('./pages/WorkforceSolutions.jsx'));
@@ -30,22 +31,24 @@ export default function App() {
   return (
     <Suspense fallback={<PageFallback />}>
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/workforce-solutions" element={<WorkforceSolutions />} />
-        <Route path="/workforce-solutions/professional-staffing" element={<ProfessionalStaffing />} />
-        <Route path="/workforce-solutions/industrial-staffing" element={<IndustrialStaffing />} />
-        <Route path="/workforce-solutions/payroll-solutions" element={<PayrollSolutions />} />
-        <Route path="/workforce-solutions/financial-support" element={<FinancialSupport />} />
-        <Route path="/workforce-solutions/health-safety" element={<HealthSafety />} />
-        <Route path="/industries" element={<Industries />} />
-        <Route path="/job-seekers" element={<JobSeekers />} />
-        <Route path="/insights" element={<Insights />} />
-        <Route path="/insights/:slug" element={<InsightArticle />} />
-        <Route path="/candidate-tips" element={<CandidateTips />} />
-        <Route path="/candidate-tips/:slug" element={<CandidateTipArticle />} />
-        <Route path="/faq" element={<FAQ />} />
-        <Route path="/contact" element={<Contact />} />
-        <Route path="*" element={<NotFound />} />
+        <Route element={<Layout />}>
+          <Route path="/" element={<Home />} />
+          <Route path="/workforce-solutions" element={<WorkforceSolutions />} />
+          <Route path="/workforce-solutions/professional-staffing" element={<ProfessionalStaffing />} />
+          <Route path="/workforce-solutions/industrial-staffing"   element={<IndustrialStaffing />} />
+          <Route path="/workforce-solutions/payroll-solutions"     element={<PayrollSolutions />} />
+          <Route path="/workforce-solutions/financial-support"     element={<FinancialSupport />} />
+          <Route path="/workforce-solutions/health-safety"         element={<HealthSafety />} />
+          <Route path="/industries"               element={<Industries />} />
+          <Route path="/job-seekers"              element={<JobSeekers />} />
+          <Route path="/insights"                 element={<Insights />} />
+          <Route path="/insights/:slug"           element={<InsightArticle />} />
+          <Route path="/candidate-tips"           element={<CandidateTips />} />
+          <Route path="/candidate-tips/:slug"     element={<CandidateTipArticle />} />
+          <Route path="/faq"                      element={<FAQ />} />
+          <Route path="/contact"                  element={<Contact />} />
+          <Route path="*"                         element={<NotFound />} />
+        </Route>
       </Routes>
     </Suspense>
   );
