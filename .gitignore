@@ -8,5 +8,4 @@ screenshot.mjs
 screenshot-megamenu.mjs
 serve.mjs
 .DS_Store
-brand_assets/.DS_Store
 *.log
