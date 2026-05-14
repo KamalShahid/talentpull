@@ -21,7 +21,7 @@ export default function MegaMenu({ dropdown }) {
             src={left.image}
             alt={left.imageAlt}
             loading="lazy"
-            className="absolute top-0 left-0 z-10 h-32 w-32 md:h-36 md:w-36 object-cover rounded-3xl ring-4 ring-tp-red bg-white shadow-tp-soft"
+            className="absolute top-0 left-0 z-10 h-32 w-32 md:h-36 md:w-36 object-cover object-top rounded-3xl ring-4 ring-tp-red bg-white shadow-tp-soft"
           />
 
           {/* Warm beige blob — large rounded shape, no border, no shadow */}

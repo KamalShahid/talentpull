@@ -13,7 +13,7 @@ export const nav = {
       id: 'workforce-solutions',
       label: 'Workforce Solutions',
       left: {
-        image: 'https://placehold.co/280x220/1C2B3A/FFFFFF?text=Hire+Smarter',
+        image: '/brand_assets/NavBar1.jpeg',
         imageAlt: 'Professional workplace and hiring scene',
         tagline: 'Hire Smarter. Scale Faster.',
         body: 'At Talent Pull, we provide tailored hiring and workforce solutions from professional roles to high-volume industrial staffing.',
@@ -55,7 +55,7 @@ export const nav = {
       id: 'job-seekers',
       label: 'Job Seekers',
       left: {
-        image: 'https://placehold.co/280x220/D91B4E/FFFFFF?text=Find+Your+Role',
+        image: '/brand_assets/NavBar2.jpg',
         imageAlt: 'Candidate exploring job opportunities',
         tagline: 'Find the right opportunity — faster.',
         body: 'Browse roles that match your skills, experience, and goals across professional, industrial, and skilled trades.',
@@ -81,7 +81,7 @@ export const nav = {
       id: 'about',
       label: 'About',
       left: {
-        image: 'https://placehold.co/280x220/17B8CE/FFFFFF?text=Our+Team',
+        image: '/brand_assets/NavBar3.jpg',
         imageAlt: 'Talent Pull recruiting team',
         tagline: 'Built on responsiveness, reliability, and results.',
         body: 'We focus on long-term partnerships, not transactional staffing.',
@@ -105,7 +105,7 @@ export const nav = {
       id: 'resources',
       label: 'Resources',
       left: {
-        image: 'https://placehold.co/280x220/0F1A24/FFFFFF?text=Hiring+Insights',
+        image: '/brand_assets/NavBar4.jpg',
         imageAlt: 'Professional reading hiring insights',
         tagline: 'Make smarter hiring decisions with practical workforce insights.',
         body: 'Real guidance from real recruiters — no fluff.',
