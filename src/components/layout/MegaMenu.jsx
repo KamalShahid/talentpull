@@ -14,29 +14,26 @@ export default function MegaMenu({ dropdown }) {
                     : 'lg:grid-cols-[minmax(0,1fr)_minmax(0,1.6fr)]')
         }
       >
-        {/* Left zone — image card with tagline + CTA */}
-        <div className="relative rounded-2xl overflow-hidden bg-tp-darker text-white shadow-tp-soft">
+        {/* Left zone — squircle photo with brand ring floating over a warm beige blob */}
+        <div className="relative">
+          {/* Floating photo — squircle, brand-color ring, sits on the top-left of the beige card */}
           <img
             src={left.image}
             alt={left.imageAlt}
-            className="absolute inset-0 w-full h-full object-cover opacity-60"
             loading="lazy"
+            className="absolute top-0 left-0 z-10 h-32 w-32 md:h-36 md:w-36 object-cover rounded-3xl ring-4 ring-tp-red bg-white shadow-tp-soft"
           />
-          <div className="relative p-7 flex flex-col gap-4 min-h-[280px]">
-            <div className="flex-1 flex flex-col justify-end">
-              <p className="font-display text-xl leading-tight font-semibold tracking-display-tight">
-                {left.tagline}
-              </p>
-              <p className="mt-3 text-sm text-white/80 leading-relaxed">
-                {left.body}
-              </p>
-            </div>
+
+          {/* Warm beige blob — large rounded shape, no border, no shadow */}
+          <div className="rounded-[2rem] bg-[#f5f4f2] pt-36 md:pt-40 pb-7 px-7 min-h-[320px] flex flex-col gap-5">
+            <p className="font-display text-[20px] md:text-[22px] leading-snug font-bold tracking-display-tight text-tp-dark text-balance">
+              {left.tagline}
+            </p>
             <Link
               to={left.cta.to}
-              className="inline-flex items-center gap-2 self-start px-5 py-2.5 rounded-full bg-white text-tp-dark text-sm font-semibold hover:bg-tp-teal hover:text-white transition-colors"
+              className="mt-auto inline-flex items-center justify-center gap-2 w-full px-5 py-3 rounded-full bg-[#1a3a3a] text-white text-sm font-semibold hover:bg-tp-darker transition-colors"
             >
               {left.cta.label}
-              <ArrowRight className="h-4 w-4" />
             </Link>
           </div>
         </div>

@@ -16,10 +16,10 @@ export default function ServiceCard({ service, index = 0 }) {
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: 24 }}
+      initial={{ opacity: 0, y: 32 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: '-60px' }}
-      transition={{ duration: 0.55, ease: [0.16, 1, 0.3, 1], delay: index * 0.06 }}
+      transition={{ duration: 0.55, ease: [0.16, 1, 0.3, 1], delay: index * 0.1 }}
       className="group relative rounded-2xl bg-white border border-tp-fog p-7 hover:border-tp-dark/15 hover:shadow-tp-elevated transition-[border-color,box-shadow,transform] duration-300 hover:-translate-y-1"
     >
       <div

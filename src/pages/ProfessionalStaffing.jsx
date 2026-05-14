@@ -1,4 +1,6 @@
-import PagePlaceholder from '../components/PagePlaceholder.jsx';
+import ServicePageTemplate from '../components/templates/ServicePageTemplate.jsx';
+import { getServiceBySlug } from '../data/services.js';
+
 export default function ProfessionalStaffing() {
-  return <PagePlaceholder title="Professional Staffing" route="/workforce-solutions/professional-staffing" />;
+  return <ServicePageTemplate service={getServiceBySlug('professional-staffing')} />;
 }

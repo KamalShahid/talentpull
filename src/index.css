@@ -70,6 +70,17 @@
     color: transparent;
   }
 
+  /* ── Form inputs ── */
+  .form-input {
+    @apply w-full h-11 px-3 rounded-lg border border-tp-fog bg-white text-tp-dark text-[15px]
+           placeholder:text-tp-dark/40
+           transition-[border-color,box-shadow] duration-150
+           focus:outline-none focus:border-tp-red focus:ring-2 focus:ring-tp-red/15;
+  }
+  textarea.form-input {
+    @apply h-auto py-3 resize-y min-h-[90px];
+  }
+
   /* ── Nav link ── */
   .nav-link {
     @apply text-tp-dark/80 font-medium text-sm

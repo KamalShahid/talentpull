@@ -1,4 +1,6 @@
-import PagePlaceholder from '../components/PagePlaceholder.jsx';
+import ServicePageTemplate from '../components/templates/ServicePageTemplate.jsx';
+import { getServiceBySlug } from '../data/services.js';
+
 export default function FinancialSupport() {
-  return <PagePlaceholder title="Financial & Operational Support" route="/workforce-solutions/financial-support" />;
+  return <ServicePageTemplate service={getServiceBySlug('financial-support')} />;
 }

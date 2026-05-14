@@ -44,29 +44,33 @@ export default function Navbar() {
             />
           </Link>
 
-          {/* Desktop nav */}
+          {/* Desktop nav — label is a clickable Link; hover still opens the panel */}
           <nav className="hidden lg:flex items-center gap-1" aria-label="Primary">
             {nav.dropdowns.map((d) => (
-              <button
+              <div
                 key={d.id}
                 onMouseEnter={() => open(d.id)}
                 onMouseLeave={queueClose}
-                onFocus={() => open(d.id)}
-                onClick={() => setOpenId(openId === d.id ? null : d.id)}
-                className={
-                  'inline-flex items-center gap-1 px-3 py-2 rounded-lg text-sm font-medium transition-colors duration-150 ' +
-                  (openId === d.id
-                    ? 'text-tp-red bg-tp-red-50'
-                    : 'text-tp-dark/80 hover:text-tp-red')
-                }
-                aria-expanded={openId === d.id}
-                aria-haspopup="true"
+                className="relative"
               >
-                {d.label}
-                <ChevronDown
-                  className={'h-4 w-4 transition-transform duration-200 ' + (openId === d.id ? 'rotate-180' : '')}
-                />
-              </button>
+                <Link
+                  to={d.left.cta.to}
+                  onFocus={() => open(d.id)}
+                  className={
+                    'inline-flex items-center gap-1 px-3 py-2 rounded-lg text-sm font-medium transition-colors duration-150 ' +
+                    (openId === d.id
+                      ? 'text-tp-red bg-tp-red-50'
+                      : 'text-tp-dark/80 hover:text-tp-red')
+                  }
+                  aria-haspopup="true"
+                  aria-expanded={openId === d.id}
+                >
+                  {d.label}
+                  <ChevronDown
+                    className={'h-4 w-4 transition-transform duration-200 ' + (openId === d.id ? 'rotate-180' : '')}
+                  />
+                </Link>
+              </div>
             ))}
           </nav>
 

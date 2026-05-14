@@ -1,4 +1,6 @@
-import PagePlaceholder from '../components/PagePlaceholder.jsx';
+import ServicePageTemplate from '../components/templates/ServicePageTemplate.jsx';
+import { getServiceBySlug } from '../data/services.js';
+
 export default function HealthSafety() {
-  return <PagePlaceholder title="Health & Safety Support" route="/workforce-solutions/health-safety" />;
+  return <ServicePageTemplate service={getServiceBySlug('health-safety')} />;
 }
