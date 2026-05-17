@@ -73,8 +73,27 @@ export const nav = {
             { label: 'Temporary & Contract Work',         to: '/job-seekers#contract' },
           ],
         },
+        {
+          heading: 'HOW IT WORKS',
+          links: [
+            { label: 'How We Match You',           to: '/job-seekers#how-we-help' },
+            { label: 'Resume & Interview Support', to: '/job-seekers#how-we-help' },
+            { label: 'Faster Hiring Process',      to: '/job-seekers#how-we-help' },
+            { label: 'Why Job Seekers Choose Us',  to: '/job-seekers#why-choose' },
+          ],
+        },
       ],
-      right: null,
+      right: {
+        heading: 'JOB CATEGORIES',
+        links: [
+          { label: 'Accounting & Finance',          to: '/job-seekers#jobs' },
+          { label: 'Technology & IT',               to: '/job-seekers#jobs' },
+          { label: 'Administrative & Office',       to: '/job-seekers#jobs' },
+          { label: 'Skilled Trades & Industrial',   to: '/job-seekers#jobs' },
+          { label: 'General Labour',                to: '/job-seekers#jobs' },
+        ],
+        bottomLink: { label: 'Browse All Jobs', to: '/job-seekers#jobs' },
+      },
     },
 
     {
@@ -97,8 +116,24 @@ export const nav = {
             { label: 'AI-Powered Hiring',  to: '/#ai' },
           ],
         },
+        {
+          heading: 'WHAT SETS US APART',
+          links: [
+            { label: 'Responsive & Hands-On Support', to: '/#why' },
+            { label: 'Quality-Focused Recruiting',    to: '/#why' },
+            { label: 'AI-Powered Sourcing',           to: '/#ai' },
+            { label: 'Flexible Workforce Solutions',  to: '/#why' },
+          ],
+        },
       ],
-      right: null,
+      right: {
+        heading: 'OUR APPROACH',
+        body: [
+          'We don\'t send volume — we send the right people.',
+          'Shortlists typically within 2–5 days.',
+          'Human-led recruiting, not just algorithms.',
+        ],
+      },
     },
 
     {
@@ -118,6 +153,22 @@ export const nav = {
             { label: 'Hiring Insights',  to: '/insights' },
             { label: 'Candidate Tips',   to: '/candidate-tips' },
             { label: 'FAQs',             to: '/faq' },
+          ],
+        },
+        {
+          heading: 'FOR EMPLOYERS',
+          links: [
+            { label: 'How to Reduce Hiring Delays', to: '/insights/reduce-hiring-delays' },
+            { label: 'Temp vs Permanent Staffing',  to: '/insights/temp-vs-permanent' },
+            { label: 'Effective Hiring Strategies', to: '/insights/effective-hiring' },
+          ],
+        },
+        {
+          heading: 'FOR JOB SEEKERS',
+          links: [
+            { label: 'Resume Tips',           to: '/candidate-tips/resume-tips' },
+            { label: 'Interview Preparation', to: '/candidate-tips/interview-prep' },
+            { label: 'What Employers Look For', to: '/candidate-tips/what-employers-want' },
           ],
         },
       ],

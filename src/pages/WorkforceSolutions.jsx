@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { ArrowRight, Sparkles } from 'lucide-react';
 import SectionHeader from '../components/ui/SectionHeader.jsx';
 import ServiceCard from '../components/ui/ServiceCard.jsx';
+import AnchorCard from '../components/ui/AnchorCard.jsx';
 import IndustryTile from '../components/ui/IndustryTile.jsx';
 import { services } from '../data/services.js';
 
@@ -76,8 +77,14 @@ export default function WorkforceSolutions() {
             title="Five ways we support your workforce"
             sub="Each service is independent or works in combination — choose what fits your business needs."
           />
+          {/* 3 + (2 + brand anchor) asymmetric grid so the 5 tiles fill 6 cells */}
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {services.map((s, i) => <ServiceCard key={s.slug} service={s} index={i} />)}
+            <ServiceCard service={services[0]} index={0} />
+            <ServiceCard service={services[1]} index={1} />
+            <ServiceCard service={services[2]} index={2} />
+            <ServiceCard service={services[3]} index={3} />
+            <AnchorCard className="md:col-span-2 lg:col-span-1" delay={0.4} />
+            <ServiceCard service={services[4]} index={5} />
           </div>
 
           {/* Mid-page CTA */}

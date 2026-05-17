@@ -205,7 +205,7 @@ export default function JobSeekers() {
       </section>
 
       {/* ── Section 2.4 — How Talent Pull Helps You Get Hired ──── */}
-      <section className="py-20 md:py-28 bg-tp-mist">
+      <section id="how-we-help" className="py-20 md:py-28 bg-tp-mist scroll-mt-20">
         <div className="container-tp">
           <SectionHeader
             eyebrow="HOW WE HELP"
@@ -258,7 +258,7 @@ export default function JobSeekers() {
           </div>
 
           {/* Why job seekers choose Talent Pull */}
-          <h3 className="text-center font-display text-2xl md:text-3xl font-bold text-tp-dark mb-8 tracking-display-tight">
+          <h3 id="why-choose" className="scroll-mt-20 text-center font-display text-2xl md:text-3xl font-bold text-tp-dark mb-8 tracking-display-tight">
             Why Job Seekers Choose Talent Pull
           </h3>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-5">

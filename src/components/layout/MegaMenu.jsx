@@ -65,32 +65,50 @@ export default function MegaMenu({ dropdown }) {
           ))}
         </div>
 
-        {/* Right zone — quick-access card */}
+        {/* Right zone — either a link list with optional bottom link, or an
+            informational brand-statement card (when `right.body` is present). */}
         {hasRight && (
           <aside className="rounded-2xl bg-tp-mist p-7">
             <h3 className="font-display text-xs font-bold uppercase tracking-[0.18em] text-tp-dark/70 mb-4">
               {right.heading}
             </h3>
-            <ul className="space-y-2.5">
-              {right.links.map((l) => (
-                <li key={l.label}>
-                  <Link
-                    to={l.to}
-                    className="text-[14px] text-tp-teal-700 hover:text-tp-red transition-colors"
+
+            {right.body ? (
+              <ul className="space-y-3">
+                {right.body.map((line, i) => (
+                  <li
+                    key={i}
+                    className="flex items-start gap-2 text-[13.5px] text-tp-dark/65 leading-relaxed"
                   >
-                    {l.label}
+                    <span className="mt-1.5 h-1 w-1 rounded-full bg-tp-red flex-shrink-0" />
+                    {line}
+                  </li>
+                ))}
+              </ul>
+            ) : (
+              <>
+                <ul className="space-y-2.5">
+                  {right.links.map((l) => (
+                    <li key={l.label}>
+                      <Link
+                        to={l.to}
+                        className="text-[14px] text-tp-teal-700 hover:text-tp-red transition-colors"
+                      >
+                        {l.label}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+                {right.bottomLink && (
+                  <Link
+                    to={right.bottomLink.to}
+                    className="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-tp-dark border-t border-tp-fog pt-4 w-full hover:text-tp-red transition-colors"
+                  >
+                    {right.bottomLink.label}
+                    <ArrowRight className="h-4 w-4" />
                   </Link>
-                </li>
-              ))}
-            </ul>
-            {right.bottomLink && (
-              <Link
-                to={right.bottomLink.to}
-                className="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-tp-dark border-t border-tp-fog pt-4 w-full hover:text-tp-red transition-colors"
-              >
-                {right.bottomLink.label}
-                <ArrowRight className="h-4 w-4" />
-              </Link>
+                )}
+              </>
             )}
           </aside>
         )}

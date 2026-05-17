@@ -3,10 +3,13 @@ import { motion } from 'framer-motion';
 import {
   ArrowRight, Check, Sparkles, Zap, Users, Clock, Heart, ShieldCheck,
   Bot, Rocket, UserCheck, Layers,
+  ClipboardList, Search, Briefcase, HeartHandshake,
 } from 'lucide-react';
 
 import SectionHeader from '../components/ui/SectionHeader.jsx';
 import ServiceCard from '../components/ui/ServiceCard.jsx';
+import AnchorCard from '../components/ui/AnchorCard.jsx';
+import RadialOrbitalTimeline from '../components/ui/radial-orbital-timeline.jsx';
 import ProcessStep from '../components/ui/ProcessStep.jsx';
 import IndustryTile from '../components/ui/IndustryTile.jsx';
 import TestimonialCarousel from '../components/ui/TestimonialCarousel.jsx';
@@ -15,14 +18,6 @@ import { services } from '../data/services.js';
 import { testimonials } from '../data/testimonials.js';
 import { process as steps } from '../data/process.js';
 import { homeIndustryTiles } from '../data/industries.js';
-
-const advantages = [
-  { icon: Heart,      title: 'Responsive & Hands-On Support', body: 'We work closely with a focused client base, allowing us to provide direct communication, faster response times, and a more personalized hiring experience.' },
-  { icon: UserCheck,  title: 'Quality-Focused Recruiting',    body: 'Our focus is not on sending volume — it\'s on presenting candidates who align with the role, team, and operational needs of your business.' },
-  { icon: Clock,      title: 'Faster Hiring Turnaround',      body: 'Focused recruiting processes and modern sourcing tools help reduce delays and improve hiring efficiency.' },
-  { icon: Layers,     title: 'Flexible Workforce Solutions',  body: 'Whether you need one key hire or ongoing workforce support, our solutions scale based on your business requirements.' },
-  { icon: ShieldCheck,title: 'Workforce Support Beyond Recruitment', body: 'Beyond staffing, we help support payroll coordination, operational processes, workforce administration, and compliance-related needs.' },
-];
 
 const aiFeatures = [
   { icon: Bot,        title: 'Smarter Candidate Screening',   body: 'AI-assisted sourcing helps identify stronger candidate matches faster.' },
@@ -37,6 +32,25 @@ const trustItems = [
   'Dedicated recruiter communication',
   'Professional and industrial staffing expertise',
   'Scalable hiring support for growing businesses',
+];
+
+// 5-step orbital timeline rendered inside the Advantage section grid.
+const hiringProcessTimeline = [
+  { id: 1, title: 'Understand', date: 'Step 1', category: 'Discovery',
+    content: 'We work closely with clients to understand hiring needs, workforce expectations, timelines, and operational requirements.',
+    icon: ClipboardList, relatedIds: [2], status: 'completed',  energy: 100 },
+  { id: 2, title: 'Source',     date: 'Step 2', category: 'Sourcing',
+    content: 'Using AI-powered sourcing and hands-on recruiting, candidates are screened based on experience, reliability, availability, and role fit.',
+    icon: Search,          relatedIds: [1, 3], status: 'completed',  energy: 85  },
+  { id: 3, title: 'Screen',     date: 'Step 3', category: 'Screening',
+    content: 'Every shortlist is reviewed by experienced recruiters — not just algorithms — to ensure quality and long-term fit.',
+    icon: UserCheck,       relatedIds: [2, 4], status: 'in-progress', energy: 70 },
+  { id: 4, title: 'Place',      date: 'Step 4', category: 'Placement',
+    content: 'We help streamline interviews, communication, workforce coordination, and placement timelines to move fast without losing quality.',
+    icon: Briefcase,       relatedIds: [3, 5], status: 'pending',     energy: 50 },
+  { id: 5, title: 'Support',    date: 'Step 5', category: 'Support',
+    content: 'From workforce coordination to payroll and operational support, we help businesses maintain workforce consistency after placement.',
+    icon: HeartHandshake,  relatedIds: [4],    status: 'pending',     energy: 30 },
 ];
 
 // ── Decorative drifting background shape used on the Home page only ──
@@ -54,6 +68,7 @@ function FloatingBlob({ style, animate, duration, delay = 0 }) {
 
 // Split a string into words so each word can animate independently.
 function splitWords(s) { return s.split(' '); }
+
 
 export default function Home() {
   return (
@@ -281,8 +296,14 @@ export default function Home() {
             title="Workforce Solutions Designed Around Your Business"
             sub="We handle hiring, workforce management, payroll, and compliance — so you don't have to."
           />
+          {/* 3 + (2 + brand anchor) asymmetric grid so the 5 tiles fill 6 cells */}
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {services.map((s, i) => <ServiceCard key={s.slug} service={s} index={i} />)}
+            <ServiceCard service={services[0]} index={0} />
+            <ServiceCard service={services[1]} index={1} />
+            <ServiceCard service={services[2]} index={2} />
+            <ServiceCard service={services[3]} index={3} />
+            <AnchorCard className="md:col-span-2 lg:col-span-1" delay={0.4} />
+            <ServiceCard service={services[4]} index={5} />
           </div>
         </div>
       </section>
@@ -299,37 +320,20 @@ export default function Home() {
             eyebrow="WHY BUSINESSES CHOOSE TALENT PULL"
             title={<>Responsive. Reliable. <span className="gradient-text">Relationship-Driven.</span></>}
           />
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {advantages.map((a, i) => {
-              const Icon = a.icon;
-              return (
-                <motion.div
-                  key={a.title}
-                  initial={{ opacity: 0, y: 32 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, margin: '-60px' }}
-                  transition={{ duration: 0.55, ease: [0.16, 1, 0.3, 1], delay: i * 0.1 }}
-                >
-                  <div className="group h-full rounded-2xl bg-white border border-tp-fog p-7 transition-[transform,border-color] duration-200 ease-out hover:-translate-y-1.5 hover:border-tp-red">
-                    <div
-                      className={
-                        'inline-flex h-12 w-12 items-center justify-center rounded-xl mb-5 transition-transform duration-200 ease-out group-hover:scale-110 ' +
-                        (i % 2 === 0
-                          ? 'bg-gradient-to-br from-tp-red-50 to-tp-red-100 text-tp-red'
-                          : 'bg-gradient-to-br from-tp-teal-50 to-tp-teal-100 text-tp-teal-700')
-                      }
-                    >
-                      <Icon className="h-6 w-6" strokeWidth={1.8} />
-                    </div>
-                    <h3 className="font-display text-lg font-bold tracking-display-tight text-tp-dark mb-2">
-                      {a.title}
-                    </h3>
-                    <p className="text-[14.5px] text-tp-dark/65 leading-relaxed">{a.body}</p>
-                  </div>
-                </motion.div>
-              );
-            })}
-          </div>
+          {/* Full-width orbital timeline — replaces the previous 5-card grid */}
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: '-60px' }}
+            transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+            className="max-w-5xl mx-auto"
+          >
+            <RadialOrbitalTimeline
+              items={hiringProcessTimeline}
+              className="bg-transparent h-[420px] md:h-[500px] lg:h-[600px]"
+              orbitRadius={140}
+            />
+          </motion.div>
           <div className="mt-12 text-center">
             <Link to="/contact" className="btn-primary">
               Book a Consultation <ArrowRight className="h-4 w-4" />
