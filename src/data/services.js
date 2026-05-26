@@ -22,9 +22,12 @@ export const services = [
       body: 'We combine AI-powered sourcing with hands-on recruiting to help you find professionals who are not just qualified, but the right fit for your team. Whether it\'s a key hire or ongoing support, the focus is on quality, speed, and long-term alignment.',
     },
     whatWeCover: [
-      'Permanent Recruitment',
-      'Contract & Temporary Staffing',
-      'Temp-to-Perm Hiring',
+      { label: 'Permanent Recruitment',
+        description: 'Long-term staffing and recruitment solutions focused on finding skilled professionals who align with your business goals and culture.' },
+      { label: 'Contract & Temporary Staffing',
+        description: 'Flexible contract and temporary staffing solutions to support workforce demands, seasonal peaks, and short-term projects.' },
+      { label: 'Temp-to-Perm Hiring',
+        description: 'Reduce hiring risk by evaluating candidates on the job before transitioning them into permanent team members.' },
     ],
     howWeWork: {
       pullQuote: 'We don\'t send volume. We send the right people.',
@@ -69,6 +72,8 @@ export const services = [
       'Machine & CNC Operators',
       'Electricians, Plumbers, Carpenters',
       'Mechanical & Skilled Trades',
+      'Forklift Operators',
+      'Millwrights & Maintenance Technicians',
     ],
     howWeWork: {
       pullQuote: 'We focus on people who show up and perform.',

@@ -29,6 +29,7 @@ export default function Navbar() {
   const [openId, setOpenId] = useState(null);
   const [drawerOpen, setDrawerOpen] = useState(false);
   const closeTimer = useRef(null);
+  const headerRef = useRef(null);
   const location = useLocation();
 
   // ── State helpers ───────────────────────────────────────────
@@ -65,6 +66,22 @@ export default function Navbar() {
     return () => window.removeEventListener('scroll', closeAll);
   }, [closeAll]);
 
+  // Click anywhere outside the header dismisses the menu.
+  // Covers the case where the user clicks a nav link for the page they're
+  // already on (React Router treats it as a no-op so the route-change
+  // useEffect doesn't fire) and then clicks somewhere else on the page.
+  useEffect(() => {
+    const onDocPointerDown = (e) => {
+      if (headerRef.current && !headerRef.current.contains(e.target)) closeAll();
+    };
+    document.addEventListener('mousedown', onDocPointerDown);
+    document.addEventListener('touchstart', onDocPointerDown, { passive: true });
+    return () => {
+      document.removeEventListener('mousedown', onDocPointerDown);
+      document.removeEventListener('touchstart', onDocPointerDown);
+    };
+  }, [closeAll]);
+
   // Clear any pending timer if the component unmounts
   useEffect(() => () => {
     if (closeTimer.current) clearTimeout(closeTimer.current);
@@ -80,6 +97,7 @@ export default function Navbar() {
   return (
     <>
       <header
+        ref={headerRef}
         onMouseLeave={queueClose}
         onBlur={handleHeaderBlur}
         className="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-tp-fog"
@@ -105,6 +123,7 @@ export default function Navbar() {
                 <Link
                   to={d.left.cta.to}
                   onFocus={() => openMenu(d.id)}
+                  onClick={closeAll}
                   className={cn(
                     'inline-flex items-center gap-1 px-3 py-2 rounded-lg text-sm font-medium transition-colors duration-150',
                     openId === d.id
@@ -179,7 +198,7 @@ export default function Navbar() {
               transition={{ duration: 0.18, ease: [0.16, 1, 0.3, 1] }}
               className="hidden lg:block absolute inset-x-0 top-full bg-white border-t border-tp-fog shadow-tp-elevated"
             >
-              <MegaMenu dropdown={activeDropdown} />
+              <MegaMenu dropdown={activeDropdown} onLinkClick={closeAll} />
             </motion.div>
           )}
         </AnimatePresence>

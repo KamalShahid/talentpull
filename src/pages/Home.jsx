@@ -1,7 +1,8 @@
+import { Fragment } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import {
-  ArrowRight, Check, Sparkles, Zap, Users, Clock, Heart, ShieldCheck,
+  ArrowRight, Check, Zap, Users, Clock, Heart, ShieldCheck,
   Bot, Rocket, UserCheck, Layers,
   ClipboardList, Search, Briefcase, HeartHandshake,
 } from 'lucide-react';
@@ -34,23 +35,43 @@ const trustItems = [
   'Scalable hiring support for growing businesses',
 ];
 
-// 5-step orbital timeline rendered inside the Advantage section grid.
+// 5 reasons for the "Why Businesses Choose Talent Pull" linear step grid.
+// Shape matches what ProcessStep expects (step, title, body, icon string).
+const whyAdvantages = [
+  { step: 1, title: 'Responsive & Hands-On Support',
+    body: 'We work closely with a focused client base, allowing us to provide direct communication, faster response times, and a more personalized hiring experience.',
+    icon: 'heart' },
+  { step: 2, title: 'Quality-Focused Recruiting',
+    body: 'Our focus is not on sending volume — it\'s on presenting candidates who align with the role, team, and operational needs of your business.',
+    icon: 'badge-check' },
+  { step: 3, title: 'Faster Hiring Turnaround',
+    body: 'Focused recruiting processes and modern sourcing tools help reduce delays and improve hiring efficiency.',
+    icon: 'zap' },
+  { step: 4, title: 'Flexible Workforce Solutions',
+    body: 'Whether you need one key hire or ongoing workforce support, our solutions scale based on your business requirements.',
+    icon: 'layers' },
+  { step: 5, title: 'Workforce Support Beyond Recruitment',
+    body: 'Beyond staffing, we help support payroll coordination, operational processes, workforce administration, and compliance-related needs.',
+    icon: 'shield-check' },
+];
+
+// 5-step orbital timeline rendered in the "Our Process" section.
 const hiringProcessTimeline = [
-  { id: 1, title: 'Understand', date: 'Step 1', category: 'Discovery',
+  { id: 1, title: 'Understand Workforce Requirements', date: 'Step 1', category: 'Discovery',
     content: 'We work closely with clients to understand hiring needs, workforce expectations, timelines, and operational requirements.',
-    icon: ClipboardList, relatedIds: [2], status: 'completed',  energy: 100 },
-  { id: 2, title: 'Source',     date: 'Step 2', category: 'Sourcing',
-    content: 'Using AI-powered sourcing and hands-on recruiting, candidates are screened based on experience, reliability, availability, and role fit.',
-    icon: Search,          relatedIds: [1, 3], status: 'completed',  energy: 85  },
-  { id: 3, title: 'Screen',     date: 'Step 3', category: 'Screening',
-    content: 'Every shortlist is reviewed by experienced recruiters — not just algorithms — to ensure quality and long-term fit.',
-    icon: UserCheck,       relatedIds: [2, 4], status: 'in-progress', energy: 70 },
-  { id: 4, title: 'Place',      date: 'Step 4', category: 'Placement',
-    content: 'We help streamline interviews, communication, workforce coordination, and placement timelines to move fast without losing quality.',
-    icon: Briefcase,       relatedIds: [3, 5], status: 'pending',     energy: 50 },
-  { id: 5, title: 'Support',    date: 'Step 5', category: 'Support',
+    icon: ClipboardList, relatedIds: [2], status: 'completed', energy: 100 },
+  { id: 2, title: 'Source Candidates', date: 'Step 2', category: 'Sourcing',
+    content: 'Using AI-powered sourcing and proactive recruiting, we identify qualified candidates through job boards, referrals, and targeted talent networks.',
+    icon: Search, relatedIds: [1, 3], status: 'completed', energy: 85 },
+  { id: 3, title: 'Screen Candidates', date: 'Step 3', category: 'Screening',
+    content: 'Candidates are carefully screened for experience, reliability, availability, and overall fit to ensure quality, job-ready placements.',
+    icon: UserCheck, relatedIds: [2, 4], status: 'in-progress', energy: 70 },
+  { id: 4, title: 'Coordinate Hiring & Placement', date: 'Step 4', category: 'Placement',
+    content: 'We help streamline interviews, communication, workforce coordination, and placement timelines.',
+    icon: Briefcase, relatedIds: [3, 5], status: 'pending', energy: 50 },
+  { id: 5, title: 'Ongoing Workforce Support', date: 'Step 5', category: 'Support',
     content: 'From workforce coordination to payroll and operational support, we help businesses maintain workforce consistency after placement.',
-    icon: HeartHandshake,  relatedIds: [4],    status: 'pending',     energy: 30 },
+    icon: HeartHandshake, relatedIds: [4], status: 'pending', energy: 30 },
 ];
 
 // ── Decorative drifting background shape used on the Home page only ──
@@ -122,56 +143,45 @@ export default function Home() {
         />
 
         <div className="container-tp relative z-10 w-full py-20 md:py-24">
-          <div className="max-w-xl lg:max-w-[34rem]">
-            <motion.span
-              initial={{ opacity: 0, y: 12 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
-              className="inline-flex items-center gap-2 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 px-4 py-1.5 text-xs uppercase tracking-[0.18em] font-semibold text-white/90"
-            >
-              <Sparkles className="h-3 w-3 text-tp-red" />
-              Canadian Workforce Partner
-            </motion.span>
-
+          <div className="max-w-xl lg:max-w-[40rem]">
             {/* Word-stagger headline (each word fades + lifts in sequence with spring easing) */}
             <motion.h1
               initial="hidden"
               animate="visible"
               variants={{ visible: { transition: { staggerChildren: 0.08, delayChildren: 0.15 } } }}
-              className="font-display font-bold tracking-display-tight text-balance mt-6 text-4xl md:text-6xl lg:text-7xl leading-[1.05]"
+              className="font-display font-bold tracking-display-tight text-balance text-4xl md:text-5xl lg:text-6xl leading-[1.15] pb-1"
             >
               {[
-                ...splitWords('Fast, Reliable Hiring for').map((w) => ({ text: w, gradient: false })),
-                ...splitWords('Growing Businesses').map((w) => ({ text: w, gradient: true })),
+                { text: 'Fast,',      gradient: false },
+                { text: 'Reliable',   gradient: false, breakAfter: true },
+                { text: 'Hiring',     gradient: false },
+                { text: 'for',        gradient: false, breakAfter: true },
+                { text: 'Growing',    gradient: true  },
+                { text: 'Businesses', gradient: true  },
               ].map((w, i) => (
-                <motion.span
-                  key={i}
-                  variants={{
-                    hidden:  { opacity: 0, y: 30 },
-                    visible: { opacity: 1, y: 0, transition: { type: 'spring', damping: 18, stiffness: 110 } },
-                  }}
-                  className={'inline-block mr-[0.25em] ' + (w.gradient ? 'gradient-text' : '')}
-                >
-                  {w.text}
-                </motion.span>
+                <Fragment key={i}>
+                  <motion.span
+                    variants={{
+                      hidden:  { opacity: 0, y: 30 },
+                      visible: { opacity: 1, y: 0, transition: { type: 'spring', damping: 18, stiffness: 110 } },
+                    }}
+                    className={'inline-block mr-[0.25em] ' + (w.gradient ? 'gradient-text' : '')}
+                  >
+                    {w.text}
+                  </motion.span>
+                  {w.breakAfter && <br />}
+                </Fragment>
               ))}
             </motion.h1>
 
-            <motion.div
+            <motion.p
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.55, delay: 0.6, ease: [0.16, 1, 0.3, 1] }}
-              className="mt-6 space-y-3 max-w-2xl text-white/80 text-lg leading-relaxed"
+              className="mt-6 max-w-2xl text-white/80 text-lg leading-relaxed"
             >
-              <p>
-                Talent Pull delivers professional, industrial, and skilled trades staffing solutions
-                with the speed, responsiveness, and personalized service businesses need to scale with confidence.
-              </p>
-              <p>
-                We combine AI-powered sourcing with hands-on recruiting to help employers
-                hire faster without sacrificing quality or fit.
-              </p>
-            </motion.div>
+              Professional and industrial staffing solutions designed to help businesses scale with confidence.
+            </motion.p>
 
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -180,7 +190,7 @@ export default function Home() {
               className="mt-9 flex flex-wrap gap-3"
             >
               <Link to="/workforce-solutions" className="btn-primary">
-                Find Talent <ArrowRight className="h-4 w-4" />
+                Find Talent
               </Link>
               <Link
                 to="/job-seekers"
@@ -294,15 +304,16 @@ export default function Home() {
           <SectionHeader
             eyebrow="WORKFORCE SOLUTIONS"
             title="Workforce Solutions Designed Around Your Business"
-            sub="We handle hiring, workforce management, payroll, and compliance — so you don't have to."
+            sub="We handle hiring, workforce management, payroll, and compliance; so you don't have to."
           />
-          {/* 3 + (2 + brand anchor) asymmetric grid so the 5 tiles fill 6 cells */}
+          {/* 6-cell grid: row 1 = two tall cards flanking the brand anchor;
+              row 2 = the three short cards stacked together for visual balance */}
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             <ServiceCard service={services[0]} index={0} />
-            <ServiceCard service={services[1]} index={1} />
-            <ServiceCard service={services[2]} index={2} />
-            <ServiceCard service={services[3]} index={3} />
-            <AnchorCard className="md:col-span-2 lg:col-span-1" delay={0.4} />
+            <AnchorCard delay={0.1} />
+            <ServiceCard service={services[1]} index={2} />
+            <ServiceCard service={services[2]} index={3} />
+            <ServiceCard service={services[3]} index={4} />
             <ServiceCard service={services[4]} index={5} />
           </div>
         </div>
@@ -320,20 +331,12 @@ export default function Home() {
             eyebrow="WHY BUSINESSES CHOOSE TALENT PULL"
             title={<>Responsive. Reliable. <span className="gradient-text">Relationship-Driven.</span></>}
           />
-          {/* Full-width orbital timeline — replaces the previous 5-card grid */}
-          <motion.div
-            initial={{ opacity: 0, y: 24 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: '-60px' }}
-            transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-            className="max-w-5xl mx-auto"
-          >
-            <RadialOrbitalTimeline
-              items={hiringProcessTimeline}
-              className="bg-transparent h-[420px] md:h-[500px] lg:h-[600px]"
-              orbitRadius={140}
-            />
-          </motion.div>
+          {/* Linear 5-point grid showing the why-choose advantages */}
+          <div className="grid sm:grid-cols-2 lg:grid-cols-5 gap-x-6 gap-y-12 max-w-6xl mx-auto">
+            {whyAdvantages.map((a, i) => (
+              <ProcessStep key={a.step} step={a} isLast={i === whyAdvantages.length - 1} />
+            ))}
+          </div>
           <div className="mt-12 text-center">
             <Link to="/contact" className="btn-primary">
               Book a Consultation <ArrowRight className="h-4 w-4" />
@@ -347,8 +350,8 @@ export default function Home() {
         <div className="container-tp">
           <SectionHeader
             eyebrow="SUCCESS STORIES"
-            title="Employers and job seekers trust Talent Pull to deliver results — every time"
-            sub="Built around speed, quality, and workforce reliability. Talent Pull combines AI-powered sourcing with hands-on recruiting to help businesses reduce hiring delays and connect with qualified talent faster."
+            title="Employers and job seekers trust Talent Pull to deliver results... every time"
+            sub="Built around speed, quality, and workforce reliability."
           />
           <TestimonialCarousel testimonials={testimonials} autoplayMs={5000} />
         </div>
@@ -362,11 +365,20 @@ export default function Home() {
             title="A Structured Approach to Better Hiring"
             sub="We combine technology, workforce insight, and hands-on recruiting to help businesses hire efficiently and build stronger teams."
           />
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-12 max-w-6xl mx-auto">
-            {steps.map((s, i) => (
-              <ProcessStep key={s.step} step={s} isLast={i === steps.length - 1} />
-            ))}
-          </div>
+          {/* Full-width orbital timeline (swapped in from the WHY BUSINESSES section) */}
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: '-60px' }}
+            transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+            className="max-w-5xl mx-auto"
+          >
+            <RadialOrbitalTimeline
+              items={hiringProcessTimeline}
+              className="bg-transparent h-[420px] md:h-[500px] lg:h-[600px]"
+              orbitRadius={140}
+            />
+          </motion.div>
           <div className="mt-14 text-center">
             <Link to="/workforce-solutions" className="btn-outline">
               Learn More About Our Process <ArrowRight className="h-4 w-4" />

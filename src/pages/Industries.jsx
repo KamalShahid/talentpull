@@ -1,7 +1,8 @@
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { motion } from 'framer-motion';
+import { cn } from '../lib/utils.js';
 import {
-  ArrowRight, Sparkles, Zap, Factory, Truck, HardHat, ShoppingBag, Briefcase,
+  ArrowRight, Zap, Factory, Truck, HardHat, ShoppingBag, Briefcase,
 } from 'lucide-react';
 import SectionHeader from '../components/ui/SectionHeader.jsx';
 import { industries } from '../data/industries.js';
@@ -23,6 +24,10 @@ const quickLinks = [
 ];
 
 export default function Industries() {
+  // `/industries#<slug>` from the navbar tells us which card to focus + highlight.
+  const { hash } = useLocation();
+  const activeSlug = hash ? hash.slice(1) : null;
+
   return (
     <>
       {/* Hero */}
@@ -33,19 +38,11 @@ export default function Industries() {
           style={{ background: 'radial-gradient(circle, rgba(23,184,206,0.18) 0%, transparent 60%)' }}
         />
         <div className="container-tp relative z-10 pt-16 pb-20 md:pt-24 md:pb-28">
-          <motion.span
-            initial={{ opacity: 0, y: 12 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            className="inline-flex items-center gap-2 rounded-full bg-white/10 border border-white/20 px-3 py-1 text-xs uppercase tracking-[0.18em] font-semibold"
-          >
-            <Sparkles className="h-3 w-3 text-tp-teal" /> Sectors We Serve
-          </motion.span>
           <motion.h1
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.05 }}
-            className="font-display font-bold tracking-display-tight mt-5 text-4xl md:text-6xl leading-[1.05] max-w-3xl"
+            className="font-display font-bold tracking-display-tight text-4xl md:text-6xl leading-[1.05] max-w-3xl"
           >
             Industries <span className="gradient-text">We Serve</span>
           </motion.h1>
@@ -67,20 +64,28 @@ export default function Industries() {
             {industries.map((ind, i) => {
               const Icon = ICON_MAP[ind.slug] || Factory;
               const isRed = i % 2 === 0;
+              const isActive = activeSlug === ind.slug;
               return (
                 <motion.div
                   key={ind.slug}
+                  id={ind.slug}
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, margin: '-40px' }}
                   transition={{ duration: 0.55, delay: i * 0.06 }}
-                  className="group relative rounded-2xl bg-white border border-tp-fog p-7 hover:border-tp-dark/15 hover:shadow-tp-elevated transition-[border-color,box-shadow,transform] duration-300 hover:-translate-y-1 overflow-hidden"
+                  className={cn(
+                    'group relative rounded-2xl bg-white p-7 transition-[border-color,box-shadow,transform] duration-300 hover:-translate-y-1 overflow-hidden scroll-mt-24',
+                    isActive
+                      ? 'border-2 border-tp-red shadow-tp-glow-red ring-4 ring-tp-red/15'
+                      : 'border border-tp-fog hover:border-tp-dark/15 hover:shadow-tp-elevated'
+                  )}
                 >
                   <div
                     aria-hidden="true"
                     className={
-                      'absolute -top-10 -right-10 h-32 w-32 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-2xl ' +
-                      (isRed ? 'bg-tp-red/20' : 'bg-tp-teal/20')
+                      'absolute -top-10 -right-10 h-32 w-32 rounded-full transition-opacity duration-500 blur-2xl ' +
+                      (isRed ? 'bg-tp-red/20' : 'bg-tp-teal/20') +
+                      (isActive ? ' opacity-100' : ' opacity-0 group-hover:opacity-100')
                     }
                   />
                   <div

@@ -21,7 +21,7 @@ export default {
         'tp-fog':    '#E8ECF1',
       },
       fontFamily: {
-        display: ['"Fraunces"', '"Playfair Display"', 'Georgia', 'serif'],
+        display: ['"Sora"', '"Inter"', 'system-ui', '-apple-system', 'sans-serif'],
         sans:    ['"Inter"', 'system-ui', '-apple-system', 'Segoe UI', 'Roboto', 'sans-serif'],
       },
       letterSpacing: {

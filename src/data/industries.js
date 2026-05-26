@@ -5,37 +5,37 @@ export const industries = [
     slug: 'energy-utilities',
     title: 'Energy & Utilities',
     icon: 'zap',
-    description: 'Power, infrastructure, and utility-related businesses.',
+    description: 'Power generation, renewable energy, utilities, infrastructure, and field service operations, including skilled technical and maintenance roles.',
   },
   {
     slug: 'manufacturing-industrial',
     title: 'Manufacturing & Industrial',
     icon: 'factory',
-    description: 'Production, processing, and industrial operations, including furniture and cabinetry manufacturing.',
+    description: 'Production, assembly, processing, packaging, and industrial operations, including furniture, cabinetry, and plant-based manufacturing environments.',
   },
   {
     slug: 'warehousing-logistics',
     title: 'Warehousing & Logistics',
     icon: 'truck',
-    description: 'Distribution, supply chain, and fulfillment operations.',
+    description: 'Distribution, inventory management, shipping, receiving, fulfillment, and supply chain operations for fast-paced warehouse environments.',
   },
   {
     slug: 'construction-trades',
     title: 'Construction & Skilled Trades',
     icon: 'hard-hat',
-    description: 'Contractors and trade-based project environments.',
+    description: 'Commercial, residential, and industrial construction projects, including electricians, millwrights, welders, plumbers, HVAC technicians, and general labour support.',
   },
   {
     slug: 'retail-consumer',
     title: 'Retail & Consumer',
     icon: 'shopping-bag',
-    description: 'Retail operations and consumer-focused businesses.',
+    description: 'Retail stores, customer service, merchandising, e-commerce, and consumer-focused operations requiring flexible and reliable staffing support.',
   },
   {
     slug: 'professional-services',
     title: 'Professional Services',
     icon: 'briefcase',
-    description: 'Corporate and service-based organizations.',
+    description: 'Corporate, administrative, finance, accounting, HR, customer support, and other service-based professional environments.',
   },
 ];
 

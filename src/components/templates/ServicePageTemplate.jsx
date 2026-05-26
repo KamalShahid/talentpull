@@ -112,21 +112,35 @@ export default function ServicePageTemplate({ service }) {
         <div className="container-tp">
           <SectionHeader eyebrow="WHAT WE COVER" title="Services we support" align="left" />
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 max-w-5xl">
-            {service.whatWeCover.map((item, i) => (
-              <motion.div
-                key={item}
-                initial={{ opacity: 0, y: 12 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: '-40px' }}
-                transition={{ duration: 0.4, delay: i * 0.05 }}
-                className="flex items-start gap-3 rounded-xl border border-tp-fog bg-white p-5 hover:border-tp-red/20 hover:shadow-tp-soft transition-[border-color,box-shadow]"
-              >
-                <span className={'mt-0.5 inline-flex h-7 w-7 items-center justify-center rounded-lg flex-shrink-0 ' + (isRed ? 'bg-tp-red-50 text-tp-red' : 'bg-tp-teal-50 text-tp-teal-700')}>
-                  <Check className="h-4 w-4" strokeWidth={2.5} />
-                </span>
-                <span className="text-tp-dark font-medium leading-snug">{item}</span>
-              </motion.div>
-            ))}
+            {service.whatWeCover.map((item, i) => {
+              // Support both shapes:
+              //   - 'string'  → single-line bullet (industrial / payroll / etc.)
+              //   - { label, description }  → titled tile with body copy (professional)
+              const label = typeof item === 'string' ? item : item.label;
+              const description = typeof item === 'string' ? null : item.description;
+              return (
+                <motion.div
+                  key={label}
+                  initial={{ opacity: 0, y: 12 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: '-40px' }}
+                  transition={{ duration: 0.4, delay: i * 0.05 }}
+                  className="flex items-start gap-3 rounded-xl border border-tp-fog bg-white p-5 hover:border-tp-red/20 hover:shadow-tp-soft transition-[border-color,box-shadow]"
+                >
+                  <span className={'mt-0.5 inline-flex h-7 w-7 items-center justify-center rounded-lg flex-shrink-0 ' + (isRed ? 'bg-tp-red-50 text-tp-red' : 'bg-tp-teal-50 text-tp-teal-700')}>
+                    <Check className="h-4 w-4" strokeWidth={2.5} />
+                  </span>
+                  <div className="flex-1">
+                    <p className="text-tp-dark font-semibold leading-snug">{label}</p>
+                    {description && (
+                      <p className="mt-1.5 text-[14px] text-tp-dark/65 leading-relaxed">
+                        {description}
+                      </p>
+                    )}
+                  </div>
+                </motion.div>
+              );
+            })}
           </div>
 
           {/* Additional services (only some pages) */}
@@ -172,7 +186,15 @@ export default function ServicePageTemplate({ service }) {
       <section className="py-20 md:py-24 bg-white">
         <div className="container-tp">
           <SectionHeader eyebrow="KEY OUTCOMES" title="What our partners typically see" />
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5 max-w-5xl mx-auto">
+          {/* Center the grid when there are only 2 metrics (Payroll, Financial) so they
+              don't sit awkwardly in the first two cells of a 3-col grid. */}
+          <div
+            className={
+              service.keyMetrics.length === 2
+                ? 'grid sm:grid-cols-2 gap-5 max-w-3xl mx-auto'
+                : 'grid md:grid-cols-2 lg:grid-cols-3 gap-5 max-w-5xl mx-auto'
+            }
+          >
             {service.keyMetrics.map((m, i) => (
               <motion.div
                 key={m}

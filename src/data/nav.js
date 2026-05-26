@@ -25,7 +25,6 @@ export const nav = {
           links: [
             { label: 'Professional Staffing',                to: '/workforce-solutions/professional-staffing' },
             { label: 'Industrial & Skilled Trades Staffing', to: '/workforce-solutions/industrial-staffing' },
-            { label: 'Learn how we work with you',           to: '/workforce-solutions' },
           ],
         },
         {
@@ -40,12 +39,12 @@ export const nav = {
       right: {
         heading: 'INDUSTRIES WE SERVE',
         links: [
-          { label: 'Manufacturing & Industrial',   to: '/industries' },
-          { label: 'Warehousing & Logistics',      to: '/industries' },
-          { label: 'Construction & Skilled Trades',to: '/industries' },
-          { label: 'Energy & Utilities',           to: '/industries' },
-          { label: 'Retail & Consumer',            to: '/industries' },
-          { label: 'Professional Services',        to: '/industries' },
+          { label: 'Manufacturing & Industrial',    to: '/industries#manufacturing-industrial' },
+          { label: 'Warehousing & Logistics',       to: '/industries#warehousing-logistics' },
+          { label: 'Construction & Skilled Trades', to: '/industries#construction-trades' },
+          { label: 'Energy & Utilities',            to: '/industries#energy-utilities' },
+          { label: 'Retail & Consumer',             to: '/industries#retail-consumer' },
+          { label: 'Professional Services',         to: '/industries#professional-services' },
         ],
         bottomLink: { label: 'Explore All Industries', to: '/industries' },
       },

@@ -1,12 +1,22 @@
 import { useEffect, useRef, useState } from 'react';
 import { motion, useInView } from 'framer-motion';
-import { Search, Users, Handshake, LifeBuoy } from 'lucide-react';
+import {
+  Search, Users, Handshake, LifeBuoy, ClipboardList, UserCheck,
+  Heart, BadgeCheck, Zap, Layers, ShieldCheck,
+} from 'lucide-react';
 
 const ICON_MAP = {
   search: Search,
   users: Users,
   handshake: Handshake,
   'life-buoy': LifeBuoy,
+  'clipboard-list': ClipboardList,
+  'user-check': UserCheck,
+  heart: Heart,
+  'badge-check': BadgeCheck,
+  zap: Zap,
+  layers: Layers,
+  'shield-check': ShieldCheck,
 };
 
 export default function ProcessStep({ step, isLast = false }) {

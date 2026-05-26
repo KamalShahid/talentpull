@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
 
-export default function MegaMenu({ dropdown }) {
+export default function MegaMenu({ dropdown, onLinkClick }) {
   const { left, groups, right } = dropdown;
   const hasRight = Boolean(right);
 
@@ -31,6 +31,7 @@ export default function MegaMenu({ dropdown }) {
             </p>
             <Link
               to={left.cta.to}
+              onClick={onLinkClick}
               className="mt-auto inline-flex items-center justify-center gap-2 w-full px-5 py-3 rounded-full bg-[#1a3a3a] text-white text-sm font-semibold hover:bg-tp-darker transition-colors"
             >
               {left.cta.label}
@@ -52,6 +53,7 @@ export default function MegaMenu({ dropdown }) {
                   <li key={l.label}>
                     <Link
                       to={l.to}
+                      onClick={onLinkClick}
                       className="group inline-flex items-center gap-2 text-tp-dark hover:text-tp-teal transition-colors text-[15px] leading-snug"
                     >
                       <span className="border-b border-transparent group-hover:border-tp-teal pb-0.5">
@@ -92,6 +94,7 @@ export default function MegaMenu({ dropdown }) {
                     <li key={l.label}>
                       <Link
                         to={l.to}
+                        onClick={onLinkClick}
                         className="text-[14px] text-tp-teal-700 hover:text-tp-red transition-colors"
                       >
                         {l.label}
@@ -102,6 +105,7 @@ export default function MegaMenu({ dropdown }) {
                 {right.bottomLink && (
                   <Link
                     to={right.bottomLink.to}
+                    onClick={onLinkClick}
                     className="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-tp-dark border-t border-tp-fog pt-4 w-full hover:text-tp-red transition-colors"
                   >
                     {right.bottomLink.label}
