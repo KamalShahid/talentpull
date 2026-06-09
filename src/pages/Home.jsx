@@ -27,6 +27,20 @@ const aiFeatures = [
   { icon: Layers,     title: 'Flexible Hiring Support',       body: 'From individual hires to ongoing workforce needs, we scale with your business.' },
 ];
 
+// Map each home-page industry tile label to a hashed /industries link so the
+// matching card highlights + scrolls into view on the destination page.
+const HOME_INDUSTRY_LINKS = {
+  'Manufacturing':                      '/industries#manufacturing',
+  'Warehouse & Distribution':           '/industries#warehousing-logistics',
+  'Real Estate & Property Management':  '/industries#real-estate',
+  'Construction & Skilled Trades':      '/industries#construction-skilled-trades',
+  'Recycling & Waste Management':       '/industries#recycling-waste',
+  'Logistics & Supply Chain':           '/industries#logistics-supply-chain',
+  'Financial Institutions & Banking':   '/industries#financial-banking',
+  'Energy & Infrastructure':            '/industries#energy-utilities',
+  'Retail':                             '/industries#retail-consumer',
+};
+
 const trustItems = [
   'Faster hiring turnaround',
   'Flexible workforce support',
@@ -42,7 +56,7 @@ const whyAdvantages = [
     body: 'We work closely with a focused client base, allowing us to provide direct communication, faster response times, and a more personalized hiring experience.',
     icon: 'heart' },
   { step: 2, title: 'Quality-Focused Recruiting',
-    body: 'Our focus is not on sending volume — it\'s on presenting candidates who align with the role, team, and operational needs of your business.',
+    body: 'Our focus is not on sending volume... It\'s on presenting candidates who align with the role, team, and operational needs of your business.',
     icon: 'badge-check' },
   { step: 3, title: 'Faster Hiring Turnaround',
     body: 'Focused recruiting processes and modern sourcing tools help reduce delays and improve hiring efficiency.',
@@ -273,7 +287,7 @@ export default function Home() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: '-60px' }}
             transition={{ duration: 0.6, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-            className="max-w-4xl mx-auto"
+            className="max-w-4xl mx-auto text-center"
           >
             <p className="text-lg md:text-xl text-tp-dark/75 leading-relaxed text-balance">
               Talent Pull is a Canadian staffing and workforce solutions partner helping businesses hire faster,
@@ -283,11 +297,6 @@ export default function Home() {
               our approach focuses on building strong client relationships, understanding workforce needs in detail,
               and delivering practical hiring solutions that support long-term success.
             </p>
-            <div className="mt-9 text-center">
-              <Link to="/#why" className="btn-primary">
-                Learn More About Talent Pull <ArrowRight className="h-4 w-4" />
-              </Link>
-            </div>
           </motion.div>
         </div>
       </section>
@@ -403,7 +412,12 @@ export default function Home() {
           />
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
             {homeIndustryTiles.map((tile, i) => (
-              <IndustryTile key={tile.label} tile={tile} index={i} />
+              <IndustryTile
+                key={tile.label}
+                tile={tile}
+                index={i}
+                to={HOME_INDUSTRY_LINKS[tile.label] || '/industries'}
+              />
             ))}
           </div>
         </div>

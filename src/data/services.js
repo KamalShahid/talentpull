@@ -111,8 +111,8 @@ export const services = [
     whatWeCover: [
       'Contractor payroll management',
       'Employee payrolling',
-      'Compliance support',
       'Record keeping and reporting',
+      'Compliance support',
     ],
     howWeWork: {
       pullQuote: 'Less admin. More confidence.',
@@ -193,8 +193,8 @@ export const services = [
     whatWeCover: [
       'Safety training coordination',
       'Compliance support',
-      'Pre-placement safety screening',
       'Documentation support',
+      'Pre-placement safety screening',
     ],
     howWeWork: {
       pullQuote: 'Safer workplaces, stronger operations.',

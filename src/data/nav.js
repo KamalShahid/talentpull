@@ -64,12 +64,12 @@ export const nav = {
         {
           heading: 'FIND WORK',
           links: [
-            { label: 'Browse All Jobs',                   to: '/job-seekers#jobs' },
-            { label: 'Submit Your Resume',                to: '/job-seekers#apply' },
-            { label: 'Professional Opportunities',        to: '/job-seekers#professional' },
-            { label: 'Industrial & General Labour Jobs',  to: '/job-seekers#industrial' },
-            { label: 'Skilled Trades Jobs',               to: '/job-seekers#trades' },
-            { label: 'Temporary & Contract Work',         to: '/job-seekers#contract' },
+            { label: 'Browse All Jobs',                   to: '/job-seekers?tab=all' },
+            { label: 'Submit Your Resume',                to: '/contact?action=apply' },
+            { label: 'Professional Opportunities',        to: '/job-seekers?tab=professional' },
+            { label: 'Industrial & General Labour Jobs',  to: '/job-seekers?tab=industrial' },
+            { label: 'Skilled Trades Jobs',               to: '/job-seekers?tab=trades' },
+            { label: 'Temporary & Contract Work',         to: '/job-seekers?tab=all' },
           ],
         },
         {
@@ -84,14 +84,15 @@ export const nav = {
       ],
       right: {
         heading: 'JOB CATEGORIES',
-        links: [
-          { label: 'Accounting & Finance',          to: '/job-seekers#jobs' },
-          { label: 'Technology & IT',               to: '/job-seekers#jobs' },
-          { label: 'Administrative & Office',       to: '/job-seekers#jobs' },
-          { label: 'Skilled Trades & Industrial',   to: '/job-seekers#jobs' },
-          { label: 'General Labour',                to: '/job-seekers#jobs' },
+        // Plain-text list (non-interactive). Only the bottomLink is clickable.
+        items: [
+          'Accounting & Finance',
+          'Technology & IT',
+          'Administrative & Office',
+          'Skilled Trades & Industrial',
+          'General Labour',
         ],
-        bottomLink: { label: 'Browse All Jobs', to: '/job-seekers#jobs' },
+        bottomLink: { label: 'Browse All Jobs', to: '/job-seekers?tab=all' },
       },
     },
 
@@ -118,17 +119,15 @@ export const nav = {
         {
           heading: 'WHAT SETS US APART',
           links: [
-            { label: 'Responsive & Hands-On Support', to: '/#why' },
-            { label: 'Quality-Focused Recruiting',    to: '/#why' },
-            { label: 'AI-Powered Sourcing',           to: '/#ai' },
-            { label: 'Flexible Workforce Solutions',  to: '/#why' },
+            { label: 'Quality-Focused Recruiting', to: '/#why' },
+            { label: 'AI-Powered Sourcing',        to: '/#ai' },
           ],
         },
       ],
       right: {
         heading: 'OUR APPROACH',
         body: [
-          'We don\'t send volume — we send the right people.',
+          'Quality over volume. We send the right people.',
           'Shortlists typically within 2–5 days.',
           'Human-led recruiting, not just algorithms.',
         ],
@@ -171,17 +170,7 @@ export const nav = {
           ],
         },
       ],
-      right: {
-        heading: 'DIVE DEEPER',
-        links: [
-          { label: 'How to Reduce Hiring Delays', to: '/insights/reduce-hiring-delays' },
-          { label: 'Temp vs Permanent Staffing',  to: '/insights/temp-vs-permanent' },
-          { label: 'Building a Retention Strategy', to: '/insights/retention-strategy' },
-          { label: 'Effective Hiring Strategies', to: '/insights/effective-hiring' },
-          { label: 'Payroll Mistakes to Avoid',   to: '/insights/payroll-mistakes' },
-        ],
-        bottomLink: null,
-      },
+      right: null,
     },
   ],
 };

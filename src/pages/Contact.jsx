@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Mail, MapPin, Phone, Linkedin, Sparkles, Send, CheckCircle2 } from 'lucide-react';
 
@@ -13,6 +14,8 @@ const inquiryTypes = [
 export default function Contact() {
   const [submitting, setSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+  const formCardRef = useRef(null);
+  const firstInputRef = useRef(null);
 
   const onSubmit = async (e) => {
     e.preventDefault();
@@ -21,6 +24,22 @@ export default function Contact() {
     setSubmitting(false);
     setSubmitted(true);
   };
+
+  // Navbar "Submit Your Resume" arrives with `?action=apply`. After 300ms,
+  // smooth-scroll the form into view and focus the first text input, then
+  // strip the param from the URL.
+  const location = useLocation();
+  const navigate = useNavigate();
+  useEffect(() => {
+    const params = new URLSearchParams(location.search);
+    if (params.get('action') !== 'apply') return;
+    const t = setTimeout(() => {
+      formCardRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      firstInputRef.current?.focus();
+    }, 300);
+    navigate(location.pathname, { replace: true });
+    return () => clearTimeout(t);
+  }, [location.search, location.pathname, navigate]);
 
   return (
     <>
@@ -70,7 +89,10 @@ export default function Contact() {
         <div className="container-tp">
           <div className="grid lg:grid-cols-[1.4fr_1fr] gap-12">
             {/* Form */}
-            <div className="rounded-3xl bg-white border border-tp-fog shadow-tp-soft p-7 md:p-10">
+            <div
+              ref={formCardRef}
+              className="rounded-3xl bg-white border border-tp-fog shadow-tp-soft p-7 md:p-10 scroll-mt-24"
+            >
               {submitted ? (
                 <div className="text-center py-12">
                   <div className="inline-flex h-16 w-16 items-center justify-center rounded-full bg-tp-teal-50 text-tp-teal-700 mb-5">
@@ -116,7 +138,7 @@ export default function Contact() {
                     <div className="grid sm:grid-cols-2 gap-4">
                       <label className="block">
                         <span className="block text-[13px] font-semibold text-tp-dark mb-1.5">First name <span className="text-tp-red">*</span></span>
-                        <input type="text" name="firstName" required className="form-input" />
+                        <input ref={firstInputRef} type="text" name="firstName" required className="form-input" />
                       </label>
                       <label className="block">
                         <span className="block text-[13px] font-semibold text-tp-dark mb-1.5">Last name <span className="text-tp-red">*</span></span>
@@ -179,7 +201,7 @@ export default function Contact() {
                     </span>
                     <div>
                       <div className="text-xs uppercase tracking-[0.16em] text-tp-dark/50 font-semibold">Phone</div>
-                      <div className="text-tp-dark/70 text-sm">Available on request</div>
+                      <div className="text-tp-dark/70 text-sm">+1 647-808-2716</div>
                     </div>
                   </div>
                 </li>
@@ -190,7 +212,7 @@ export default function Contact() {
                     </span>
                     <div>
                       <div className="text-xs uppercase tracking-[0.16em] text-tp-dark/50 font-semibold">Location</div>
-                      <div className="text-tp-dark font-semibold">Ontario, Canada</div>
+                      <div className="text-tp-dark font-semibold">5063 North Service Rd suite 100-511, Burlington, ON L7L 5H6 </div>
                     </div>
                   </div>
                 </li>
@@ -201,7 +223,7 @@ export default function Contact() {
                     </span>
                     <div>
                       <div className="text-xs uppercase tracking-[0.16em] text-tp-dark/50 font-semibold">Connect</div>
-                      <a href="https://www.linkedin.com/" target="_blank" rel="noreferrer" className="text-tp-dark font-semibold hover:text-tp-teal-700 transition-colors">
+                      <a href="https://www.linkedin.com/company/talentpull/" target="_blank" rel="noreferrer" className="text-tp-dark font-semibold hover:text-tp-teal-700 transition-colors">
                         LinkedIn
                       </a>
                     </div>
@@ -212,7 +234,7 @@ export default function Contact() {
               <div className="mt-10 rounded-2xl bg-tp-mist p-6">
                 <h4 className="font-display font-bold text-tp-dark mb-2">Response time</h4>
                 <p className="text-sm text-tp-dark/70 leading-relaxed">
-                  Our team typically responds to all inquiries within one business day.
+                  We are here to help. Most inquiries receive a response within one business day.
                 </p>
               </div>
             </div>

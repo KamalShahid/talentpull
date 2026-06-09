@@ -54,7 +54,7 @@ export default function WorkforceSolutions() {
             transition={{ duration: 0.6, delay: 0.15 }}
             className="mt-5 text-xl text-white/80 max-w-2xl leading-relaxed"
           >
-            We handle hiring, workforce management, payroll, and compliance — so you don't have to.
+            We handle hiring, workforce management, payroll, and compliance... so you don't have to.
           </motion.p>
           <motion.div
             initial={{ opacity: 0, y: 16 }}
@@ -75,7 +75,7 @@ export default function WorkforceSolutions() {
           <SectionHeader
             eyebrow="OUR SERVICES"
             title="Five ways we support your workforce"
-            sub="Each service is independent or works in combination — choose what fits your business needs."
+            sub="Each service is independent or works in combination. Choose what fits your business needs."
           />
           {/* 3 + (2 + brand anchor) asymmetric grid so the 5 tiles fill 6 cells */}
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">

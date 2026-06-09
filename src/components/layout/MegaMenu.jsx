@@ -76,6 +76,7 @@ export default function MegaMenu({ dropdown, onLinkClick }) {
             </h3>
 
             {right.body ? (
+              // Informational bullet list (no links)
               <ul className="space-y-3">
                 {right.body.map((line, i) => (
                   <li
@@ -89,19 +90,31 @@ export default function MegaMenu({ dropdown, onLinkClick }) {
               </ul>
             ) : (
               <>
-                <ul className="space-y-2.5">
-                  {right.links.map((l) => (
-                    <li key={l.label}>
-                      <Link
-                        to={l.to}
-                        onClick={onLinkClick}
-                        className="text-[14px] text-tp-teal-700 hover:text-tp-red transition-colors"
-                      >
-                        {l.label}
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
+                {right.items ? (
+                  // Plain non-clickable text list (Job Categories style)
+                  <ul className="space-y-2.5">
+                    {right.items.map((label) => (
+                      <li key={label} className="text-[14px] text-tp-dark/70">
+                        {label}
+                      </li>
+                    ))}
+                  </ul>
+                ) : (
+                  // Interactive link list (Industries We Serve, etc.)
+                  <ul className="space-y-2.5">
+                    {right.links.map((l) => (
+                      <li key={l.label}>
+                        <Link
+                          to={l.to}
+                          onClick={onLinkClick}
+                          className="text-[14px] text-tp-teal-700 hover:text-tp-red transition-colors"
+                        >
+                          {l.label}
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                )}
                 {right.bottomLink && (
                   <Link
                     to={right.bottomLink.to}

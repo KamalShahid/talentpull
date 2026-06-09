@@ -159,9 +159,6 @@ export default function RadialOrbitalTimeline({
                 >
                   {active.category}
                 </Badge>
-                <span className="text-[10px] uppercase tracking-[0.14em] text-gray-500">
-                  {active.status.replace('-', ' ')}
-                </span>
               </div>
               <h4 className="font-display text-base md:text-lg font-bold text-gray-900 tracking-display-tight mb-1.5">
                 {active.title}
@@ -169,23 +166,6 @@ export default function RadialOrbitalTimeline({
               <p className="text-[13.5px] text-gray-700 leading-relaxed">
                 {active.content}
               </p>
-              <div className="mt-3 flex items-center gap-2.5">
-                <span className="text-[10px] uppercase tracking-[0.14em] text-gray-500">
-                  Energy
-                </span>
-                <div className="flex-1 h-1 rounded-full bg-gray-200 overflow-hidden">
-                  <motion.div
-                    key={`energy-${active.id}`}
-                    initial={{ width: 0 }}
-                    animate={{ width: `${active.energy}%` }}
-                    transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-                    className="h-full bg-gradient-to-r from-blue-500 to-purple-500"
-                  />
-                </div>
-                <span className="text-[10px] text-gray-600 tabular-nums">
-                  {active.energy}%
-                </span>
-              </div>
             </motion.div>
           )}
         </AnimatePresence>

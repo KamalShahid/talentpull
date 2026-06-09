@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { cn } from '../lib/utils.js';
@@ -16,6 +17,25 @@ const ICON_MAP = {
   'professional-services': Briefcase,
 };
 
+// Each card's root id matches what the Home page industry tiles link to.
+// Some labels (real-estate, recycling-waste, etc.) intentionally have no
+// matching card right now — those hashes simply find nothing.
+const SLUG_TO_HASH = {
+  'energy-utilities':         'energy-utilities',
+  'manufacturing-industrial': 'manufacturing',
+  'warehousing-logistics':    'warehousing-logistics',
+  'construction-trades':      'construction-skilled-trades',
+  'retail-consumer':          'retail-consumer',
+  'professional-services':    'professional-services',
+};
+
+// Existing navbar links use the data-file slug as the hash. Translate those
+// to the new card ids so the navbar keeps working.
+const HASH_ALIASES = {
+  'manufacturing-industrial': 'manufacturing',
+  'construction-trades':      'construction-skilled-trades',
+};
+
 const quickLinks = [
   { label: 'Staffing Solutions',     to: '/workforce-solutions' },
   { label: 'Payroll and Compliance', to: '/workforce-solutions/payroll-solutions' },
@@ -24,9 +44,35 @@ const quickLinks = [
 ];
 
 export default function Industries() {
-  // `/industries#<slug>` from the navbar tells us which card to focus + highlight.
   const { hash } = useLocation();
-  const activeSlug = hash ? hash.slice(1) : null;
+  // Temporary highlight that self-clears after 2.5s — see the useEffect below.
+  const [highlightedId, setHighlightedId] = useState(null);
+
+  useEffect(() => {
+    const rawHash = hash ? hash.slice(1) : '';
+    if (!rawHash) { setHighlightedId(null); return; }
+
+    const resolved = HASH_ALIASES[rawHash] || rawHash;
+    const exists = Object.values(SLUG_TO_HASH).includes(resolved);
+    if (!exists) return;   // hash like #real-estate has no card → no-op
+
+    setHighlightedId(resolved);
+
+    // Wait for layout to settle, then smooth-scroll the matched card into the
+    // viewport center, then fade the highlight back out at the 2.5s mark.
+    const scrollTimer = setTimeout(() => {
+      document.getElementById(resolved)?.scrollIntoView({
+        behavior: 'smooth',
+        block: 'center',
+      });
+    }, 300);
+    const clearTimer = setTimeout(() => setHighlightedId(null), 2500);
+
+    return () => {
+      clearTimeout(scrollTimer);
+      clearTimeout(clearTimer);
+    };
+  }, [hash]);
 
   return (
     <>
@@ -64,20 +110,23 @@ export default function Industries() {
             {industries.map((ind, i) => {
               const Icon = ICON_MAP[ind.slug] || Factory;
               const isRed = i % 2 === 0;
-              const isActive = activeSlug === ind.slug;
+              const cardId = SLUG_TO_HASH[ind.slug] || ind.slug;
+              const isHighlighted = highlightedId === cardId;
               return (
                 <motion.div
                   key={ind.slug}
-                  id={ind.slug}
+                  id={cardId}
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, margin: '-40px' }}
                   transition={{ duration: 0.55, delay: i * 0.06 }}
                   className={cn(
-                    'group relative rounded-2xl bg-white p-7 transition-[border-color,box-shadow,transform] duration-300 hover:-translate-y-1 overflow-hidden scroll-mt-24',
-                    isActive
-                      ? 'border-2 border-tp-red shadow-tp-glow-red ring-4 ring-tp-red/15'
-                      : 'border border-tp-fog hover:border-tp-dark/15 hover:shadow-tp-elevated'
+                    'group relative rounded-2xl p-7 border overflow-hidden scroll-mt-24',
+                    'transition-[border-color,box-shadow,transform,background-color] duration-[600ms] ease-out',
+                    'hover:-translate-y-1 hover:shadow-tp-elevated',
+                    isHighlighted
+                      ? 'border-tp-red bg-tp-red/[0.06]'
+                      : 'border-tp-fog bg-white hover:border-tp-dark/15'
                   )}
                 >
                   <div
@@ -85,7 +134,7 @@ export default function Industries() {
                     className={
                       'absolute -top-10 -right-10 h-32 w-32 rounded-full transition-opacity duration-500 blur-2xl ' +
                       (isRed ? 'bg-tp-red/20' : 'bg-tp-teal/20') +
-                      (isActive ? ' opacity-100' : ' opacity-0 group-hover:opacity-100')
+                      ' opacity-0 group-hover:opacity-100'
                     }
                   />
                   <div

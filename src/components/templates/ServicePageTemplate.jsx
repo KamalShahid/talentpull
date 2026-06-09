@@ -2,22 +2,24 @@ import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import {
   ArrowRight, ArrowLeft, Check, Quote, TrendingUp, Sparkles,
-  Briefcase, HardHat, Wrench, Calculator, Shield,
 } from 'lucide-react';
 import SectionHeader from '../ui/SectionHeader.jsx';
 import FAQAccordion from '../ui/FAQAccordion.jsx';
+import { cn } from '../../lib/utils.js';
 
-const ICON_MAP = {
-  briefcase: Briefcase,
-  'hard-hat': HardHat,
-  wrench: Wrench,
-  calculator: Calculator,
-  shield: Shield,
+// Slug → real hero photo. Lives in the template so services.js doesn't need
+// a new field. URL-encoded paths because the files live in /public.
+const HERO_IMAGE_MAP = {
+  'professional-staffing': '/brand_assets/ProfessionalStaffing.jpg',
+  'industrial-staffing':   '/brand_assets/SkilledTrades.jpg',
+  'payroll-solutions':     '/brand_assets/Payroll.jpg',
+  'financial-support':     '/brand_assets/Financial.png',
+  'health-safety':         '/brand_assets/HealthSafety.png',
 };
 
 export default function ServicePageTemplate({ service }) {
-  const Icon = ICON_MAP[service.icon] || Briefcase;
   const isRed = service.accent === 'red';
+  const heroImage = HERO_IMAGE_MAP[service.slug];
 
   return (
     <>
@@ -87,20 +89,21 @@ export default function ServicePageTemplate({ service }) {
               </motion.div>
             </div>
 
-            {/* Visual icon panel */}
+            {/* Hero photo — replaces the old icon card. Same position, square aspect,
+                same 2.5rem rounded corners, no overlay / filter / blend / border. */}
             <motion.div
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.6, delay: 0.2 }}
               className="hidden lg:block"
             >
-              <div className="relative aspect-square max-w-sm mx-auto">
-                <div className={'absolute inset-0 rounded-full blur-3xl ' + (isRed ? 'bg-tp-red/30' : 'bg-tp-teal/30')} />
-                <div className="relative aspect-square rounded-[2.5rem] bg-white/5 border border-white/10 backdrop-blur-md flex items-center justify-center">
-                  <div className={'h-32 w-32 rounded-3xl flex items-center justify-center ' + (isRed ? 'bg-tp-red/20 text-tp-red' : 'bg-tp-teal/20 text-tp-teal')}>
-                    <Icon className="h-16 w-16" strokeWidth={1.4} />
-                  </div>
-                </div>
+              <div className="relative aspect-square max-w-sm mx-auto rounded-[2.5rem] overflow-hidden">
+                <img
+                  src={heroImage}
+                  alt={service.hero.headline}
+                  loading="lazy"
+                  className="w-full h-full object-cover object-center"
+                />
               </div>
             </motion.div>
           </div>
@@ -111,13 +114,27 @@ export default function ServicePageTemplate({ service }) {
       <section className="py-20 md:py-24 bg-white">
         <div className="container-tp">
           <SectionHeader eyebrow="WHAT WE COVER" title="Services we support" align="left" />
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 max-w-5xl">
+          {/* lg uses a 6-col grid where each tile spans 2 cols (visually 3 per row
+              at the same width as a 3-col layout). The 6-col base lets us
+              col-start-shift the first tile of an incomplete last row so 1
+              or 2 leftover tiles are centered rather than left-justified. */}
+          <div className="grid md:grid-cols-2 lg:grid-cols-6 gap-4 max-w-5xl">
             {service.whatWeCover.map((item, i) => {
               // Support both shapes:
               //   - 'string'  → single-line bullet (industrial / payroll / etc.)
               //   - { label, description }  → titled tile with body copy (professional)
               const label = typeof item === 'string' ? item : item.label;
               const description = typeof item === 'string' ? null : item.description;
+
+              // Center the first tile of an incomplete last row.
+              const total = service.whatWeCover.length;
+              const tilesInLastRow = total % 3 === 0 ? 3 : total % 3;
+              const lastRowStartIdx = total - tilesInLastRow;
+              let lgStart = '';
+              if (i === lastRowStartIdx) {
+                if (tilesInLastRow === 1) lgStart = 'lg:col-start-3'; // 1 lone tile → middle (cols 3-4)
+                else if (tilesInLastRow === 2) lgStart = 'lg:col-start-2'; // 2 tiles → cols 2-3 and 4-5
+              }
               return (
                 <motion.div
                   key={label}
@@ -125,7 +142,10 @@ export default function ServicePageTemplate({ service }) {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, margin: '-40px' }}
                   transition={{ duration: 0.4, delay: i * 0.05 }}
-                  className="flex items-start gap-3 rounded-xl border border-tp-fog bg-white p-5 hover:border-tp-red/20 hover:shadow-tp-soft transition-[border-color,box-shadow]"
+                  className={cn(
+                    'lg:col-span-2 flex items-start gap-3 rounded-xl border border-tp-fog bg-white p-5 hover:border-tp-red/20 hover:shadow-tp-soft transition-[border-color,box-shadow]',
+                    lgStart
+                  )}
                 >
                   <span className={'mt-0.5 inline-flex h-7 w-7 items-center justify-center rounded-lg flex-shrink-0 ' + (isRed ? 'bg-tp-red-50 text-tp-red' : 'bg-tp-teal-50 text-tp-teal-700')}>
                     <Check className="h-4 w-4" strokeWidth={2.5} />
@@ -147,7 +167,7 @@ export default function ServicePageTemplate({ service }) {
           {service.additionalServices && (
             <div className="mt-12 rounded-2xl bg-tp-mist p-8 max-w-5xl">
               <h3 className="font-display text-lg font-bold text-tp-dark mb-4">Additional services</h3>
-              <ul className="grid md:grid-cols-2 gap-x-8 gap-y-2">
+              <ul className="grid md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-2">
                 {service.additionalServices.map((s) => (
                   <li key={s} className="flex items-start gap-2 text-tp-dark/80">
                     <span className="mt-2 h-1.5 w-1.5 rounded-full bg-tp-red flex-shrink-0" />

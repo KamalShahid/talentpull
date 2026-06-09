@@ -1,4 +1,5 @@
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import {
   ArrowRight, Sparkles, Search, FileText, MessageSquare, BadgeCheck,
@@ -51,6 +52,8 @@ const CATEGORY_FILTERS = [
   { id: 'trades',        label: 'Skilled Trades' },
 ];
 
+const VALID_TABS = new Set(['all', 'professional', 'industrial', 'trades']);
+
 export default function JobSeekers() {
   const [filter, setFilter] = useState('all');
   const [applyOpen, setApplyOpen] = useState(false);
@@ -62,6 +65,22 @@ export default function JobSeekers() {
   );
 
   const openApply = (job = null) => { setApplyJob(job); setApplyOpen(true); };
+
+  // Navbar dropdown links arrive with `?tab=<id>`. Activate the matching tab,
+  // smooth-scroll the filter bar into view, then strip the param from the URL.
+  const location = useLocation();
+  const navigate = useNavigate();
+  useEffect(() => {
+    const params = new URLSearchParams(location.search);
+    const tab = params.get('tab');
+    if (!tab) return;
+    if (VALID_TABS.has(tab)) setFilter(tab);
+    const t = setTimeout(() => {
+      document.getElementById('jobs')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }, 100);
+    navigate(location.pathname, { replace: true });
+    return () => clearTimeout(t);
+  }, [location.search, location.pathname, navigate]);
 
   return (
     <>
@@ -125,7 +144,7 @@ export default function JobSeekers() {
                   <div className="flex-1">
                     <h3 className="font-display text-lg font-bold mb-1">Browse Open Jobs</h3>
                     <p className="text-sm text-white/65 mb-3 leading-relaxed">
-                      Explore {jobs.length} current openings across professional, industrial, and skilled trades roles.
+                      Explore current openings across professional, industrial, and skilled trades roles.
                     </p>
                     <span className="inline-flex items-center gap-1.5 text-sm font-semibold text-tp-teal group-hover:gap-2.5 transition-all">
                       View Jobs <ArrowRight className="h-4 w-4" />
@@ -171,23 +190,19 @@ export default function JobSeekers() {
           <div className="flex flex-wrap justify-center gap-2 mb-10">
             {CATEGORY_FILTERS.map((c) => {
               const isActive = filter === c.id;
-              const count = c.id === 'all' ? jobs.length : jobs.filter((j) => j.category === c.id).length;
               return (
                 <button
                   key={c.id}
                   type="button"
                   onClick={() => setFilter(c.id)}
                   className={
-                    'inline-flex items-center gap-2 px-4 py-2 rounded-full border text-sm font-semibold transition-colors duration-200 ' +
+                    'inline-flex items-center px-4 py-2 rounded-full border text-sm font-semibold transition-colors duration-200 ' +
                     (isActive
                       ? 'bg-tp-dark text-white border-tp-dark'
                       : 'bg-white text-tp-dark/75 border-tp-fog hover:border-tp-dark/30 hover:text-tp-dark')
                   }
                 >
                   {c.label}
-                  <span className={'rounded-full px-1.5 py-0.5 text-[11px] ' + (isActive ? 'bg-white/15' : 'bg-tp-mist')}>
-                    {count}
-                  </span>
                 </button>
               );
             })}
