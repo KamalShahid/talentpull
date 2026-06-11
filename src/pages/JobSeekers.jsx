@@ -183,7 +183,7 @@ export default function JobSeekers() {
           <SectionHeader
             eyebrow="OPEN POSITIONS"
             title="Browse Open Jobs"
-            sub={`${jobs.length} active roles across professional, industrial, and skilled trades.`}
+            sub={`Active roles across professional, industrial, and skilled trades.`}
           />
 
           {/* Category filter */}

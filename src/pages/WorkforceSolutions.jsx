@@ -5,6 +5,7 @@ import SectionHeader from '../components/ui/SectionHeader.jsx';
 import ServiceCard from '../components/ui/ServiceCard.jsx';
 import AnchorCard from '../components/ui/AnchorCard.jsx';
 import IndustryTile from '../components/ui/IndustryTile.jsx';
+import StatsBar from '../components/ui/StatsBar.jsx';
 import { services } from '../data/services.js';
 
 const workforceIndustries = [
@@ -54,7 +55,7 @@ export default function WorkforceSolutions() {
             transition={{ duration: 0.6, delay: 0.15 }}
             className="mt-5 text-xl text-white/80 max-w-2xl leading-relaxed"
           >
-            We handle hiring, workforce management, payroll, and compliance... so you don't have to.
+            From sourcing to onboarding, we place the right people in manufacturing, logistics, skilled trades, and professional roles across Ontario and beyond.
           </motion.p>
           <motion.div
             initial={{ opacity: 0, y: 16 }}
@@ -69,6 +70,9 @@ export default function WorkforceSolutions() {
         </div>
       </section>
 
+      {/* Animated stats strip (Workforce Solutions page only) */}
+      <StatsBar />
+
       {/* Service tiles */}
       <section className="py-20 md:py-28 bg-white">
         <div className="container-tp">
@@ -77,14 +81,15 @@ export default function WorkforceSolutions() {
             title="Five ways we support your workforce"
             sub="Each service is independent or works in combination. Choose what fits your business needs."
           />
-          {/* 3 + (2 + brand anchor) asymmetric grid so the 5 tiles fill 6 cells */}
+          {/* Row 1: Professional / Brand anchor / Industrial.
+              Row 2: Financial / Payroll / Health & Safety. */}
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            <ServiceCard service={services[0]} index={0} />
-            <ServiceCard service={services[1]} index={1} />
-            <ServiceCard service={services[2]} index={2} />
-            <ServiceCard service={services[3]} index={3} />
-            <AnchorCard className="md:col-span-2 lg:col-span-1" delay={0.4} />
-            <ServiceCard service={services[4]} index={5} />
+            <ServiceCard service={services[0]} index={0} /> {/* Professional Staffing */}
+            <AnchorCard delay={0.1} />
+            <ServiceCard service={services[1]} index={2} /> {/* Industrial & Skilled Trades */}
+            <ServiceCard service={services[3]} index={3} /> {/* Financial & Operational Support */}
+            <ServiceCard service={services[2]} index={4} /> {/* Workforce & Payroll Solutions */}
+            <ServiceCard service={services[4]} index={5} /> {/* Health & Safety Support */}
           </div>
 
           {/* Mid-page CTA */}

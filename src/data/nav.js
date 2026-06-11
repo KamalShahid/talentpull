@@ -3,8 +3,7 @@
 export const nav = {
   // Always-visible right-side items
   rightLinks: [
-    { label: 'Contact', to: '/contact', kind: 'link' },
-    { label: 'Find Talent', to: '/workforce-solutions', kind: 'cta' },
+    { label: 'Contact Us', to: '/contact', kind: 'cta' },
   ],
 
   // Dropdowns (each opens a full-width mega menu panel)

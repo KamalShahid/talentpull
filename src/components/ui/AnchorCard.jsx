@@ -3,8 +3,9 @@ import { motion } from 'framer-motion';
 /**
  * Brand-statement anchor card used in the 5-tile service grid to fill
  * the otherwise-empty 6th cell. Matches the surrounding ServiceCard
- * dimensions (rounded-2xl, p-7) but has no border / no CTA — purely a
- * visual brand moment with the white logo and tagline on a dark panel.
+ * dimensions (rounded-2xl) but has no border / no CTA — purely a visual
+ * brand moment with the TalentPull logo (the logo already carries the
+ * "Smart Way of Hiring" tagline) centered on a dark panel.
  */
 export default function AnchorCard({ className = '', delay = 0.4 }) {
   return (
@@ -14,7 +15,7 @@ export default function AnchorCard({ className = '', delay = 0.4 }) {
       viewport={{ once: true, margin: '-60px' }}
       transition={{ duration: 0.55, ease: [0.16, 1, 0.3, 1], delay }}
       className={
-        'relative overflow-hidden rounded-2xl p-7 flex flex-col items-center justify-center text-center bg-tp-darker text-white h-full min-h-[260px] ' +
+        'relative overflow-hidden rounded-2xl p-8 flex items-center justify-center bg-tp-darker text-white h-full min-h-[260px] ' +
         className
       }
     >
@@ -29,12 +30,9 @@ export default function AnchorCard({ className = '', delay = 0.4 }) {
       />
       <img
         src="/brand_assets/talent%20pull%20logo%20white.png"
-        alt="Talent Pull"
-        className="relative h-12 md:h-14 w-auto mb-5"
+        alt="Talent Pull — The Smart Way of Hiring"
+        className="relative max-h-full max-w-full w-auto h-auto object-contain"
       />
-      <p className="relative font-display text-lg md:text-xl font-semibold italic tracking-display-tight text-white/95 max-w-[15ch]">
-        The Smart Way of Hiring
-      </p>
     </motion.div>
   );
 }

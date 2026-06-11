@@ -10,20 +10,27 @@ import MobileDrawer from './MobileDrawer.jsx';
 /**
  * Hover-only mega menu.
  *
- * Anti-stuck rules (per brief):
- *   - No click handler on the nav link toggles the menu. The label
- *     itself is a real Link; click navigates. Hover opens the panel.
- *   - A single onMouseLeave on the <header> wrapper closes after 150ms.
- *     Because the panel is a DOM descendant of the header, cursor on
- *     the panel keeps the menu open without needing a per-element
- *     mouseenter handler.
- *   - An invisible bridge div fills the gap at the bottom of the header
- *     to safely catch the cursor on its way down to the panel.
- *   - Escape, focus leaving the header, and any scroll on the window
- *     all close the menu immediately.
- *   - The panel is unmounted by AnimatePresence when closed; while it
- *     animates out, its pointer-events are forced to none so it can't
- *     intercept clicks/hovers during the exit.
+ * Anti-stuck rules:
+ *   - Nav labels are real <Link>s. Hover (enter on a wrapper) opens
+ *     the panel; click navigates. There is no click-toggle.
+ *   - Each nav item gets its OWN wrapper with both onMouseEnter and
+ *     onMouseLeave. The shared mega-menu panel also gets the same pair.
+ *     A single shared closeTimer ref coordinates: any enter clears
+ *     a pending close; any leave queues a 120ms close. This means the
+ *     menu only stays open while the cursor is actually on a trigger
+ *     or the panel — not on the logo, Contact Us, or empty space
+ *     elsewhere in the header.
+ *   - A per-item invisible bridge fills the small gap between the
+ *     bottom of a nav link and the top of the panel so the cursor
+ *     can travel down without dropping into "no element" space.
+ *   - Escape, focus leaving the header, any window scroll, route
+ *     change, and a pointer-down outside the header all close
+ *     immediately.
+ *   - When the panel exits via AnimatePresence its pointer-events
+ *     are forced to none for the duration of the exit animation.
+ *   - Mobile uses a separate drawer with its own click-only logic;
+ *     desktop hover handlers are inside `hidden lg:flex/lg:block`
+ *     so they cannot fire below the lg breakpoint.
  */
 export default function Navbar() {
   const [openId, setOpenId] = useState(null);
@@ -43,7 +50,7 @@ export default function Navbar() {
     closeTimer.current = setTimeout(() => {
       setOpenId(null);
       closeTimer.current = null;
-    }, 150);
+    }, 120);
   }, []);
 
   const closeAll = useCallback(() => {
@@ -98,7 +105,6 @@ export default function Navbar() {
     <>
       <header
         ref={headerRef}
-        onMouseLeave={queueClose}
         onBlur={handleHeaderBlur}
         className="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-tp-fog"
       >
@@ -112,37 +118,59 @@ export default function Navbar() {
             />
           </Link>
 
-          {/* Desktop nav — labels are real <Link>s; hover opens panel, click navigates */}
+          {/* Desktop nav — labels are real <Link>s. Hover (mouseenter on the
+              wrapper) opens the panel; click navigates. Each item owns its
+              own mouseenter/mouseleave + an invisible bridge so the cursor
+              can traverse the small gap to the panel without dropping into
+              non-trigger space (logo, Contact Us, etc.) which would otherwise
+              leave the panel stuck open. */}
           <nav className="hidden lg:flex items-center gap-1" aria-label="Primary">
-            {nav.dropdowns.map((d) => (
-              <div
-                key={d.id}
-                onMouseEnter={() => openMenu(d.id)}
-                className="relative"
-              >
-                <Link
-                  to={d.left.cta.to}
-                  onFocus={() => openMenu(d.id)}
-                  onClick={closeAll}
-                  className={cn(
-                    'inline-flex items-center gap-1 px-3 py-2 rounded-lg text-sm font-medium transition-colors duration-150',
-                    openId === d.id
-                      ? 'text-tp-red bg-tp-red-50'
-                      : 'text-tp-dark/80 hover:text-tp-red'
-                  )}
-                  aria-haspopup="true"
-                  aria-expanded={openId === d.id}
+            {nav.dropdowns.map((d) => {
+              const isOpen = openId === d.id;
+              return (
+                <div
+                  key={d.id}
+                  onMouseEnter={() => openMenu(d.id)}
+                  onMouseLeave={queueClose}
+                  className="relative"
                 >
-                  {d.label}
-                  <ChevronDown
-                    className={cn('h-4 w-4 transition-transform duration-200', openId === d.id && 'rotate-180')}
+                  <Link
+                    to={d.left.cta.to}
+                    onFocus={() => openMenu(d.id)}
+                    onClick={closeAll}
+                    className={cn(
+                      'inline-flex items-center gap-1 px-3 py-2 rounded-lg text-sm font-medium transition-colors duration-150',
+                      isOpen
+                        ? 'text-tp-red bg-tp-red-50'
+                        : 'text-tp-dark/80 hover:text-tp-red'
+                    )}
+                    aria-haspopup="true"
+                    aria-expanded={isOpen}
+                  >
+                    {d.label}
+                    <ChevronDown
+                      className={cn('h-4 w-4 transition-transform duration-200', isOpen && 'rotate-180')}
+                    />
+                  </Link>
+
+                  {/* Per-item bridge — only catches the cursor while this
+                      item's panel is open, so it can't intercept events
+                      from neighbouring items when closed. Sits directly
+                      below the link, reaching down past the header edge
+                      into the panel's top so the traversal is unbroken. */}
+                  <span
+                    aria-hidden="true"
+                    className={cn(
+                      'absolute left-0 right-0 top-full h-3',
+                      isOpen ? '' : 'pointer-events-none'
+                    )}
                   />
-                </Link>
-              </div>
-            ))}
+                </div>
+              );
+            })}
           </nav>
 
-          {/* Desktop right-side: Contact + Find Talent */}
+          {/* Desktop right-side: Contact Us CTA */}
           <div className="hidden lg:flex items-center gap-3">
             {nav.rightLinks.map((l) =>
               l.kind === 'cta' ? (
@@ -172,26 +200,15 @@ export default function Navbar() {
           </button>
         </div>
 
-        {/*
-          Shared invisible bridge — sits in the empty space at the bottom of the
-          header below the nav-link wrappers (y=64..80). It's a descendant of
-          <header>, so cursor presence on it keeps the header's mouseleave from
-          firing during the nav→panel transition. Pointer-events only when a
-          menu is actually open, so it can't intercept anything otherwise.
-        */}
-        <div
-          aria-hidden="true"
-          className={cn(
-            'hidden lg:block absolute inset-x-0 bottom-0 h-4',
-            activeDropdown ? '' : 'pointer-events-none'
-          )}
-        />
-
-        {/* Desktop mega menu — full-width panel */}
+        {/* Desktop mega menu — single shared full-width panel. Owns its own
+            mouseenter/mouseleave that feed the same closeTimer ref: hovering
+            the panel clears any pending close, leaving it queues one. */}
         <AnimatePresence>
           {activeDropdown && (
             <motion.div
               key={activeDropdown.id}
+              onMouseEnter={() => openMenu(activeDropdown.id)}
+              onMouseLeave={queueClose}
               initial={{ opacity: 0, y: -6, pointerEvents: 'none' }}
               animate={{ opacity: 1, y: 0, pointerEvents: 'auto' }}
               exit={{ opacity: 0, y: -6, pointerEvents: 'none' }}

@@ -212,7 +212,7 @@ export default function Contact() {
                     </span>
                     <div>
                       <div className="text-xs uppercase tracking-[0.16em] text-tp-dark/50 font-semibold">Location</div>
-                      <div className="text-tp-dark font-semibold">5063 North Service Rd suite 100-511, Burlington, ON L7L 5H6 </div>
+                      <div className="text-tp-dark font-semibold">5063, North Service Rd, Suite 100-511, Burlington, ON L7L 5H6 </div>
                     </div>
                   </div>
                 </li>
