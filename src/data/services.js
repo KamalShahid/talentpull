@@ -389,11 +389,6 @@ export const services = [
       subtext: 'Practical financial support that keeps your business on track.',
       body: 'We provide structured bookkeeping and accounting support — helping you maintain accurate records and make better decisions.',
     },
-    additionalServices: [
-      'Financial Consultancy',
-      'Expertise in setting up a new finance department',
-      'Assisting with financial and operational audits',
-    ],
     whatWeCover: [
       {
         icon:  'book-open',
