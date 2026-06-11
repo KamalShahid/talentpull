@@ -74,10 +74,9 @@ export const nav = {
         {
           heading: 'HOW IT WORKS',
           links: [
-            { label: 'How We Match You',           to: '/job-seekers#how-we-help' },
-            { label: 'Resume & Interview Support', to: '/job-seekers#how-we-help' },
-            { label: 'Faster Hiring Process',      to: '/job-seekers#how-we-help' },
-            { label: 'Why Job Seekers Choose Us',  to: '/job-seekers#why-choose' },
+            { label: 'How We Match You',          to: '/job-seekers?section=how-we-help' },
+            { label: 'Faster Hiring Process',     to: '/job-seekers?section=how-to-apply' },
+            { label: 'Why Job Seekers Choose Us', to: '/job-seekers?section=why-choose' },
           ],
         },
       ],

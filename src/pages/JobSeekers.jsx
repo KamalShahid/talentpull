@@ -52,7 +52,8 @@ const CATEGORY_FILTERS = [
   { id: 'trades',        label: 'Skilled Trades' },
 ];
 
-const VALID_TABS = new Set(['all', 'professional', 'industrial', 'trades']);
+const VALID_TABS     = new Set(['all', 'professional', 'industrial', 'trades']);
+const VALID_SECTIONS = new Set(['how-we-help', 'how-to-apply', 'why-choose']);
 
 export default function JobSeekers() {
   const [filter, setFilter] = useState('all');
@@ -66,20 +67,37 @@ export default function JobSeekers() {
 
   const openApply = (job = null) => { setApplyJob(job); setApplyOpen(true); };
 
-  // Navbar dropdown links arrive with `?tab=<id>`. Activate the matching tab,
-  // smooth-scroll the filter bar into view, then strip the param from the URL.
+  // Navbar dropdown links arrive with either `?tab=<id>` (sets the job filter
+  // and scrolls to the jobs list) or `?section=<id>` (smooth-scrolls to a
+  // labelled section on the page). After handling, the query param is
+  // stripped from the URL so it doesn't persist in browser history.
   const location = useLocation();
   const navigate = useNavigate();
   useEffect(() => {
     const params = new URLSearchParams(location.search);
     const tab = params.get('tab');
-    if (!tab) return;
-    if (VALID_TABS.has(tab)) setFilter(tab);
-    const t = setTimeout(() => {
-      document.getElementById('jobs')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }, 100);
-    navigate(location.pathname, { replace: true });
-    return () => clearTimeout(t);
+    const section = params.get('section');
+    if (!tab && !section) return;
+
+    // navigate(replace: true) is called AT THE END of each timer callback
+    // rather than synchronously here — calling it now would mutate
+    // location.search, trigger this effect's cleanup before the scroll
+    // timer fires, and clearTimeout would cancel the scroll.
+    const timers = [];
+    if (tab) {
+      if (VALID_TABS.has(tab)) setFilter(tab);
+      timers.push(setTimeout(() => {
+        document.getElementById('jobs')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        navigate(location.pathname, { replace: true });
+      }, 100));
+    }
+    if (section && VALID_SECTIONS.has(section)) {
+      timers.push(setTimeout(() => {
+        document.getElementById(section)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        navigate(location.pathname, { replace: true });
+      }, 300));
+    }
+    return () => timers.forEach(clearTimeout);
   }, [location.search, location.pathname, navigate]);
 
   return (
@@ -301,7 +319,7 @@ export default function JobSeekers() {
       </section>
 
       {/* ── How to Apply numbered steps ────────────────────────── */}
-      <section className="py-20 md:py-24 bg-white">
+      <section id="how-to-apply" className="py-20 md:py-24 bg-white scroll-mt-20">
         <div className="container-tp">
           <SectionHeader eyebrow="HOW TO APPLY" title="Four steps to get started" />
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-x-6 gap-y-10 max-w-6xl mx-auto">
