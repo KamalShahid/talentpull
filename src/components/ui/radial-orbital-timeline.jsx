@@ -18,7 +18,7 @@ import { Badge } from './badge.jsx';
  *   in-progress -> light brand tint bg + red text
  *   pending     -> gray-100 bg + gray-500 text
  *
- * Container has no background of its own — callers provide bg + height
+ * Container has no background of its own - callers provide bg + height
  * via the className prop so the timeline can sit on any section color.
  */
 export default function RadialOrbitalTimeline({
@@ -57,7 +57,7 @@ export default function RadialOrbitalTimeline({
             style={{ width: innerRingRadius * 2, height: innerRingRadius * 2 }}
           />
 
-          {/* Center hub — brand gradient with subtle pulse */}
+          {/* Center hub - brand gradient with subtle pulse */}
           <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-10">
             <div className="relative h-14 w-14 rounded-full bg-gradient-to-br from-tp-red via-tp-red to-tp-teal flex items-center justify-center shadow-[0_0_28px_rgba(217,27,78,0.32)]">
               <span className="h-3 w-3 rounded-full bg-white animate-pulse" />
@@ -131,7 +131,7 @@ export default function RadialOrbitalTimeline({
           })}
         </div>
 
-        {/* Detail card for the active node — light theme */}
+        {/* Detail card for the active node - light theme */}
         <AnimatePresence mode="wait">
           {active && (
             <motion.div

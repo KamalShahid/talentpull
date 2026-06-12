@@ -33,7 +33,7 @@ const jobTypes = [
 
 const whyChoose = [
   { icon: Zap,    title: 'Faster Results',     body: 'Our streamlined process reduces time-to-hire so you can start working sooner.' },
-  { icon: Target, title: 'Better Matches',     body: 'Quality over quantity — sending you roles that actually fit.' },
+  { icon: Target, title: 'Better Matches',     body: 'Quality over quantity. We send you roles that actually fit.' },
   { icon: Heart,  title: 'Real Human Support', body: 'No bots pushing resumes. Our recruiters guide you at every step.' },
   { icon: Eye,    title: 'Transparent Process',body: 'You\'ll always know where you stand and what comes next.' },
 ];
@@ -80,7 +80,7 @@ export default function JobSeekers() {
     if (!tab && !section) return;
 
     // navigate(replace: true) is called AT THE END of each timer callback
-    // rather than synchronously here — calling it now would mutate
+    // rather than synchronously here - calling it now would mutate
     // location.search, trigger this effect's cleanup before the scroll
     // timer fires, and clearTimeout would cancel the scroll.
     const timers = [];
@@ -195,7 +195,7 @@ export default function JobSeekers() {
         </div>
       </section>
 
-      {/* ── Section 2.2 — Browse Jobs ──────────────────────────── */}
+      {/* ── Section 2.2 - Browse Jobs ──────────────────────────── */}
       <section id="jobs" className="py-20 md:py-24 bg-white scroll-mt-20">
         <div className="container-tp">
           <SectionHeader
@@ -237,13 +237,13 @@ export default function JobSeekers() {
         </div>
       </section>
 
-      {/* ── Section 2.4 — How Talent Pull Helps You Get Hired ──── */}
+      {/* ── Section 2.4 - How Talent Pull Helps You Get Hired ──── */}
       <section id="how-we-help" className="py-20 md:py-28 bg-tp-mist scroll-mt-20">
         <div className="container-tp">
           <SectionHeader
             eyebrow="HOW WE HELP"
             title="How Talent Pull Helps You Get Hired"
-            sub="We go beyond job boards. Our recruiters work closely with employers to understand exactly what they need — so when we match you with a role, it's a meaningful fit."
+            sub="We go beyond job boards. Our recruiters work closely with employers to understand exactly what they need, so when we match you with a role, it's a meaningful fit."
           />
 
           <div className="grid lg:grid-cols-2 gap-10 mb-16">

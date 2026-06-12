@@ -14,9 +14,9 @@ export default function MegaMenu({ dropdown, onLinkClick }) {
                     : 'lg:grid-cols-[minmax(0,1fr)_minmax(0,1.6fr)]')
         }
       >
-        {/* Left zone — squircle photo with brand ring floating over a warm beige blob */}
+        {/* Left zone - squircle photo with brand ring floating over a warm beige blob */}
         <div className="relative">
-          {/* Floating photo — squircle, brand-color ring, sits on the top-left of the beige card */}
+          {/* Floating photo - squircle, brand-color ring, sits on the top-left of the beige card */}
           <img
             src={left.image}
             alt={left.imageAlt}
@@ -24,7 +24,7 @@ export default function MegaMenu({ dropdown, onLinkClick }) {
             className="absolute top-0 left-0 z-10 h-32 w-32 md:h-36 md:w-36 object-cover object-top rounded-3xl ring-4 ring-tp-red bg-white shadow-tp-soft"
           />
 
-          {/* Warm beige blob — large rounded shape, no border, no shadow */}
+          {/* Warm beige blob - large rounded shape, no border, no shadow */}
           <div className="rounded-[2rem] bg-[#f5f4f2] pt-36 md:pt-40 pb-7 px-7 min-h-[320px] flex flex-col gap-5">
             <p className="font-display text-[20px] md:text-[22px] leading-snug font-bold tracking-display-tight text-tp-dark text-balance">
               {left.tagline}
@@ -39,7 +39,7 @@ export default function MegaMenu({ dropdown, onLinkClick }) {
           </div>
         </div>
 
-        {/* Center zone — link groups */}
+        {/* Center zone - link groups */}
         <div className={'grid gap-8 ' + (groups.length > 1 ? 'sm:grid-cols-2' : 'grid-cols-1')}>
           {groups.map((g, gi) => (
             <div key={gi}>
@@ -67,7 +67,7 @@ export default function MegaMenu({ dropdown, onLinkClick }) {
           ))}
         </div>
 
-        {/* Right zone — either a link list with optional bottom link, or an
+        {/* Right zone - either a link list with optional bottom link, or an
             informational brand-statement card (when `right.body` is present). */}
         {hasRight && (
           <aside className="rounded-2xl bg-tp-mist p-7">

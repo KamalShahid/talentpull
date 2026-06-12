@@ -36,7 +36,7 @@ export const insights = [
       },
       {
         heading: 'Final Thoughts',
-        body: 'Hiring speed matters — but workforce reliability matters just as much. The goal is not simply filling positions quickly. The goal is building a workforce that supports operational consistency, productivity, and long-term business growth.',
+        body: 'Hiring speed matters, but workforce reliability matters just as much. The goal is not simply filling positions quickly. The goal is building a workforce that supports operational consistency, productivity, and long-term business growth.',
       },
     ],
     cta: {
@@ -123,7 +123,7 @@ export const insights = [
           { subheading: 'Improve Workforce Communication', body: 'Clear expectations and consistent communication improve workforce stability and engagement.' },
           { subheading: 'Prioritize Payroll Accuracy',     body: 'Reliable payroll processes help improve employee trust and reduce avoidable dissatisfaction.' },
           { subheading: 'Build Structured Onboarding Processes', body: 'Clear onboarding and workplace expectations improve workforce readiness and retention outcomes.' },
-          { subheading: 'Focus on Workforce Fit — Not Just Hiring Speed', body: 'Hiring candidates aligned with operational needs, attendance expectations, and workplace culture can improve long-term retention.' },
+          { subheading: 'Focus on Workforce Fit, Not Just Hiring Speed', body: 'Hiring candidates aligned with operational needs, attendance expectations, and workplace culture can improve long-term retention.' },
         ],
       },
       {
@@ -147,7 +147,7 @@ export const insights = [
     shortDescription:
       'Learn how payroll inaccuracies, delayed payments, and inconsistent workforce administration can impact employee trust, retention, and operational stability.',
     intro:
-      'Payroll accuracy affects more than administration — it impacts workforce trust. Payroll inconsistencies can affect employee morale, attendance reliability, operational stability, and long-term retention. As businesses grow or scale hiring, payroll coordination often becomes more complex.',
+      'Payroll accuracy affects more than administration. It impacts workforce trust. Payroll inconsistencies can affect employee morale, attendance reliability, operational stability, and long-term retention. As businesses grow or scale hiring, payroll coordination often becomes more complex.',
     image: 'https://placehold.co/800x500/0F1A24/FFFFFF?text=Payroll',
     sections: [
       {
@@ -170,7 +170,7 @@ export const insights = [
       },
       {
         heading: 'Workforce Administration Is Becoming More Complex',
-        body: 'Businesses managing temporary staffing, shift-based operations, or large workforce environments often face increasing administrative pressure. As workforce structures become more flexible, payroll coordination and workforce administration become increasingly important operational functions — not just back-office tasks.',
+        body: 'Businesses managing temporary staffing, shift-based operations, or large workforce environments often face increasing administrative pressure. As workforce structures become more flexible, payroll coordination and workforce administration become increasingly important operational functions, not just back-office tasks.',
       },
     ],
     cta: {

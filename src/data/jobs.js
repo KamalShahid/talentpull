@@ -34,7 +34,7 @@ export const jobs = [
     category: 'professional',
     location: 'Oakville, ON',
     type: '1-year Contract',
-    mode: 'Hybrid — 3 days onsite',
+    mode: 'Hybrid (3 days onsite)',
     pay: '$60–70/hr',
     intro: 'Talent Pull Inc. is currently seeking a Senior Accountant for a client in the renewable energy sector. This opportunity is ideal for professionals with strong financial reporting, audit coordination, and multi-entity accounting experience.',
     responsibilities: [
@@ -148,7 +148,7 @@ export const jobs = [
   },
   {
     id: 7,
-    title: 'QA Specialist — Senior',
+    title: 'QA Specialist, Senior',
     industry: 'IT / OPS',
     category: 'professional',
     location: 'Toronto, ON',
@@ -197,7 +197,7 @@ export const jobs = [
   },
   {
     id: 9,
-    title: 'DevOps/Cloud Engineer — Senior',
+    title: 'DevOps/Cloud Engineer, Senior',
     industry: 'IT / OPS',
     category: 'professional',
     location: 'Toronto, ON',
@@ -222,7 +222,7 @@ export const jobs = [
   },
   {
     id: 10,
-    title: 'Technical Project Manager — Senior',
+    title: 'Technical Project Manager, Senior',
     industry: 'IT / OPS',
     category: 'professional',
     location: 'Toronto, ON',

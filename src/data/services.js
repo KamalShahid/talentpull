@@ -20,7 +20,7 @@ export const services = [
 
     hero: {
       headline: 'Professional Staffing',
-      subtext: 'Hire the right talent — faster and with confidence.',
+      subtext: 'Hire the right talent, faster and with confidence.',
       body: 'We combine AI-powered sourcing with hands-on recruiting to help you find professionals who are not just qualified, but the right fit for your team. Whether it\'s a key hire or ongoing support, the focus is on quality, speed, and long-term alignment.',
     },
     whatWeCover: [
@@ -42,34 +42,34 @@ export const services = [
         bullets: [
           'Flexible contracts',
           'Pre-screened, reference-checked candidates',
-          'Fast turnaround — candidates within 24–48 hrs',
+          'Fast turnaround. Candidates within 24-48 hrs',
           'We handle payroll and employer obligations',
         ],
       },
       {
         label: 'Temp-to-Perm Hiring',
         description:
-          'Try before you commit. Bring someone on in a temporary capacity and evaluate their fit in your actual work environment — then convert to permanent when you\'re confident. It\'s the lowest-risk way to hire.',
+          'Try before you commit. Bring someone on in a temporary capacity and evaluate their fit in your actual work environment, then convert to permanent when you\'re confident. It\'s the lowest-risk way to hire.',
         bullets: [
           'Reduces costly mis-hires',
           'Candidate already knows your systems and culture on day one of permanency',
-          'Conversion handled seamlessly — no gap in employment',
+          'Conversion handled seamlessly, with no gap in employment',
         ],
       },
     ],
     howWeWork: {
       pullQuote: 'We don\'t send volume. We send the right people.',
-      body: 'Each candidate is screened for experience, fit, and reliability — so you spend time interviewing the right profiles, not filtering through resumes.',
+      body: 'Each candidate is screened for experience, fit, and reliability. You spend time interviewing the right profiles, not filtering through resumes.',
       steps: [
         {
           step: 1,
           title: 'Intake Call',
-          body: 'We learn the role, the team dynamic, the dealbreakers, and the culture — not just the job description.',
+          body: 'We learn the role, the team dynamic, the dealbreakers, and the culture, not just the job description.',
         },
         {
           step: 2,
           title: 'Active Sourcing',
-          body: 'We reach into our talent network, job boards, and referral pipeline — not just whoever applies first.',
+          body: 'We reach into our talent network, job boards, and referral pipeline, not just whoever applies first.',
         },
         {
           step: 3,
@@ -113,7 +113,7 @@ export const services = [
     hero: {
       headline: 'Industrial & Skilled Trades Staffing',
       subtext: 'Reliable workforce solutions that keep your operations moving.',
-      body: 'We provide general labour and skilled trades with a focus on speed, consistency, and reliability — so your operations don\'t slow down.',
+      body: 'We provide general labour and skilled trades with a focus on speed, consistency, and reliability, so your operations don\'t slow down.',
     },
     whatWeCover: [
       {
@@ -126,7 +126,7 @@ export const services = [
         icon: 'settings-2',
         label: 'Machine & CNC Operators',
         description:
-          'Experienced operators across lathes, mills, and CNC equipment. We verify machine-specific experience before placing — not just "familiar with CNC."',
+          'Experienced operators across lathes, mills, and CNC equipment. We verify machine-specific experience before placing, not just "familiar with CNC."',
         verified: true,
       },
       {
@@ -158,7 +158,7 @@ export const services = [
     ],
     howWeWork: {
       pullQuote: 'We focus on people who show up and perform.',
-      body: 'Candidates are screened for availability, basic skills, and reliability — ensuring you get workers who are ready to contribute from day one.',
+      body: 'Candidates are screened for availability, basic skills, and reliability, ensuring you get workers who are ready to contribute from day one.',
       steps: [
         {
           step: 1,
@@ -205,7 +205,7 @@ export const services = [
       {
         value:  'Zero',
         label:  'Admin burden',
-        detail: 'We handle timesheets, payroll, WSIB, and compliance — so you can focus on the work, not the paperwork',
+        detail: 'We handle timesheets, payroll, WSIB, and compliance, so you can focus on the work, not the paperwork',
         icon:   'shield-check',
       },
     ],
@@ -237,14 +237,14 @@ export const services = [
     hero: {
       headline: 'Workforce & Payroll Solutions',
       subtext: 'Simplify how you manage people, payroll, and compliance.',
-      body: 'We take care of the administrative side of your workforce — so you don\'t have to.',
+      body: 'We take care of the administrative side of your workforce, so you don\'t have to.',
     },
     whatWeCover: [
       {
         icon:  'users',
         label: 'Contractor Payroll Management',
         description:
-          'We act as employer of record for your contract and temporary workers — processing pay, deductions, and remittances so you carry none of the liability.',
+          'We act as employer of record for your contract and temporary workers, processing pay, deductions, and remittances so you carry none of the liability.',
         bullets: [
           'Source deductions (CPP, EI, income tax)',
           'Direct deposit and pay stub issuance',
@@ -255,7 +255,7 @@ export const services = [
         icon:  'calendar-check',
         label: 'Employee Payrolling',
         description:
-          'Full payroll processing for your permanent staff — done bi-weekly with zero errors and on-time deposits every cycle.',
+          'Full payroll processing for your permanent staff, done bi-weekly with zero errors and on-time deposits every cycle.',
         bullets: [
           'Multi-province payroll support',
           'Overtime, vacation, and statutory holiday calculations',
@@ -266,7 +266,7 @@ export const services = [
         icon:  'folder-open',
         label: 'Record Keeping & Reporting',
         description:
-          'Organized, audit-ready records for every worker — employment history, hours, deductions, and documentation available when you need them.',
+          'Organized, audit-ready records for every worker, including employment history, hours, deductions, and documentation available when you need them.',
         bullets: [
           'Digital record maintenance',
           'Custom workforce reports on demand',
@@ -288,7 +288,7 @@ export const services = [
         icon:  'file-text',
         label: 'ROE & Year-End Processing',
         description:
-          'We handle Records of Employment for departing employees and manage all year-end filings — T4s, summaries, and CRA remittances accurately and on time.',
+          'We handle Records of Employment for departing employees and manage all year-end filings: T4s, summaries, and CRA remittances accurately and on time.',
         bullets: [
           'T4s, summaries, and CRA remittances accurately and on time',
         ],
@@ -303,7 +303,7 @@ export const services = [
           step: 1,
           icon: 'user-plus',
           title: 'Onboarding Your Workforce',
-          body: 'We set up payroll profiles for each employee — classification, pay rate, deductions, and banking details — within 24 hours of engagement.',
+          body: 'We set up payroll profiles for each employee (classification, pay rate, deductions, and banking details) within 24 hours of engagement.',
           connectorLabel: '24 hrs setup',
         },
         {
@@ -324,7 +324,7 @@ export const services = [
           step: 4,
           icon: 'bar-chart-3',
           title: 'Reporting & Year-End',
-          body: 'You receive regular workforce cost reports and we handle all year-end obligations — T4s, ROEs, and CRA summaries.',
+          body: 'You receive regular workforce cost reports and we handle all year-end obligations: T4s, ROEs, and CRA summaries.',
         },
       ],
     },
@@ -354,7 +354,7 @@ export const services = [
       {
         value:     'Always',
         label:     'Audit-Ready',
-        detail:    'Complete, organized records maintained for every worker — accessible immediately',
+        detail:    'Complete, organized records maintained for every worker, accessible immediately',
         icon:      'folder-check',
         trustChip: 'Audit Ready',
       },
@@ -387,7 +387,7 @@ export const services = [
     hero: {
       headline: 'Financial & Operational Support',
       subtext: 'Practical financial support that keeps your business on track.',
-      body: 'We provide structured bookkeeping and accounting support — helping you maintain accurate records and make better decisions.',
+      body: 'We provide structured bookkeeping and accounting support, helping you maintain accurate records and make better decisions.',
     },
     whatWeCover: [
       {
@@ -406,7 +406,7 @@ export const services = [
         icon:  'arrow-left-right',
         label: 'Accounts Payable & Receivable',
         description:
-          'Stay on top of what you owe and what you\'re owed. We manage vendor payments, client invoicing, and collections follow-up — keeping your cash flow predictable.',
+          'Stay on top of what you owe and what you\'re owed. We manage vendor payments, client invoicing, and collections follow-up to keep your cash flow predictable.',
         bullets: [
           'Vendor invoice processing and payment scheduling',
           'Customer invoicing and follow-up',
@@ -429,7 +429,7 @@ export const services = [
         icon:  'bar-chart-2',
         label: 'Financial Reporting',
         description:
-          'Monthly and quarterly financial statements — income statements, balance sheets, and cash flow statements — prepared in plain language so you actually understand where your business stands.',
+          'Monthly and quarterly financial statements (income statements, balance sheets, and cash flow statements) prepared in plain language so you actually understand where your business stands.',
         bullets: [
           'Monthly P&L and balance sheet',
           'Cash flow statements',
@@ -450,7 +450,7 @@ export const services = [
     ],
     howWeWork: {
       pullQuote: 'Simple, consistent, and reliable.',
-      body: 'The goal is to give you clean numbers you can trust — without overcomplicating the process.',
+      body: 'The goal is to give you clean numbers you can trust, without overcomplicating the process.',
       variant: 'financial',
       steps: [
         {
@@ -464,21 +464,21 @@ export const services = [
           step: 2,
           icon: 'settings',
           title: 'Setup & Catch-Up',
-          body: 'We organize your chart of accounts and reconcile any backlog — so you start clean, not patched.',
+          body: 'We organize your chart of accounts and reconcile any backlog, so you start clean, not patched.',
           connectorLabel: 'Clean start',
         },
         {
           step: 3,
           icon: 'refresh-cw',
           title: 'Ongoing Monthly Support',
-          body: 'Regular bookkeeping, reconciliations, and reporting on a consistent schedule — no chasing, no surprises.',
+          body: 'Regular bookkeeping, reconciliations, and reporting on a consistent schedule. No chasing, no surprises.',
           connectorLabel: 'On schedule',
         },
         {
           step: 4,
           icon: 'line-chart',
           title: 'Reporting & Insights',
-          body: 'Monthly statements delivered with plain-language commentary — not just numbers, but what they mean for your business.',
+          body: 'Monthly statements delivered with plain-language commentary. Not just numbers, but what they mean for your business.',
         },
       ],
     },
@@ -493,7 +493,7 @@ export const services = [
       {
         value:     'Full',
         label:     'Cash Flow Clarity',
-        detail:    'Know exactly what\'s coming in and going out — so you make decisions based on facts',
+        detail:    'Know exactly what\'s coming in and going out, so you make decisions based on facts',
         icon:      'trending-up',
         trustChip: { label: '📊 Real-Time Visibility',  bg: '#eff6ff', text: '#2563eb' },
       },
@@ -501,7 +501,7 @@ export const services = [
         value:     60,
         suffix:    ' days',
         label:     'To Recover Missed Revenue',
-        detail:    'Systematic AR tracking means outstanding invoices get followed up — most clients recover missed revenue within the first 60 days',
+        detail:    'Systematic AR tracking means outstanding invoices get followed up. Most clients recover missed revenue within the first 60 days',
         icon:      'clock',
         trustChip: { label: '⚡ Fast Recovery',          bg: '#fffbeb', text: '#d97706' },
       },
@@ -548,7 +548,7 @@ export const services = [
         icon:        'graduation-cap',
         label:       'Safety Training Coordination',
         description:
-          'We organize, schedule, and track mandatory and site-specific safety training for your workforce — so certifications don\'t lapse and new workers are trained before they set foot on the floor.',
+          'We organize, schedule, and track mandatory and site-specific safety training for your workforce, so certifications don\'t lapse and new workers are trained before they set foot on the floor.',
         bullets: [
           'WHMIS 2015 training organization',
           'OHSA Worker Instruction',
@@ -612,7 +612,7 @@ export const services = [
           step: 1,
           icon: 'search',
           title: 'Safety Gap Assessment',
-          body: 'We review your current safety program, documentation, training records, and site conditions against OHSA requirements — and give you a plain-language report of what\'s missing and what\'s at risk.',
+          body: 'We review your current safety program, documentation, training records, and site conditions against OHSA requirements, then give you a plain-language report of what\'s missing and what\'s at risk.',
           connectorLabel: 'Gap identified',
           regulatoryTag: { label: '⚠ OHSA Requirement',    bg: '#fffbeb', text: '#d97706' },
         },
@@ -620,7 +620,7 @@ export const services = [
           step: 2,
           icon: 'file-edit',
           title: 'Program Development',
-          body: 'We build or strengthen your written safety policies, safe work procedures, hazard assessments, and emergency response plans — tailored to your specific operations.',
+          body: 'We build or strengthen your written safety policies, safe work procedures, hazard assessments, and emergency response plans, all tailored to your specific operations.',
           connectorLabel: 'Program built',
           regulatoryTag: { label: '📄 Custom to Your Site', bg: '#eff6ff', text: '#2563eb' },
         },
@@ -636,7 +636,7 @@ export const services = [
           step: 4,
           icon: 'shield-check',
           title: 'Ongoing Compliance Support',
-          body: 'We help you stay current as regulations change, support your JHSC, and prepare you for MOL inspections — before they happen, not after.',
+          body: 'We help you stay current as regulations change, support your JHSC, and prepare you for MOL inspections before they happen, not after.',
           regulatoryTag: { label: '🛡 MOL Inspection Ready', bg: 'rgba(217,27,78,0.08)', text: '#D91B4E' },
         },
       ],

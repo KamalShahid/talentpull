@@ -1,4 +1,4 @@
-// Industries data — used on Home (Section 8 tiles) and the /industries page.
+// Industries data - used on Home (Section 8 tiles) and the /industries page.
 
 export const industries = [
   {

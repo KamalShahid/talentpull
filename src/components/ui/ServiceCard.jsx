@@ -30,7 +30,7 @@ export default function ServiceCard({ service, index = 0 }) {
         isRed ? 'hover:border-tp-red/20' : 'hover:border-tp-teal/20'
       )}
     >
-      {/* Icon — 56×56 with subtle brand-tinted lift shadow */}
+      {/* Icon - 56×56 with subtle brand-tinted lift shadow */}
       <div
         className={cn(
           'inline-flex h-14 w-14 items-center justify-center rounded-xl mb-5',
@@ -72,7 +72,7 @@ export default function ServiceCard({ service, index = 0 }) {
         </ul>
       )}
 
-      {/* CTA — brand color on hover, animated arrow */}
+      {/* CTA - brand color on hover, animated arrow */}
       <Link
         to={service.tileCta.to}
         className={cn(
@@ -84,7 +84,7 @@ export default function ServiceCard({ service, index = 0 }) {
         <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
       </Link>
 
-      {/* Best For — pinned to the bottom, separated by a divider */}
+      {/* Best For - pinned to the bottom, separated by a divider */}
       {service.bestFor && (
         <div className="mt-auto pt-5 border-t border-gray-100 flex flex-wrap items-center gap-x-2 gap-y-1.5">
           <span className="text-[10px] uppercase tracking-[0.16em] text-tp-dark/45 font-semibold">

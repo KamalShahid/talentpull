@@ -18,7 +18,7 @@ import MobileDrawer from './MobileDrawer.jsx';
  *     A single shared closeTimer ref coordinates: any enter clears
  *     a pending close; any leave queues a 120ms close. This means the
  *     menu only stays open while the cursor is actually on a trigger
- *     or the panel — not on the logo, Contact Us, or empty space
+ *     or the panel - not on the logo, Contact Us, or empty space
  *     elsewhere in the header.
  *   - A per-item invisible bridge fills the small gap between the
  *     bottom of a nav link and the top of the panel so the cursor
@@ -118,7 +118,7 @@ export default function Navbar() {
             />
           </Link>
 
-          {/* Desktop nav — labels are real <Link>s. Hover (mouseenter on the
+          {/* Desktop nav - labels are real <Link>s. Hover (mouseenter on the
               wrapper) opens the panel; click navigates. Each item owns its
               own mouseenter/mouseleave + an invisible bridge so the cursor
               can traverse the small gap to the panel without dropping into
@@ -153,15 +153,18 @@ export default function Navbar() {
                     />
                   </Link>
 
-                  {/* Per-item bridge — only catches the cursor while this
+                  {/* Per-item bridge. Only catches the cursor while this
                       item's panel is open, so it can't intercept events
-                      from neighbouring items when closed. Sits directly
-                      below the link, reaching down past the header edge
-                      into the panel's top so the traversal is unbroken. */}
+                      from neighbouring items when closed. The link is
+                      ~32px tall and centered in the 80px header, so the
+                      gap from link-bottom to panel-top is ~24px. h-7
+                      (28px) reaches past the header edge into the panel,
+                      so the cursor's trip from link to panel is unbroken
+                      even at slow speeds. */}
                   <span
                     aria-hidden="true"
                     className={cn(
-                      'absolute left-0 right-0 top-full h-3',
+                      'absolute left-0 right-0 top-full h-7',
                       isOpen ? '' : 'pointer-events-none'
                     )}
                   />
@@ -200,9 +203,13 @@ export default function Navbar() {
           </button>
         </div>
 
-        {/* Desktop mega menu — single shared full-width panel. Owns its own
-            mouseenter/mouseleave that feed the same closeTimer ref: hovering
-            the panel clears any pending close, leaving it queues one. */}
+        {/* Desktop mega menu - single shared full-width panel. Owns its
+            own mouseenter/mouseleave that feed the same closeTimer ref:
+            hovering the panel clears any pending close, leaving it queues
+            one. pointer-events are gated TWICE: once via Framer's exit
+            target so they drop the moment exit begins, and once via a
+            class toggle keyed off openId so the panel can never silently
+            intercept a hover during the 180ms fade-out. */}
         <AnimatePresence>
           {activeDropdown && (
             <motion.div
@@ -210,10 +217,13 @@ export default function Navbar() {
               onMouseEnter={() => openMenu(activeDropdown.id)}
               onMouseLeave={queueClose}
               initial={{ opacity: 0, y: -6, pointerEvents: 'none' }}
-              animate={{ opacity: 1, y: 0, pointerEvents: 'auto' }}
+              animate={{ opacity: 1, y: 0, pointerEvents: openId === activeDropdown.id ? 'auto' : 'none' }}
               exit={{ opacity: 0, y: -6, pointerEvents: 'none' }}
               transition={{ duration: 0.18, ease: [0.16, 1, 0.3, 1] }}
-              className="hidden lg:block absolute inset-x-0 top-full bg-white border-t border-tp-fog shadow-tp-elevated"
+              className={cn(
+                'hidden lg:block absolute inset-x-0 top-full bg-white border-t border-tp-fog shadow-tp-elevated',
+                openId === activeDropdown.id ? '' : 'pointer-events-none'
+              )}
             >
               <MegaMenu dropdown={activeDropdown} onLinkClick={closeAll} />
             </motion.div>

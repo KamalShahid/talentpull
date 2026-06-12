@@ -19,7 +19,7 @@ const ICON_MAP = {
 
 // Each card's root id matches what the Home page industry tiles link to.
 // Some labels (real-estate, recycling-waste, etc.) intentionally have no
-// matching card right now — those hashes simply find nothing.
+// matching card right now - those hashes simply find nothing.
 const SLUG_TO_HASH = {
   'energy-utilities':         'energy-utilities',
   'manufacturing-industrial': 'manufacturing',
@@ -45,7 +45,7 @@ const quickLinks = [
 
 export default function Industries() {
   const { hash } = useLocation();
-  // Temporary highlight that self-clears after 2.5s — see the useEffect below.
+  // Temporary highlight that self-clears after 2.5s - see the useEffect below.
   const [highlightedId, setHighlightedId] = useState(null);
 
   useEffect(() => {

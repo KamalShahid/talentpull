@@ -20,7 +20,7 @@ export default function ApplyModal({ open, onClose, jobTitle = null }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setSubmitting(true);
-    // Placeholder — wire up to backend / form service later
+    // Placeholder - wire up to backend / form service later
     await new Promise((r) => setTimeout(r, 900));
     setSubmitting(false);
     setSubmitted(true);
@@ -141,13 +141,13 @@ export default function ApplyModal({ open, onClose, jobTitle = null }) {
                     </label>
                   </div>
 
-                  {/* Privacy consent text — verbatim */}
+                  {/* Privacy consent text - verbatim */}
                   <div className="mt-7 rounded-xl bg-tp-mist p-5 text-[13px] text-tp-dark/70 leading-relaxed space-y-3">
                     <p>
                       By submitting your contact details, you agree that Talent Pull Inc. may contact you regarding job opportunities, hiring updates, and relevant career-related information.
                     </p>
                     <p>
-                      <strong className="text-tp-dark">Email Communications</strong> <em>(checkbox — must be ticked to consent)</em>: You consent to receive emails from Talent Pull containing job alerts, hiring insights, and occasional promotional content. You may unsubscribe at any time using the link provided in our emails or by contacting us directly.
+                      <strong className="text-tp-dark">Email Communications</strong> <em>(checkbox, must be ticked to consent)</em>: You consent to receive emails from Talent Pull containing job alerts, hiring insights, and occasional promotional content. You may unsubscribe at any time using the link provided in our emails or by contacting us directly.
                     </p>
                     <p>
                       <strong className="text-tp-dark">Phone & Text Communications</strong>: By providing your phone number, you agree that Talent Pull may contact you via calls or text messages about employment opportunities and related services. Standard message and data rates may apply. You can opt out at any time by replying "STOP" to text messages or notifying us directly.

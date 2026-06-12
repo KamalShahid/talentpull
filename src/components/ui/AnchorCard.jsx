@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 /**
  * Brand-statement anchor card used in the 5-tile service grid to fill
  * the otherwise-empty 6th cell. Matches the surrounding ServiceCard
- * dimensions (rounded-2xl) but has no border / no CTA — purely a visual
+ * dimensions (rounded-2xl) but has no border / no CTA - purely a visual
  * brand moment with the TalentPull logo (the logo already carries the
  * "Smart Way of Hiring" tagline).
  *
@@ -56,7 +56,7 @@ export default function AnchorCard({ className = '', delay = 0.4 }) {
         />
       </motion.div>
 
-      {/* ── Layer 3: dark vertical gradient. Two stacked gradients — the rest
+      {/* ── Layer 3: dark vertical gradient. Two stacked gradients - the rest
               one is always visible; the hover one fades in on hover, giving
               a softer top stop without animating a background-image property
               (which CSS can't smoothly interpolate). ── */}
@@ -77,7 +77,7 @@ export default function AnchorCard({ className = '', delay = 0.4 }) {
         }}
       />
 
-      {/* ── Layer 4: ambient radial glow behind the logo — slow scale+opacity pulse ── */}
+      {/* ── Layer 4: ambient radial glow behind the logo - slow scale+opacity pulse ── */}
       <motion.div
         aria-hidden="true"
         className="absolute inset-0 pointer-events-none flex items-center justify-center"
@@ -108,7 +108,7 @@ export default function AnchorCard({ className = '', delay = 0.4 }) {
           <div className="transition-transform duration-[400ms] ease-out group-hover:scale-[1.04]">
             <motion.img
               src="/brand_assets/talent%20pull%20logo%20white.png"
-              alt="Talent Pull — The Smart Way of Hiring"
+              alt="Talent Pull, The Smart Way of Hiring"
               animate={{ y: [0, -6, 0] }}
               transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
               className="block h-auto w-full object-contain"
@@ -117,7 +117,7 @@ export default function AnchorCard({ className = '', delay = 0.4 }) {
         </motion.div>
       </div>
 
-      {/* ── Layer 6: diagonal shimmer sweep — 1.2s travel, 3.8s pause,
+      {/* ── Layer 6: diagonal shimmer sweep - 1.2s travel, 3.8s pause,
               giving a ~5s overall cycle. ── */}
       <motion.div
         aria-hidden="true"

@@ -23,7 +23,7 @@ import { homeIndustryTiles } from '../data/industries.js';
 const aiFeatures = [
   { icon: Bot,        title: 'Smarter Candidate Screening',   body: 'AI-assisted sourcing helps identify stronger candidate matches faster.' },
   { icon: Rocket,     title: 'Faster Workforce Deployment',   body: 'Reduce hiring delays and fill important positions more efficiently.' },
-  { icon: Users,      title: 'Human-Led Recruiting',          body: 'Every shortlist is reviewed by experienced recruiters — not just algorithms.' },
+  { icon: Users,      title: 'Human-Led Recruiting',          body: 'Every shortlist is reviewed by experienced recruiters, not just algorithms.' },
   { icon: Layers,     title: 'Flexible Hiring Support',       body: 'From individual hires to ongoing workforce needs, we scale with your business.' },
 ];
 
@@ -108,9 +108,9 @@ function splitWords(s) { return s.split(' '); }
 export default function Home() {
   return (
     <>
-      {/* ── Section 1 — Hero (Robert Half-style: dark left panel + photo right half) ── */}
+      {/* ── Section 1 - Hero (Robert Half-style: dark left panel + photo right half) ── */}
       <section className="relative bg-tp-darker text-white overflow-hidden min-h-[85vh] flex items-center">
-        {/* Photo on right half — desktop only, edge-to-edge */}
+        {/* Photo on right half - desktop only, edge-to-edge */}
         <div className="hidden lg:block absolute top-0 right-0 bottom-0 w-1/2">
           <motion.img
             src="/brand_assets/HeroPic.jpg"
@@ -217,7 +217,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ── Section 2 — Employer / Job Seeker Split ────────────────── */}
+      {/* ── Section 2 - Employer / Job Seeker Split ────────────────── */}
       <section className="py-20 md:py-24 bg-white">
         <div className="container-tp grid lg:grid-cols-2 gap-6 lg:gap-8">
           {[
@@ -270,7 +270,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ── Section 3 — About Talent Pull ──────────────────────────── */}
+      {/* ── Section 3 - About Talent Pull ──────────────────────────── */}
       <section id="about" className="relative py-20 md:py-28 bg-tp-mist overflow-hidden">
         <FloatingBlob
           style={{ top: '8%', right: '-100px', width: 300, height: 300, background: 'rgba(217,27,78,0.06)' }}
@@ -301,7 +301,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ── Section 4 — Workforce Solutions tiles ──────────────────── */}
+      {/* ── Section 4 - Workforce Solutions tiles ──────────────────── */}
       <section id="services" className="relative py-20 md:py-28 bg-white overflow-hidden">
         <FloatingBlob
           style={{ bottom: '8%', left: '-120px', width: 360, height: 360, background: 'rgba(23,184,206,0.05)' }}
@@ -328,7 +328,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ── Section 5 — Why Businesses Choose Talent Pull ──────────── */}
+      {/* ── Section 5 - Why Businesses Choose Talent Pull ──────────── */}
       <section id="why" className="relative py-20 md:py-28 bg-tp-mist overflow-hidden">
         <FloatingBlob
           style={{ top: '20%', right: '-80px', width: 320, height: 320, background: 'rgba(217,27,78,0.05)' }}
@@ -354,7 +354,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ── Section 6 — Testimonials ───────────────────────────────── */}
+      {/* ── Section 6 - Testimonials ───────────────────────────────── */}
       <section className="py-20 md:py-28 bg-white">
         <div className="container-tp">
           <SectionHeader
@@ -366,7 +366,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ── Section 7 — Our Process ────────────────────────────────── */}
+      {/* ── Section 7 - Our Process ────────────────────────────────── */}
       <section id="process" className="py-20 md:py-28 bg-tp-mist">
         <div className="container-tp">
           <SectionHeader
@@ -396,7 +396,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ── Section 8 — Industries We Serve ────────────────────────── */}
+      {/* ── Section 8 - Industries We Serve ────────────────────────── */}
       <section id="industries" className="relative py-20 md:py-28 bg-white overflow-hidden">
         <FloatingBlob
           style={{ top: '15%', left: '6%', width: 280, height: 280, background: 'rgba(23,184,206,0.06)' }}
@@ -423,7 +423,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ── Section 9 — AI-Powered Hiring ──────────────────────────── */}
+      {/* ── Section 9 - AI-Powered Hiring ──────────────────────────── */}
       <section id="ai" className="py-20 md:py-28 bg-tp-darker text-white relative overflow-hidden">
         <div
           aria-hidden="true"
@@ -483,7 +483,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ── Section 10 — Trust / Metrics Strip ─────────────────────── */}
+      {/* ── Section 10 - Trust / Metrics Strip ─────────────────────── */}
       <section className="py-16 bg-white border-y border-tp-fog">
         <div className="container-tp">
           <motion.h2
@@ -515,7 +515,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ── Section 11 — Final CTA ─────────────────────────────────── */}
+      {/* ── Section 11 - Final CTA ─────────────────────────────────── */}
       <section className="py-20 md:py-28 bg-tp-mist">
         <div className="container-tp">
           <SectionHeader

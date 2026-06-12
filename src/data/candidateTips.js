@@ -24,9 +24,9 @@ export const candidateTips = [
       {
         heading: 'Common Resume Mistakes',
         bullets: [
-          'Too much unrelated information — keep your resume focused on relevant work experience and operational skills.',
-          'Missing contact information — always ensure your phone number and email are current.',
-          'Unclear employment dates — employers prefer clear timelines and recent work history.',
+          'Too much unrelated information. Keep your resume focused on relevant work experience and operational skills.',
+          'Missing contact information. Always ensure your phone number and email are current.',
+          'Unclear employment dates. Employers prefer clear timelines and recent work history.',
         ],
       },
       {
@@ -65,9 +65,9 @@ export const candidateTips = [
       {
         heading: 'Common Interview Mistakes',
         bullets: [
-          'Lack of preparation — not understanding the position may create a poor first impression.',
-          'Poor communication — clear and professional communication is important during interviews.',
-          'Negative discussion about previous employers — keep responses professional and focused on your experience.',
+          'Lack of preparation. Not understanding the position may create a poor first impression.',
+          'Poor communication. Clear and professional communication is important during interviews.',
+          'Negative discussion about previous employers. Keep responses professional and focused on your experience.',
         ],
       },
       {

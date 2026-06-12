@@ -52,7 +52,7 @@ export default function StatsBar() {
       ref={ref}
       className="relative bg-tp-darker text-white overflow-hidden py-8 md:py-12"
     >
-      {/* Diagonal light sweep — desktop only, kicks in once the count-up is done */}
+      {/* Diagonal light sweep - desktop only, kicks in once the count-up is done */}
       <motion.div
         aria-hidden="true"
         className="hidden md:block absolute inset-0 pointer-events-none"

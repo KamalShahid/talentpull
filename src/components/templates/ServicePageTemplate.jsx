@@ -100,7 +100,7 @@ const STAT_ICON_MAP = {
   'trending-down':   TrendingDown,
 };
 
-// ── New Key Outcomes design — used when keyMetrics is an object array ─────
+// ── New Key Outcomes design - used when keyMetrics is an object array ─────
 
 function CountUp({ target, start, duration = 1800 }) {
   const [count, setCount] = useState(0);
@@ -143,7 +143,7 @@ function StatCard({ metric, index, isRed }) {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: '-60px' });
   // Brief: count-up / typewriter begin 200ms *after* the card finishes its
-  // entrance — entrance is 0.5s + 0.12s × index of stagger.
+  // entrance - entrance is 0.5s + 0.12s × index of stagger.
   const startDelay = 500 + index * 120 + 200;
   const [animStart, setAnimStart] = useState(false);
   useEffect(() => {
@@ -171,7 +171,7 @@ function StatCard({ metric, index, isRed }) {
         isRed ? 'hover:border-tp-red/20' : 'hover:border-tp-teal/20'
       )}
     >
-      {/* Top accent line — 3px tall × 40px wide, expands to 100% on hover */}
+      {/* Top accent line - 3px tall × 40px wide, expands to 100% on hover */}
       <span
         aria-hidden="true"
         className={cn(
@@ -181,7 +181,7 @@ function StatCard({ metric, index, isRed }) {
         )}
       />
 
-      {/* Stat value — big bold brand-colored number or static text */}
+      {/* Stat value - big bold brand-colored number or static text */}
       <div
         className={cn(
           'font-display font-extrabold tracking-[-0.02em] leading-none',
@@ -207,7 +207,7 @@ function StatCard({ metric, index, isRed }) {
   );
 }
 
-// ── Bold Stat Card — used when a metric has `icon` or `detail` (Industrial). ─
+// ── Bold Stat Card - used when a metric has `icon` or `detail` (Industrial). ─
 // Visually heavier than StatCard: left accent bar that draws in, icon tile
 // top-left, large stat, label, divider, italic supporting detail.
 // Optional hazardStripe prop adds a hazard-tape top accent (Health & Safety).
@@ -244,7 +244,7 @@ function BoldStatCard({ metric, index, isRed, hazardStripe = false }) {
         isRed ? 'hover:border-tp-red/20' : 'hover:border-tp-teal/20'
       )}
     >
-      {/* Left accent bar — draws from top to bottom on entrance, widens on hover */}
+      {/* Left accent bar - draws from top to bottom on entrance, widens on hover */}
       <motion.span
         aria-hidden="true"
         initial={{ height: '0%' }}
@@ -258,7 +258,7 @@ function BoldStatCard({ metric, index, isRed, hazardStripe = false }) {
         )}
       />
 
-      {/* Hazard-stripe top accent — Health & Safety only. Drawn L→R on entry. */}
+      {/* Hazard-stripe top accent - Health & Safety only. Drawn L→R on entry. */}
       {hazardStripe && (
         <motion.span
           aria-hidden="true"
@@ -275,7 +275,7 @@ function BoldStatCard({ metric, index, isRed, hazardStripe = false }) {
         />
       )}
 
-      {/* Icon tile — top-left. Hazard variant deepens the tile on hover. */}
+      {/* Icon tile - top-left. Hazard variant deepens the tile on hover. */}
       {Icon && (
         <motion.span
           initial={{ opacity: 0, scale: 0.7 }}
@@ -328,7 +328,7 @@ function BoldStatCard({ metric, index, isRed, hazardStripe = false }) {
         </>
       )}
 
-      {/* Trust indicator chip — pinned to the bottom of the card.
+      {/* Trust indicator chip - pinned to the bottom of the card.
           Supports two shapes:
             - string:  legacy green chip with ✓ Check icon (Payroll)
             - object:  per-card custom colors + emoji-prefixed label (Financial) */}
@@ -430,7 +430,7 @@ export default function ServicePageTemplate({ service }) {
               </motion.div>
             </div>
 
-            {/* Hero photo — replaces the old icon card. Same position, square aspect,
+            {/* Hero photo - replaces the old icon card. Same position, square aspect,
                 same 2.5rem rounded corners, no overlay / filter / blend / border. */}
             <motion.div
               initial={{ opacity: 0, scale: 0.9 }}
@@ -489,7 +489,7 @@ export default function ServicePageTemplate({ service }) {
                   const iconKey = isString ? null : item.icon;
                   const verified = !isString && item.verified === true;
 
-                  // Icon-rich card variant — items with an icon string but no bullets (Industrial)
+                  // Icon-rich card variant - items with an icon string but no bullets (Industrial)
                   if (iconKey && !bullets) {
                     const Icon = ITEM_ICON_MAP[iconKey] || PackageOpen;
                     return (
@@ -518,7 +518,7 @@ export default function ServicePageTemplate({ service }) {
                           )}
                         />
 
-                        {/* Icon — scales in shortly after the card lands */}
+                        {/* Icon - scales in shortly after the card lands */}
                         <motion.span
                           initial={{ opacity: 0, scale: 0.8 }}
                           whileInView={{ opacity: 1, scale: 1 }}
@@ -549,7 +549,7 @@ export default function ServicePageTemplate({ service }) {
                           {description}
                         </p>
 
-                        {/* Credentials Verified badge — pinned to bottom-left */}
+                        {/* Credentials Verified badge - pinned to bottom-left */}
                         {verified && (
                           <div className="mt-auto pt-4">
                             <span className="inline-flex items-center gap-1 bg-[#f0fdf4] text-[#16a34a] text-[0.7rem] font-medium px-2 py-0.5 rounded-full">
@@ -562,12 +562,12 @@ export default function ServicePageTemplate({ service }) {
                     );
                   }
 
-                  // Rich card variant — used when the item has its own bullet list
+                  // Rich card variant - used when the item has its own bullet list
                   if (bullets) {
                     const StackedIcon = iconKey ? ITEM_ICON_MAP[iconKey] : null;
                     const badgeConfig = !isString && item.badge ? BADGE_MAP[item.badge] : null;
 
-                    // ── Stacked icon-block variant (Payroll / Financial / Health & Safety) —
+                    // ── Stacked icon-block variant (Payroll / Financial / Health & Safety) -
                     // icon ABOVE the title, animated top accent, optional bullets and bottom badge.
                     if (StackedIcon) {
                       // Centering for 5-card layout: 6-col grid w/ col-span-2; last 2 cards re-centered.
@@ -604,7 +604,7 @@ export default function ServicePageTemplate({ service }) {
                             colClasses
                           )}
                         >
-                          {/* Top accent bar — draws L→R on entrance. Warning-stripe
+                          {/* Top accent bar - draws L→R on entrance. Warning-stripe
                               variant swaps the solid color for hazard tape. */}
                           <motion.span
                             aria-hidden="true"
@@ -622,7 +622,7 @@ export default function ServicePageTemplate({ service }) {
                             style={isWarningStripe ? { background: accentBg } : undefined}
                           />
 
-                          {/* Icon tile — scales in after the card lands */}
+                          {/* Icon tile - scales in after the card lands */}
                           <motion.span
                             initial={{ opacity: 0, scale: 0.75 }}
                             whileInView={{ opacity: 1, scale: 1 }}
@@ -654,7 +654,7 @@ export default function ServicePageTemplate({ service }) {
                           </p>
                           {/* Divider */}
                           <hr className="my-[14px] border-t border-gray-100" />
-                          {/* Bullets — 13px icon (Check default, ShieldCheck for Health & Safety) */}
+                          {/* Bullets - 13px icon (Check default, ShieldCheck for Health & Safety) */}
                           <ul className="space-y-2">
                             {bullets.map((b) => (
                               <li
@@ -673,7 +673,7 @@ export default function ServicePageTemplate({ service }) {
                             ))}
                           </ul>
 
-                          {/* Badge pill — pinned bottom-left. Variant configured in BADGE_MAP. */}
+                          {/* Badge pill - pinned bottom-left. Variant configured in BADGE_MAP. */}
                           {badgeConfig && (() => {
                             const BadgeIcon = badgeConfig.icon;
                             return (
@@ -698,7 +698,7 @@ export default function ServicePageTemplate({ service }) {
                       );
                     }
 
-                    // ── Inline Check + title variant (Professional Staffing) — unchanged.
+                    // ── Inline Check + title variant (Professional Staffing) - unchanged.
                     return (
                       <motion.div
                         key={label}
@@ -768,7 +768,7 @@ export default function ServicePageTemplate({ service }) {
                     );
                   }
 
-                  // Simple checkmark variant — used for string bullets and
+                  // Simple checkmark variant - used for string bullets and
                   // legacy { label, description } items without their own bullets.
                   const total = service.whatWeCover.length;
                   const tilesInLastRow = total % 3 === 0 ? 3 : total % 3;
@@ -847,7 +847,7 @@ export default function ServicePageTemplate({ service }) {
         </div>
       </section>
 
-      {/* ── How We Work — n-step process flow (only when steps are provided).
+      {/* ── How We Work - n-step process flow (only when steps are provided).
           When there are exactly 4 steps we switch into a more compact card
           design with dashed-line + traveling-dot connectors (Payroll). For
           any other count we keep the existing 3-step layout (Professional /
@@ -945,7 +945,7 @@ export default function ServicePageTemplate({ service }) {
                         'relative mb-5',
                         isCompact4 ? 'w-14 h-14' : 'w-16 h-16'
                       )}>
-                        {/* Outer ring — compact4 only. Three styles:
+                        {/* Outer ring - compact4 only. Three styles:
                               Payroll  → static solid 2px ring, 5px gap
                               Financial → dashed 2px ring, 4px gap, solid on hover
                               Safety   → dashed 3px ring at 30% opacity, 6px gap */}
@@ -967,7 +967,7 @@ export default function ServicePageTemplate({ service }) {
                             )}
                           />
                         )}
-                        {/* Pulse ring — Financial / Safety variants fire once on
+                        {/* Pulse ring - Financial / Safety variants fire once on
                             entry; Payroll loops continuously. */}
                         {oneShotPulse ? (
                           <motion.span
@@ -1017,7 +1017,7 @@ export default function ServicePageTemplate({ service }) {
                         </span>
                       </div>
 
-                      {/* Icon tile — appears between the number circle and the title */}
+                      {/* Icon tile - appears between the number circle and the title */}
                       {StepIcon && (
                         <motion.span
                           initial={isCompact4 ? { opacity: 0, scale: 0.7 } : false}
@@ -1043,7 +1043,7 @@ export default function ServicePageTemplate({ service }) {
                       )}>
                         {s.title}
                       </h4>
-                      {/* Eyebrow only on the legacy (no-icon) variant — keeps Professional unchanged */}
+                      {/* Eyebrow only on the legacy (no-icon) variant - keeps Professional unchanged */}
                       {!StepIcon && !isCompact4 && (
                         <p
                           className={cn(
@@ -1063,7 +1063,7 @@ export default function ServicePageTemplate({ service }) {
                         {s.body}
                       </p>
 
-                      {/* Regulatory tag pill — pinned to the bottom (Safety variant) */}
+                      {/* Regulatory tag pill - pinned to the bottom (Safety variant) */}
                       {s.regulatoryTag && (
                         <motion.div
                           initial={{ opacity: 0 }}
@@ -1151,7 +1151,7 @@ export default function ServicePageTemplate({ service }) {
                           {isCompact4 && isSafetyVariant ? (
                             // Solid 20%-opacity line + traveling Check icon (Health & Safety)
                             <div className="relative w-full h-[2px]">
-                              {/* Base line — draws L→R on entry */}
+                              {/* Base line - draws L→R on entry */}
                               <motion.span
                                 aria-hidden="true"
                                 initial={{ width: 0 }}
@@ -1163,7 +1163,7 @@ export default function ServicePageTemplate({ service }) {
                                   isRed ? 'bg-tp-red/20' : 'bg-tp-teal/20'
                                 )}
                               />
-                              {/* Traveling Check — loops left to right as a moving checklist signal */}
+                              {/* Traveling Check - loops left to right as a moving checklist signal */}
                               <motion.span
                                 aria-hidden="true"
                                 initial={{ left: '0%', opacity: 0 }}
@@ -1183,7 +1183,7 @@ export default function ServicePageTemplate({ service }) {
                           ) : isCompact4 && isFinancialVariant ? (
                             // Solid 20%-opacity line + shimmer overlay (Financial Support)
                             <div className="relative w-full h-[2px] overflow-hidden">
-                              {/* Base line — draws L→R on entry */}
+                              {/* Base line - draws L→R on entry */}
                               <motion.span
                                 aria-hidden="true"
                                 initial={{ width: 0 }}
@@ -1195,7 +1195,7 @@ export default function ServicePageTemplate({ service }) {
                                   isRed ? 'bg-tp-red/20' : 'bg-tp-teal/20'
                                 )}
                               />
-                              {/* Shimmer — gradient travels across continuously */}
+                              {/* Shimmer - gradient travels across continuously */}
                               <motion.span
                                 aria-hidden="true"
                                 initial={{ x: '-100%' }}
@@ -1238,7 +1238,7 @@ export default function ServicePageTemplate({ service }) {
                                 viewport={{ once: true, margin: '-60px' }}
                                 transition={{ duration: 0.6, ease: 'easeInOut', delay: connectorDelay }}
                               />
-                              {/* Traveling dot — loops left to right */}
+                              {/* Traveling dot - loops left to right */}
                               <motion.circle
                                 cy="11"
                                 r="3"
@@ -1351,7 +1351,7 @@ export default function ServicePageTemplate({ service }) {
                   ))}
                 </div>
               ) : (
-                // Existing simple variant — centered for 2 metrics, else 3-col
+                // Existing simple variant - centered for 2 metrics, else 3-col
                 <div
                   className={
                     service.keyMetrics.length === 2

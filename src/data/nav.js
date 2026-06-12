@@ -1,4 +1,4 @@
-// Navigation data — drives the desktop mega menu and mobile drawer.
+// Navigation data - drives the desktop mega menu and mobile drawer.
 
 export const nav = {
   // Always-visible right-side items
@@ -55,7 +55,7 @@ export const nav = {
       left: {
         image: '/brand_assets/NavBar2.jpg',
         imageAlt: 'Candidate exploring job opportunities',
-        tagline: 'Find the right opportunity — faster.',
+        tagline: 'Find the right opportunity, faster.',
         body: 'Browse roles that match your skills, experience, and goals across professional, industrial, and skilled trades.',
         cta: { label: 'Browse Jobs', to: '/job-seekers' },
       },
@@ -139,7 +139,7 @@ export const nav = {
         image: '/brand_assets/NavBar4.jpg',
         imageAlt: 'Professional reading hiring insights',
         tagline: 'Make smarter hiring decisions with practical workforce insights.',
-        body: 'Real guidance from real recruiters — no fluff.',
+        body: 'Real guidance from real recruiters. No fluff.',
         cta: { label: 'Discover Insights', to: '/insights' },
       },
       groups: [

@@ -1,4 +1,4 @@
-// FAQs for the /faq page — split into employer and job seeker sections.
+// FAQs for the /faq page - split into employer and job seeker sections.
 
 export const employerFaqs = [
   {

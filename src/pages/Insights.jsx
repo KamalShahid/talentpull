@@ -46,7 +46,7 @@ export default function Insights() {
             transition={{ duration: 0.6, delay: 0.22 }}
             className="mt-4 text-white/65 leading-relaxed"
           >
-            At Talent Pull, we share straightforward, experience-driven insights focused on hiring efficiency, workforce planning, candidate retention, payroll coordination, staffing challenges, and operational growth — without unnecessary complexity. Whether you're scaling your workforce, improving internal processes, or navigating hiring challenges, our goal is to provide practical information businesses can actually use.
+            At Talent Pull, we share straightforward, experience-driven insights focused on hiring efficiency, workforce planning, candidate retention, payroll coordination, staffing challenges, and operational growth, without unnecessary complexity. Whether you're scaling your workforce, improving internal processes, or navigating hiring challenges, our goal is to provide practical information businesses can actually use.
           </motion.p>
         </div>
       </section>
