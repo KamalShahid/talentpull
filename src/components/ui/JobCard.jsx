@@ -84,17 +84,27 @@ export default function JobCard({ job, index = 0, onApply }) {
                 ))}
               </ul>
 
-              <h4 className="text-xs font-bold uppercase tracking-[0.18em] text-tp-teal-700 mb-3">
-                Requirements
-              </h4>
-              <ul className="space-y-2 mb-7">
-                {job.requirements.map((r) => (
-                  <li key={r} className="flex items-start gap-2 text-tp-dark/75 text-[15px] leading-relaxed">
-                    <Check className="h-4 w-4 mt-1 text-tp-teal-700 flex-shrink-0" strokeWidth={2.5} />
-                    <span>{r}</span>
-                  </li>
-                ))}
-              </ul>
+              {job.requirements?.length > 0 && (
+                <>
+                  <h4 className="text-xs font-bold uppercase tracking-[0.18em] text-tp-teal-700 mb-3">
+                    Requirements
+                  </h4>
+                  <ul className="space-y-2 mb-7">
+                    {job.requirements.map((r) => (
+                      <li key={r} className="flex items-start gap-2 text-tp-dark/75 text-[15px] leading-relaxed">
+                        <Check className="h-4 w-4 mt-1 text-tp-teal-700 flex-shrink-0" strokeWidth={2.5} />
+                        <span>{r}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </>
+              )}
+
+              {job.applyInstructions && (
+                <p className="text-[15px] text-tp-dark/75 leading-relaxed mb-5">
+                  {job.applyInstructions}
+                </p>
+              )}
 
               {job.shift && (
                 <p className="text-sm text-tp-dark/60 mb-5">
