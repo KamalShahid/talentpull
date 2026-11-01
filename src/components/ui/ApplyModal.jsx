@@ -1,32 +1,107 @@
 import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, Upload, CheckCircle2 } from 'lucide-react';
+import { X, Upload, CheckCircle2, AlertCircle } from 'lucide-react';
 import { useScrollLock } from '../../hooks/useScrollLock.js';
+
+const WEB3FORMS_ENDPOINT = 'https://api.web3forms.com/submit';
 
 export default function ApplyModal({ open, onClose, jobTitle = null }) {
   useScrollLock(open);
-  const [submitting, setSubmitting] = useState(false);
-  const [submitted, setSubmitted] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState('idle'); // 'idle' | 'loading' | 'success' | 'error'
+  const [formKey, setFormKey] = useState(0); // bumping remounts the form, clearing every field incl. file names
   const dialogRef = useRef(null);
+  const closeTimer = useRef(null);
 
   useEffect(() => {
     if (!open) return;
-    setSubmitted(false);
+    setSubmitStatus((s) => (s === 'error' ? 'idle' : s));
     const onKey = (e) => { if (e.key === 'Escape') onClose(); };
     document.addEventListener('keydown', onKey);
     return () => document.removeEventListener('keydown', onKey);
   }, [open, onClose]);
 
+  // Auto-dismiss the success toast
+  useEffect(() => {
+    if (submitStatus !== 'success') return;
+    const t = setTimeout(() => setSubmitStatus('idle'), 6000);
+    return () => clearTimeout(t);
+  }, [submitStatus]);
+
+  useEffect(() => () => clearTimeout(closeTimer.current), []);
+
+  const resetForm = () => setFormKey((k) => k + 1);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setSubmitting(true);
-    // Placeholder - wire up to backend / form service later
-    await new Promise((r) => setTimeout(r, 900));
-    setSubmitting(false);
-    setSubmitted(true);
+    const form = new FormData(e.currentTarget);
+    const title = jobTitle || 'General Application';
+    const resumeFile = form.get('resume');
+    const certificationsFile = form.get('certs');
+
+    const payload = new FormData();
+    // Web3Forms fields
+    payload.append('access_key', import.meta.env.VITE_WEB3FORMS_KEY ?? '');
+    payload.append('subject', `New Job Application - ${title}`);
+    payload.append('from_name', 'TalentPull Website');
+    payload.append('botcheck', form.get('botcheck') ? 'on' : ''); // honeypot: bots tick it, Web3Forms rejects
+    // Application data
+    payload.append('Job Title', title);
+    payload.append('Applicant Name', form.get('fullName'));
+    payload.append('Email Address', form.get('email'));
+    payload.append('Contact Number', form.get('phone'));
+    payload.append('Cover Letter', form.get('cover')?.trim() || 'Not provided');
+    payload.append('Email Marketing Consent', form.get('emailConsent') ? 'Yes' : 'No');
+    // Attachments: an empty file input still yields a 0-byte File, so check size
+    if (resumeFile?.size) payload.append('resume', resumeFile, resumeFile.name);
+    if (certificationsFile?.size) payload.append('certifications', certificationsFile, certificationsFile.name);
+
+    setSubmitStatus('loading');
+    try {
+      // No Content-Type header: the browser sets the multipart boundary itself
+      const response = await fetch(WEB3FORMS_ENDPOINT, { method: 'POST', body: payload });
+      const result = await response.json();
+      if (!result.success) {
+        console.error('Web3Forms error:', result);
+        setSubmitStatus('error');
+        return;
+      }
+      setSubmitStatus('success');
+      resetForm();
+      closeTimer.current = setTimeout(onClose, 2500);
+    } catch (err) {
+      console.error('Submission error:', err);
+      setSubmitStatus('error');
+    }
   };
 
   return (
+    <>
+    <AnimatePresence>
+      {submitStatus === 'success' && (
+        <motion.div
+          key="apply-toast"
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: 16 }}
+          transition={{ type: 'spring', stiffness: 380, damping: 30 }}
+          role="status"
+          className="fixed bottom-6 left-1/2 -translate-x-1/2 z-[60] w-[calc(100%-2rem)] max-w-md flex items-start gap-3 rounded-2xl bg-white border border-tp-fog shadow-tp-elevated p-4 pr-10"
+        >
+          <CheckCircle2 className="h-5 w-5 mt-0.5 text-tp-teal-700 flex-shrink-0" strokeWidth={2} />
+          <p className="text-sm text-tp-dark leading-relaxed">
+            Your application has been submitted successfully. We will be in touch shortly.
+          </p>
+          <button
+            type="button"
+            onClick={() => setSubmitStatus('idle')}
+            className="absolute top-3 right-3 p-1 rounded-full text-tp-dark/50 hover:bg-tp-mist hover:text-tp-dark focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-tp-red active:scale-95 transition-[color,background-color,transform]"
+            aria-label="Dismiss"
+          >
+            <X className="h-4 w-4" />
+          </button>
+        </motion.div>
+      )}
+    </AnimatePresence>
     <AnimatePresence>
       {open && (
         <>
@@ -62,23 +137,8 @@ export default function ApplyModal({ open, onClose, jobTitle = null }) {
                 <X className="h-5 w-5" />
               </button>
 
-              {submitted ? (
-                <div className="p-12 text-center">
-                  <div className="inline-flex h-16 w-16 items-center justify-center rounded-full bg-tp-teal-50 text-tp-teal-700 mb-5">
-                    <CheckCircle2 className="h-8 w-8" strokeWidth={1.8} />
-                  </div>
-                  <h2 className="font-display text-2xl font-bold text-tp-dark mb-3 tracking-display-tight">
-                    Application received
-                  </h2>
-                  <p className="text-tp-dark/70 leading-relaxed max-w-md mx-auto mb-7">
-                    Thank you. A Talent Pull recruiter will review your application and reach out within one business day.
-                  </p>
-                  <button type="button" onClick={onClose} className="btn-outline">
-                    Close
-                  </button>
-                </div>
-              ) : (
-                <form onSubmit={handleSubmit} className="p-7 md:p-10">
+              <form key={formKey} onSubmit={handleSubmit} className="p-7 md:p-10">
+                  <input type="checkbox" name="botcheck" style={{ display: 'none' }} tabIndex={-1} autoComplete="off" />
                   <div className="mb-7">
                     <span className="eyebrow">APPLY</span>
                     <h2
@@ -105,10 +165,9 @@ export default function ApplyModal({ open, onClose, jobTitle = null }) {
                       />
                     </Field>
 
-                    <Field label="Short description / cover letter" required>
+                    <Field label="Short description / cover letter">
                       <textarea
                         name="cover"
-                        required
                         rows={4}
                         className="form-input"
                         placeholder="Briefly tell us about your background and what you're looking for"
@@ -116,9 +175,12 @@ export default function ApplyModal({ open, onClose, jobTitle = null }) {
                     </Field>
 
                     <div className="grid sm:grid-cols-2 gap-4">
-                      <FileField label="Resume" required accept=".pdf,.doc,.docx" name="resume" />
+                      <FileField label="Resume" accept=".pdf,.doc,.docx" name="resume" />
                       <FileField label="Additional certifications" accept=".pdf,.doc,.docx,.jpg,.png" name="certs" />
                     </div>
+                    <p className="text-xs text-tp-dark/55 -mt-1">
+                      Attach your CV/resume and any certifications. Files are sent directly to our team.
+                    </p>
 
                     <div className="grid sm:grid-cols-2 gap-4">
                       <Field label="Contact number" required>
@@ -157,20 +219,35 @@ export default function ApplyModal({ open, onClose, jobTitle = null }) {
                     </p>
                   </div>
 
+                  {submitStatus === 'error' && (
+                    <div
+                      role="alert"
+                      className="mt-7 flex items-start gap-2.5 rounded-xl border border-tp-red/25 bg-tp-red-50 p-4 text-sm text-tp-red leading-relaxed"
+                    >
+                      <AlertCircle className="h-5 w-5 flex-shrink-0" strokeWidth={2} />
+                      <span>
+                        Something went wrong. Please email us directly at{' '}
+                        <a href="mailto:info@talentpull.ca" className="font-semibold underline underline-offset-2 hover:opacity-80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-tp-red rounded-sm">
+                          info@talentpull.ca
+                        </a>
+                      </span>
+                    </div>
+                  )}
+
                   <button
                     type="submit"
-                    disabled={submitting}
+                    disabled={submitStatus === 'loading' || submitStatus === 'success'}
                     className="btn-primary w-full justify-center mt-7 disabled:opacity-60 disabled:cursor-not-allowed"
                   >
-                    {submitting ? 'Submitting…' : 'Submit Application'}
+                    {submitStatus === 'loading' ? 'Submitting…' : 'Submit Application'}
                   </button>
                 </form>
-              )}
             </motion.div>
           </div>
         </>
       )}
     </AnimatePresence>
+    </>
   );
 }
 

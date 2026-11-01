@@ -11,3 +11,5 @@ screenshot-scroll-to.mjs
 serve.mjs
 .DS_Store
 *.log
+.env
+.env.local
